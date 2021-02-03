@@ -1,0 +1,5 @@
+This is my first time using Git Bash. First time cloning a repository and committing to local repository.
+Hello world.
+
+
+
