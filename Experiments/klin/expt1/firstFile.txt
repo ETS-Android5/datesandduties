@@ -1,5 +1,6 @@
 This is my first time using Git Bash. First time cloning a repository and committing to local repository.
 Hello world.
 
-I am now making my first edit to this file using vi. Going to commit, and then push to remote rrepo soon.
+I am now making my first edit to this file using vi. Going to commit, and then push to remote repo soon.
+Raghav is a monkey.
 
