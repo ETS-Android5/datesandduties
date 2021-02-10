@@ -1,0 +1,8 @@
+*.log
+
+#Removing these because why not just commit the source
+*.jar
+*.rar
+*.tar
+*.zip
+*.7z
