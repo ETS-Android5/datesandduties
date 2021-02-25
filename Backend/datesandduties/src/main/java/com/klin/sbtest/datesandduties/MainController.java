@@ -35,7 +35,7 @@ public class MainController {
     n.setName(name);
     n.setAge(age);
     accountRepository.save(n);
-    return "Saved";
+    return "Entry Saved!";
   }
 
   @GetMapping(path="/all")
