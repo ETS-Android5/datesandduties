@@ -23,28 +23,36 @@ public class Account {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
-	private String username;
+
+	private Integer id;
+
+	// private String username;
 
 	private String email;
 
-	private String gender;
+	// private String gender;
 
 	// private local/server -IDK how to implement this
 
-	private String password;
-	
-	private Integer phone;
+	// private String password;
 
-	private String country;
+	// private Integer phone;
+
+	// private String country;
 
 	// private String SecurityQuestion; -IDK how to implement this
-	
+
 	private String name;
 
 	private Integer age;
 
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public Integer getAge() {
 		return age;
@@ -70,43 +78,25 @@ public class Account {
 		this.email = email;
 	}
 
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public Integer getPhone() {
-		return phone;
-	}
-
-	public void setPhone(Integer phone) {
-		this.phone = phone;
-	}
+	/*
+	 * public String getCountry() { return country; }
+	 * 
+	 * public void setCountry(String country) { this.country = country; }
+	 * 
+	 * public String getPassword() { return password; }
+	 * 
+	 * public void setPassword(String password) { this.password = password; }
+	 * 
+	 * public String getGender() { return gender; }
+	 * 
+	 * public void setGender(String gender) { this.gender = gender; }
+	 * 
+	 * public String getUsername() { return username; }
+	 * 
+	 * public void setUsername(String username) { this.username = username; }
+	 * 
+	 * public Integer getPhone() { return phone; }
+	 * 
+	 * public void setPhone(Integer phone) { this.phone = phone; }
+	 */
 }

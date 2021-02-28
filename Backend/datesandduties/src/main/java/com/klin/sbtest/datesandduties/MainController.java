@@ -17,8 +17,8 @@ public class MainController {
   private AccountRepository accountRepository;
 
   @PostMapping(path="/add") // Map ONLY POST Requests
-  public @ResponseBody String addNewAccount (@RequestParam String username , @RequestParam String email, @RequestParam String gender,
-		  @RequestParam String password, @RequestParam Integer phone, @RequestParam String country, @RequestParam String name, @RequestParam Integer age) {
+  public @ResponseBody String addNewAccount (/*@RequestParam String username ,*/ @RequestParam String email,/* @RequestParam String gender,
+		  @RequestParam String password, @RequestParam Integer phone, @RequestParam String country,*/ @RequestParam String name, @RequestParam Integer age) {
 	  
 	  
 	  
@@ -26,12 +26,12 @@ public class MainController {
     // @RequestParam means it is a parameter from the GET or POST request
 
     Account n = new Account();
-    n.setUsername(username);
+    //n.setUsername(username);
     n.setEmail(email);
-    n.setGender(gender);
+    /*n.setGender(gender);
     n.setPassword(password);
     n.setPhone(phone);
-    n.setCountry(country);
+    n.setCountry(country);*/
     n.setName(name);
     n.setAge(age);
     accountRepository.save(n);
@@ -39,7 +39,7 @@ public class MainController {
   }
 
   @GetMapping(path="/all")
-  public @ResponseBody Iterable<Account> getAllUsers() {
+  public @ResponseBody Iterable<Account> getAllAccounts() {
     // This returns a JSON or XML with the users
     return accountRepository.findAll();
   }
