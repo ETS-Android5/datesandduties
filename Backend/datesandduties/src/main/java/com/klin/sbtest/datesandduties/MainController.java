@@ -17,9 +17,7 @@ public class MainController {
   private AccountRepository accountRepository;
 
   @PostMapping(path="/add") // Map ONLY POST Requests
-  public @ResponseBody String addNewAccount (/*@RequestParam String username ,*/ @RequestParam String email,/* @RequestParam String gender,
-		  @RequestParam String password, @RequestParam Integer phone, @RequestParam String country,*/ @RequestParam String name, @RequestParam Integer age) {
-	  
+  public @ResponseBody String addNewAccount (@RequestParam String name, @RequestParam String email) {
 	  
 	  
     // @ResponseBody means the returned String is the response, not a view name
@@ -27,13 +25,13 @@ public class MainController {
 
     Account n = new Account();
     //n.setUsername(username);
+    n.setName(name);
     n.setEmail(email);
     /*n.setGender(gender);
     n.setPassword(password);
     n.setPhone(phone);
-    n.setCountry(country);*/
-    n.setName(name);
-    n.setAge(age);
+    n.setCountry(country);
+    n.setAge(age);*/
     accountRepository.save(n);
     return "Entry Saved!";
   }
