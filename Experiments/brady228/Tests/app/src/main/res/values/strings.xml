@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">VolleyTest</string>
+    <string name="btnStringRequest">STRING REQUEST</string>
+    <string name="btnJsonRequest">JSON REQUEST</string>
+    <string name="btnImageRequest">IMAGE REQUEST</string>
+    <string name="strRequest">STRING REQUEST</string>
+    <string name="jsonObjectRequest">JSON OBJECT REQUEST</string>
+    <string name="jsonArrayRequest">JSON ARRAY REQUEST</string>
+    <string name="imgRequest">IMAGE REQUEST</string>
+</resources>
