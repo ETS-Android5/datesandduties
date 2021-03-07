@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path = "/sbtest")
-public class MainController {
+public class AccountController {
 	@Autowired // This means to get the bean called userRepository
 	private AccountRepository accountRepository;
 
