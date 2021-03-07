@@ -7,4 +7,5 @@
     <string name="jsonObjectRequest">JSON OBJECT REQUEST</string>
     <string name="jsonArrayRequest">JSON ARRAY REQUEST</string>
     <string name="imgRequest">IMAGE REQUEST</string>
+    <string name="imgNetwork">imgNetwork</string>
 </resources>
