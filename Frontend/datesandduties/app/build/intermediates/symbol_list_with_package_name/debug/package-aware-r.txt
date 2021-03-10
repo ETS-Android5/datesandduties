@@ -1757,6 +1757,7 @@ id age
 id alertTitle
 id aligned
 id all
+id allAccounts
 id always
 id animateToEnd
 id animateToStart
@@ -1773,6 +1774,7 @@ id beginning
 id blocking
 id bottom
 id bounce
+id btnListAll
 id buttonPanel
 id cache_measures
 id cancel_button
@@ -2076,6 +2078,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView
 id textView3
 id text_input_end_icon
 id text_input_error_icon
