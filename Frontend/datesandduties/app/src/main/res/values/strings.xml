@@ -19,4 +19,8 @@
     <string name="inputPhone">optional</string>
     <string name="inputCountry">optional</string>
     <string name="createAccount">Create Account</string>
+    <string name="loginText">Username:</string>
+    <string name="loginPasswordText">Password:</string>
+    <string name="loginUsername">user</string>
+    <string name="loginPassword">pass</string>
 </resources>

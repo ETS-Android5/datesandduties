@@ -1775,8 +1775,11 @@ id blocking
 id bottom
 id bounce
 id btnListAll
+id button2
+id button3
 id buttonPanel
 id cache_measures
+id calendarView
 id cancel_button
 id center
 id center_horizontal
@@ -1811,6 +1814,7 @@ id custom
 id customPanel
 id cut
 id date_picker_actions
+id day
 id decelerate
 id decelerateAndComplete
 id decor_content_parent
@@ -1862,6 +1866,7 @@ id forever
 id gender
 id ghost_view
 id ghost_view_holder
+id goToDates
 id gone
 id graph
 id graph_wrap
@@ -1906,6 +1911,10 @@ id line3
 id linear
 id listMode
 id list_item
+id logIn
+id loginDebug
+id loginPassword
+id loginUsername
 id masked
 id material_clock_display
 id material_clock_face
@@ -2002,6 +2011,7 @@ id right_icon
 id right_side
 id rounded
 id row_index_key
+id sTextView
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -2030,6 +2040,7 @@ id showCustom
 id showHome
 id showTitle
 id signIn
+id signOut
 id sin
 id skipCollapsed
 id slide
@@ -2079,7 +2090,10 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
+id textView2
 id textView3
+id textView4
+id textView5
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -2179,7 +2193,10 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_create_account
+layout activity_dates
+layout activity_home_page
 layout activity_main
+layout activity_sign_in_page
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -2323,6 +2340,10 @@ string inputPassword
 string inputPhone
 string inputUsername
 string item_view_role_description
+string loginPassword
+string loginPasswordText
+string loginText
+string loginUsername
 string material_clock_display_divider
 string material_clock_toggle_content_description
 string material_hour_selection

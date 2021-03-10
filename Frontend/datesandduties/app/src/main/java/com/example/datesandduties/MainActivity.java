@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    private Button btnAccountCreate, btnListAllAccounts;
+    private Button btnAccountCreate, btnListAllAccounts, btnSignIn;
     private String TAG = MainActivity.class.getSimpleName();
     private TextView allAccounts;
     private String tag_json_obj = "jobj_req";
@@ -41,6 +41,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         btnAccountCreate = (Button) findViewById(R.id.accountCreationPage);
         btnListAllAccounts = (Button) findViewById(R.id.btnListAll);
+        btnSignIn = (Button) findViewById(R.id.signIn);
         allAccounts = (TextView) findViewById(R.id.allAccounts);
     }
 
@@ -54,6 +55,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.btnListAll:
                 requestAllAccounts();
                 //requestAccounts();
+                break;
+            case R.id.signIn:
+                startActivity(new Intent(MainActivity.this, sign_in_page.class));
+                break;
         }
     }
 

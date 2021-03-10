@@ -22,6 +22,9 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.Datesandduties" >
+        <activity android:name="com.example.datesandduties.dates" />
+        <activity android:name="com.example.datesandduties.homePage" />
+        <activity android:name="com.example.datesandduties.sign_in_page" />
         <activity android:name="com.example.datesandduties.createAccount" />
         <activity android:name="com.example.datesandduties.MainActivity" >
             <intent-filter>
