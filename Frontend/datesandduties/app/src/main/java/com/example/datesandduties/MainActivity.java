@@ -52,8 +52,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(new Intent(MainActivity.this, createAccount.class));
                 break;
             case R.id.btnListAll:
-                //requestAllAccounts();
-                requestAccounts();
+                requestAllAccounts();
+                //requestAccounts();
         }
     }
 
@@ -63,10 +63,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void requestAllAccounts() {
 
-        JsonObjectRequest req = new JsonObjectRequest(Method.GET, Const.URL_LIST_ALL_ACCOUNTS, null,
-                new Response.Listener<JSONObject>() {
+        JsonArrayRequest req = new JsonArrayRequest(Const.URL_LIST_ALL_ACCOUNTS,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(JSONArray response) {
                         Log.d(TAG, response.toString());
                         allAccounts.setText(response.toString());
 
@@ -77,10 +77,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 VolleyLog.d(TAG, error.getMessage());
             }
         } ) ;
-
         AppController.getInstance().addToRequestQueue(req, tag_json_obj);
-
-
     }
 
 

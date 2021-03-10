@@ -8,6 +8,10 @@
         "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
+        "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\xml_network_security_config.xml.flat",
+        "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\xml\\network_security_config.xml"
+    },
+    {
         "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
     },
