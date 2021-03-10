@@ -2,7 +2,9 @@ package com.klin.sbtest.datesandduties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller // This means that this class is a Controller
 @RequestMapping(path = "/sbtest")
 public class AccountController {
-	@Autowired // This means to get the bean called userRepository
+	@Autowired 
 	private AccountRepository accountRepository;
 
 	@PostMapping(path = "/add") // Map ONLY POST Requests
@@ -38,4 +40,11 @@ public class AccountController {
 		// This returns a JSON or XML with the users
 		return accountRepository.findAll();
 	}
+
+	@DeleteMapping(path = "/delete/{id}")
+	public @ResponseBody String deleteAccount(@PathVariable int id) {
+		accountRepository.deleteById(id);
+		return "Deleted Account!";
+	}
+
 }
