@@ -86,7 +86,7 @@ public class createAccount extends Activity {
                             "&phone="+inputPhone.getText().toString()+
                             "&country="+inputCountry.getText().toString();
 
-        String url = Const.URL_CREATE_ACCOUNT + urlSuffix;
+        String url = Const.URL_CREATE_ACCOUNT + urlSuffix; //created suffix to
         outTest.setText(url);
 
         StringRequest req = new StringRequest(Method.POST, url,
