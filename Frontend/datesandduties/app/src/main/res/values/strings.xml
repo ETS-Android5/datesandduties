@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">datesandduties</string>
+    <string name="Title">Dates and Duties</string>
+    <string name="accountCreationPage">Create an account</string>
+    <string name="name">Name:</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="email">Email:</string>
+    <string name="gender">Gender:</string>
+    <string name="age">Age:</string>
+    <string name="phone">Phone #:</string>
+    <string name="country">Country:</string>
+    <string name="inputName">optional</string>
+    <string name="inputUsername">Required</string>
+    <string name="inputPassword">Required</string>
+    <string name="inputEmail">optional</string>
+    <string name="inputGender">optional</string>
+    <string name="inputAge">optional</string>
+    <string name="inputPhone">optional</string>
+    <string name="inputCountry">optional</string>
+    <string name="createAccount">Create Account</string>
+</resources>
