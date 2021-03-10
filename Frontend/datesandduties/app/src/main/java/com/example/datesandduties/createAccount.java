@@ -18,6 +18,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.datesandduties.app.AppController;
 import com.example.datesandduties.net_utils.Const;
+import com.example.datesandduties.MainActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -58,6 +59,8 @@ public class createAccount extends Activity {
         inputPhone = (EditText) findViewById(R.id.inputPhone);
         inputCountry = (EditText) findViewById(R.id.inputCountry);
 
+        String name, username, password, email, gender, age, phone, country;
+
         JSONObject newAccount = new JSONObject();
         try {
             newAccount.put("name", inputName.getText().toString());
@@ -81,11 +84,12 @@ public class createAccount extends Activity {
                             "&gender="+inputGender.getText().toString()+
                             "&age="+inputAge.getText().toString()+
                             "&phone="+inputPhone.getText().toString()+
-                            "&country"+inputCountry.getText().toString();
+                            "&country="+inputCountry.getText().toString();
 
         String url = Const.URL_CREATE_ACCOUNT + urlSuffix;
+        outTest.setText(url);
 
-        StringRequest req = new StringRequest(Method.GET, url,
+        StringRequest req = new StringRequest(Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
