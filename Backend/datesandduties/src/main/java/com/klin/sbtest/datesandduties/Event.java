@@ -7,6 +7,13 @@ import javax.persistence.Id;
 
 import io.swagger.annotations.ApiModelProperty;
 
+/* Event_id
+Title
+Description
+Date
+Time
+Who can share, view, and edit
+Owner  */
 
 @Entity
 public class Event {
@@ -15,7 +22,7 @@ public class Event {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	private Integer id;
-	@ApiModelProperty(notes = "Owner of Event", name="age", required=true, value="test owner")
+	@ApiModelProperty(notes = "Owner of Event", name="owner", required=true, value="test owner")
 	private String owner;
 	
 	@ApiModelProperty(notes = "Title of Event", name="title", required=true, value="test title")

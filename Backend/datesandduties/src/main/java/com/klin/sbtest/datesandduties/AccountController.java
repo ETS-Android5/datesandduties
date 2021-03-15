@@ -52,7 +52,6 @@ public class AccountController {
 	
 	@GetMapping(path = "/all")
 	public Iterable<Account> getAllAccounts() {
-		// This returns a JSON or XML with the users
 		return accountRepository.findAll();
 	}
 
