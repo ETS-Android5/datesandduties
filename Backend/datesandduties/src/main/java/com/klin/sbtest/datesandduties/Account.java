@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import io.swagger.annotations.ApiModelProperty;
 /*Need to implement the following:
  * Username -done
  * Email -done
@@ -26,22 +27,30 @@ public class Account {
 
 	private Integer id;
 	
+	@ApiModelProperty(notes = "Name of Account Holder", name="name", required=true, value="test name")
 	private String name;
 	
+	@ApiModelProperty(notes = "Username of Account", name="username", required=true, value="test username")
 	private String username;
 
+	@ApiModelProperty(notes = "Password of Account", name="password", required=true, value="test password")
 	private String password;
 
+	@ApiModelProperty(notes = "Email Address of Account", name="email", required=true, value="test email address")
 	private String email;
-
+	
+	@ApiModelProperty(notes = "Gender of Account Holder", name="password", required=false, value="test gender")
 	private String gender;
 
+	@ApiModelProperty(notes = "Age of Account Holder", name="age", required=true, value="test age")
 	private Integer age;
 
 	// private local/server; //IDK how to implement this
-
+	
+	@ApiModelProperty(notes = "Phone Number of Account", name="phone", required=true, value="test phone number")
 	private Integer phone;
 
+	@ApiModelProperty(notes = "Country of Account Holder", name="country", required=true, value="test country")
 	private String country;
 
 	// private String SecurityQuestion; //IDK how to implement this
