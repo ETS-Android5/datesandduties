@@ -16,34 +16,31 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
 
-@Api(value = "Account Controller", description = "REST APIs related to Accounts")
-@RestController 
-@RequestMapping(path = "/account")
-public class AccountController {
-	@Autowired 
-	private AccountRepository accountRepository;
+@Api(value = "Event Controller", description = "REST APIs related to Events")
+@RestController
+@RequestMapping(path = "/event")
+public class EventController {
+	@Autowired
+	private EventRepository eventRepository;
 	
-	@ApiOperation(value = "Adds an Account to the Database", response = Account.class, tags = "addNewAccount")
+	@ApiOperation(value = "Adds an Event to the Database", response = Event.class, tags = "addNewEvent")
 	@PostMapping(path = "/add") // Map ONLY POST Requests
-	public String addNewAccount(@RequestParam String name, @RequestParam String username,
-			@RequestParam String password, @RequestParam String email, @RequestParam String gender,
-			@RequestParam Integer age, @RequestParam Integer phone, @RequestParam String country) {
+	public String addNewEvent(@RequestParam String owner, @RequestParam String title, 
+			@RequestParam String description, @RequestParam Integer date, @RequestParam Integer time) {
+		
+		Event n = new Event();
+		n.setOwner(owner);
+		n.setTitle(title);
+		n.setDescription(description);
+		n.setDate(date);
+		n.setTime(time);
 
-		Account n = new Account();
-		n.setName(name);
-		n.setUsername(username);
-		n.setPassword(password);
-		n.setEmail(email);
-		n.setGender(gender);
-		n.setAge(age);
-		n.setPhone(phone);
-		n.setCountry(country);
 
-		accountRepository.save(n);
+		eventRepository.save(n);
 		return "Entry Saved!";
 	}
-
-	@ApiOperation(value = "Return all the Accouints in Database", response = Iterable.class, tags = "getAllAccounts")
+	
+	@ApiOperation(value = "Return all the Events in Database", response = Iterable.class, tags = "getAllEvents")
 	@ApiResponses(value = { 
 	            @ApiResponse(code = 200, message = "Success|OK"),
 	            @ApiResponse(code = 401, message = "not authorized!"), 
@@ -51,16 +48,18 @@ public class AccountController {
 	            @ApiResponse(code = 404, message = "not found!!!") })
 	
 	@GetMapping(path = "/all")
-	public Iterable<Account> getAllAccounts() {
+	public Iterable<Event> getAllEvents() {
 		// This returns a JSON or XML with the users
-		return accountRepository.findAll();
+		return eventRepository.findAll();
 	}
-
-	@ApiOperation(value = "Deletes an Account from the Database", response = Account.class, tags = "deleteAccount")
+	
+	@ApiOperation(value = "Deletes an Event from the Database", response = Event.class, tags = "deleteEvent")
 	@DeleteMapping(path = "/delete/{id}")
-	public String deleteAccount(@PathVariable int id) {
-		accountRepository.deleteById(id);
-		return "Deleted Account!";
+	public String deleteEvent(@PathVariable int id) {
+		eventRepository.deleteById(id);
+		return "Deleted Event!";
 	}
+	
+	
 
 }
