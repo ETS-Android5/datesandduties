@@ -20,6 +20,9 @@ import com.example.datesandduties.app.AppController;
 import com.example.datesandduties.net_utils.Const;
 
 public class sign_in_page extends Activity {
+    /**
+     * creates sign-in page, also contains login verification with volley
+     */
 
     private Button signIn;
     private EditText loginUsername, loginPassword;
@@ -46,6 +49,9 @@ public class sign_in_page extends Activity {
     }
 
     private void loginCheck() {
+        /**
+         * uses volley requests to check if login is valid or not
+         */
 
         //check login using login volley get
 
@@ -57,6 +63,10 @@ public class sign_in_page extends Activity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        /**
+                         * @param response takes in volley reply
+                         * conditional either shows login success or does nothing if incorrect
+                         */
                         Log.d(TAG, response.toString());
                         accept = response.toString();
 
