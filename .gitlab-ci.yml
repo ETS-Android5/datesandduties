@@ -1,0 +1,12 @@
+stages:
+-maventry
+
+maven-build:
+stage:maventry
+tags:
+-springboot_try
+script:
+-cd Backend
+-cd datesandduties
+-mvn package
+
