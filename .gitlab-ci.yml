@@ -1,11 +1,24 @@
 stages:
-  -maventry
+  - mavenbuild
+  - maventest
 
 maven-build:
-  stage: maventry
+  stage: mavenbuild
   tags:
-    -springboot_tag
+    - springboot_tag
   script:
-    -cd Backend
-    -cd datesandduties
-    -mvn package
+    - cd Backend
+    - cd datesandduties
+    - mvn package -B
+    
+maven-test:
+  stage: maventest
+  tags:
+    - springboot_tag
+  script:
+    - cd Backend
+    - cd datesandduties
+    - mvn test
+  artifacts:
+    paths:
+      - Backend/datesandduties/target/*.jar
