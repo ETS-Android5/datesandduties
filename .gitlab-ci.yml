@@ -1,6 +1,8 @@
 stages:
   - mavenbuild
   - maventest
+  - androidbuild
+  - androidtest
 
 maven-build:
   stage: mavenbuild
@@ -22,3 +24,32 @@ maven-test:
   artifacts:
     paths:
       - Backend/datesandduties/target/*.jar
+      
+android-build:
+  image: javiersantos/android-ci:latest
+  stage: androidbuild
+  before_script:
+    - export GRADLE_USER_HOME='pwd'/.gradle
+    - chmod +x ./Frontend/datesandduties/gradlew
+  tags:
+    - android_tag
+  script: 
+    - cd Frontend
+    - cd datesandduties
+    - ./gradlew build
+  artifacts:
+    paths:
+      - Android_test/app/build/outputs/
+      
+android-test:
+  image: javiersantos/android-ci:latest
+  stage: androidtest
+  before_script:
+    - export GRADLE_USER_HOME='pwd'/.gradle
+    - chmod +x ./Frontend/datesandduties/gradlew
+  tags:
+    - android_tag
+  script:
+    - cd Frontend
+    - cd datesandduties
+    - ./gradlew test
