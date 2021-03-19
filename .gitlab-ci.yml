@@ -4,7 +4,7 @@ stages:
 maven-build:
 stage:maventry
 tags:
--springboot_try
+-springboot_tag
 script:
 -cd Backend
 -cd datesandduties
