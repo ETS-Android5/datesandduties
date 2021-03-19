@@ -2,7 +2,7 @@ stages:
   - maventry
 
 maven-build:
-  stage:maventry
+  stage: maventry
   tags:
     -springboot_tag
   script:
