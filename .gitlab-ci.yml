@@ -1,6 +1,7 @@
 stages:
   - mavenbuild
   - maventest
+  - mavenDeploy
   - androidbuild
   - androidtest
 
@@ -24,7 +25,19 @@ maven-test:
   artifacts:
     paths:
       - Backend/datesandduties/target/*.jar
-      
+   
+autoDeploy:
+  stage: mavenDeploy
+  tags:
+    - springboot_tag
+  script:
+    - cd Backend
+    - cd datesandduties
+    - mvn package
+    - sudo mv target/*.jar/target/web-demo.jar
+    - sudo systemctl stop systemd-web-demo
+    - sudo systemctl start systemd-web-demo
+    
 android-build:
   image: javiersantos/android-ci:latest
   stage: androidbuild
