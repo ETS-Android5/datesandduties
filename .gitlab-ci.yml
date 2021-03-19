@@ -1,5 +1,5 @@
 stages:
-  - maventry
+  -maventry
 
 maven-build:
   stage: maventry
