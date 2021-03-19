@@ -41,7 +41,7 @@ public class AccountController {
 
 		accountRepository.save(n);
 		return "Entry Saved!";
-	}
+	} 
 
 	@ApiOperation(value = "Return all the Accouints in Database", response = Iterable.class, tags = "getAllAccounts")
 	@ApiResponses(value = { 
