@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiResponse;
 
 @Api(value = "Account Controller", description = "REST APIs related to Accounts")
 @RestController 
-@RequestMapping(path = "/sbtest")
+@RequestMapping(path = "/account")
 public class AccountController {
 	@Autowired 
 	private AccountRepository accountRepository;
@@ -52,7 +52,6 @@ public class AccountController {
 	
 	@GetMapping(path = "/all")
 	public Iterable<Account> getAllAccounts() {
-		// This returns a JSON or XML with the users
 		return accountRepository.findAll();
 	}
 
