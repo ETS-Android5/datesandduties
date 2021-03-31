@@ -4,6 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.klin.sbtest.datesandduties.Account;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -17,31 +23,35 @@ Owner  */
 
 @Entity
 public class Event {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	private Integer id;
-	@ApiModelProperty(notes = "Owner of Event", name="owner", required=true, value="test owner")
+	@ApiModelProperty(notes = "Owner of Event", name = "owner", required = true, value = "test owner")
 	private String owner;
-	
-	@ApiModelProperty(notes = "Title of Event", name="title", required=true, value="test title")
+
+	@ApiModelProperty(notes = "Title of Event", name = "title", required = true, value = "test title")
 	private String title;
-	
-	@ApiModelProperty(notes = "Description of Event", name="description", required=true, value="test description")
+
+	@ApiModelProperty(notes = "Description of Event", name = "description", required = true, value = "test description")
 	private String description;
 
-	@ApiModelProperty(notes = "Date of Event", name="date", required=true, value="test date")
+	@ApiModelProperty(notes = "Date of Event", name = "date", required = true, value = "test date")
 	private Integer date;
 
-	@ApiModelProperty(notes = "Time of Event", name="time", required=true, value="test time")
+	@ApiModelProperty(notes = "Time of Event", name = "time", required = true, value = "test time")
 	private Integer time;
-	
-	
-	//@ApiModelProperty(notes = "Gender of Account Holder", name="password", required=false, value="test gender")
-	//idk how to implement this. List of IDs that have access?
-	//private String sharing;
 
+	@ManyToOne
+	@JoinColumn(name = "account_id")
+	@JsonIgnore
+	private Account account;
+
+	// @ApiModelProperty(notes = "Gender of Account Holder", name="password",
+	// required=false, value="test gender")
+	// idk how to implement this. List of IDs that have access?
+	// private String sharing;
 
 	public Integer getId() {
 		return id;
@@ -89,6 +99,14 @@ public class Event {
 
 	public void setTime(Integer time) {
 		this.time = time;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 	
 
