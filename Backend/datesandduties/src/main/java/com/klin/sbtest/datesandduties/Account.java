@@ -1,11 +1,19 @@
 package com.klin.sbtest.datesandduties;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import io.swagger.annotations.ApiModelProperty;
+
+import com.klin.sbtest.datesandduties.Event;
+import com.klin.sbtest.datesandduties.Task;
+
 /*Need to implement the following:
  * Username -done
  * Email -done
@@ -26,34 +34,40 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	private Integer id;
-	
-	@ApiModelProperty(notes = "Name of Account Holder", name="name", required=true, value="test name")
+
+	@ApiModelProperty(notes = "Name of Account Holder", name = "name", required = true, value = "test name")
 	private String name;
-	
-	@ApiModelProperty(notes = "Username of Account", name="username", required=true, value="test username")
+
+	@ApiModelProperty(notes = "Username of Account", name = "username", required = true, value = "test username")
 	private String username;
 
-	@ApiModelProperty(notes = "Password of Account", name="password", required=true, value="test password")
+	@ApiModelProperty(notes = "Password of Account", name = "password", required = true, value = "test password")
 	private String password;
 
-	@ApiModelProperty(notes = "Email Address of Account", name="email", required=true, value="test email address")
+	@ApiModelProperty(notes = "Email Address of Account", name = "email", required = true, value = "test email address")
 	private String email;
-	
-	@ApiModelProperty(notes = "Gender of Account Holder", name="password", required=false, value="test gender")
+
+	@ApiModelProperty(notes = "Gender of Account Holder", name = "password", required = false, value = "test gender")
 	private String gender;
 
-	@ApiModelProperty(notes = "Age of Account Holder", name="age", required=true, value="test age")
+	@ApiModelProperty(notes = "Age of Account Holder", name = "age", required = true, value = "test age")
 	private Integer age;
 
 	// private local/server; //IDK how to implement this
-	
-	@ApiModelProperty(notes = "Phone Number of Account", name="phone", required=true, value="test phone number")
+
+	@ApiModelProperty(notes = "Phone Number of Account", name = "phone", required = true, value = "test phone number")
 	private Integer phone;
 
-	@ApiModelProperty(notes = "Country of Account Holder", name="country", required=true, value="test country")
+	@ApiModelProperty(notes = "Country of Account Holder", name = "country", required = true, value = "test country")
 	private String country;
 
 	// private String SecurityQuestion; //IDK how to implement this
+
+	@OneToMany
+	private List<Event> events;
+
+	@OneToMany
+	private List<Task> tasks;
 
 	public Integer getId() {
 		return id;
@@ -125,6 +139,30 @@ public class Account {
 
 	public void setPhone(Integer phone) {
 		this.phone = phone;
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+
+	public void addEvents(Event event) {
+		this.events.add(event);
+	}
+
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
+
+	public void addTasks(Task task) {
+		this.tasks.add(task);
 	}
 
 }

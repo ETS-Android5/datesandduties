@@ -1,5 +1,7 @@
 package com.klin.sbtest.datesandduties;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -60,4 +62,9 @@ public class TaskController {
 		taskRepository.deleteById(id);
 		return "Deleted Task!";
 	}
+	
+    @GetMapping(path = "/find/{id}")
+    public Optional<Task> getTaskById( @PathVariable int id){
+        return taskRepository.findById(id);
+    }
 }

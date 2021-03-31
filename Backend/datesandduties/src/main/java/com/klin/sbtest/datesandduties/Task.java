@@ -4,8 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import io.swagger.annotations.ApiModelProperty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.klin.sbtest.datesandduties.Account;
+
 
 /*
  * Task_id
@@ -40,6 +46,11 @@ public class Task {
 
 	@ApiModelProperty(notes = "Recurrence", name="recurrence", required=true, value="daily/weekly/monthly")
 	private String recurrence;
+	
+	@ManyToOne
+	@JoinColumn(name = "account_id")
+	@JsonIgnore
+	private Account account;
 
 	public Integer getId() {
 		return id;
@@ -95,6 +106,14 @@ public class Task {
 
 	public void setRecurrence(String recurrence) {
 		this.recurrence = recurrence;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 	
 }
