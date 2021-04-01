@@ -1,4 +1,4 @@
-package com.klin.sbtest.datesandduties;
+package datesandduties;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import datesandduties.Event;
+import datesandduties.Task;
 import io.swagger.annotations.ApiModelProperty;
-
-import com.klin.sbtest.datesandduties.Event;
-import com.klin.sbtest.datesandduties.Task;
 
 /*Need to implement the following:
  * Username -done

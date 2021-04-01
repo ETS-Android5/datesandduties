@@ -1,4 +1,4 @@
-package com.klin.sbtest.datesandduties;
+package datesandduties;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +9,7 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import com.klin.sbtest.datesandduties.Account;
-
+import datesandduties.Account;
 import io.swagger.annotations.ApiModelProperty;
 
 /* Event_id
