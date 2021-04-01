@@ -79,9 +79,9 @@ public class AccountController {
     }
 
 	
-    /*@PutMapping("/{accountId}/events/{eventId}")
+    /*@PutMapping("/account/{accountId}/events/{eventId}")
     String assignEventToAccount(@PathVariable int accountId,@PathVariable int eventId){
-        Optional<Account> account = accountRepository.findById(accountId);
+    	Account account = accountRepository.findById(accountId);
         Event event = eventRepository.findById(eventId);
         if(account == null || event == null)
             return "Adding Event Failed";
