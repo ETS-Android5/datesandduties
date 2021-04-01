@@ -1,4 +1,4 @@
-package datesandduties;
+package datesandduties.Events;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import datesandduties.Account;
+import datesandduties.Accounts.Account;
 import io.swagger.annotations.ApiModelProperty;
 
 /* Event_id

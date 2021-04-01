@@ -1,4 +1,4 @@
-package com.klin.sbtest.datesandduties;
+package datesandduties.Accounts;
 
 import java.util.Optional;
 
@@ -14,16 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import datesandduties.Events.Event;
+import datesandduties.Events.EventRepository;
+import datesandduties.Tasks.Task;
+import datesandduties.Tasks.TaskRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
-
-import com.klin.sbtest.datesandduties.Event;
-import com.klin.sbtest.datesandduties.EventRepository;
-
-import com.klin.sbtest.datesandduties.Task;
-import com.klin.sbtest.datesandduties.TaskRepository;
 
 
 
@@ -79,9 +77,9 @@ public class AccountController {
     }
 
 	
-    /*@PutMapping("/{accountId}/events/{eventId}")
+    /*@PutMapping("/account/{accountId}/events/{eventId}")
     String assignEventToAccount(@PathVariable int accountId,@PathVariable int eventId){
-        Optional<Account> account = accountRepository.findById(accountId);
+    	Account account = accountRepository.findById(accountId);
         Event event = eventRepository.findById(eventId);
         if(account == null || event == null)
             return "Adding Event Failed";

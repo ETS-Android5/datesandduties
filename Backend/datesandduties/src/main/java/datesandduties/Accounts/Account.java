@@ -1,4 +1,4 @@
-package datesandduties;
+package datesandduties.Accounts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import datesandduties.Event;
-import datesandduties.Task;
+import datesandduties.Events.Event;
+import datesandduties.Tasks.Task;
 import io.swagger.annotations.ApiModelProperty;
 
 /*Need to implement the following:
@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Gender -done
  * Local/Server -unsure how to implement
  * Password -done
- * Phone -done
+ * Phone -done	
  * Country -done
  * Security Question -unsure how to implement
  * Name -done

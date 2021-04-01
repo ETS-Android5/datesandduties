@@ -1,4 +1,4 @@
-package datesandduties;
+package datesandduties.Tasks;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import datesandduties.Account;
+import datesandduties.Accounts.Account;
 
 
 /*

@@ -1,4 +1,4 @@
-package datesandduties;
+package datesandduties.Tasks;
 
 import java.util.Optional;
 

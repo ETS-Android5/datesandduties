@@ -1,4 +1,4 @@
-package datesandduties;
+package datesandduties.Events;
 
 import java.util.Optional;
 
