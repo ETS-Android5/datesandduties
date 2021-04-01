@@ -1,7 +1,7 @@
 stages:
   - mavenbuild
   - maventest
-  - autoDeploy
+  - mavenDeploy
   - androidbuild
   - androidtest
 
@@ -10,7 +10,8 @@ maven-build:
   tags:
     - springboot_tag
   script:
-    - cd Backend/datesandduties
+    - cd Backend
+    - cd datesandduties
     - mvn package -B
     
 maven-test:
@@ -26,7 +27,7 @@ maven-test:
       - Backend/datesandduties/target/*.jar
    
 autoDeploy:
-  stage: autoDeploy
+  stage: mavenDeploy
   tags:
     - springboot_tag
   script:
