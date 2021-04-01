@@ -1,4 +1,4 @@
-package com.klin.sbtest.datesandduties;
+package datesandduties.Accounts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import datesandduties.Events.Event;
+import datesandduties.Tasks.Task;
 import io.swagger.annotations.ApiModelProperty;
-
-import com.klin.sbtest.datesandduties.Event;
-import com.klin.sbtest.datesandduties.Task;
 
 /*Need to implement the following:
  * Username -done
@@ -20,7 +19,7 @@ import com.klin.sbtest.datesandduties.Task;
  * Gender -done
  * Local/Server -unsure how to implement
  * Password -done
- * Phone -done
+ * Phone -done	
  * Country -done
  * Security Question -unsure how to implement
  * Name -done

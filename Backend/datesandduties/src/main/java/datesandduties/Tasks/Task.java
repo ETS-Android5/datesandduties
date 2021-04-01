@@ -1,4 +1,4 @@
-package com.klin.sbtest.datesandduties;
+package datesandduties.Tasks;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +10,8 @@ import javax.persistence.ManyToOne;
 import io.swagger.annotations.ApiModelProperty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.klin.sbtest.datesandduties.Account;
+
+import datesandduties.Accounts.Account;
 
 
 /*

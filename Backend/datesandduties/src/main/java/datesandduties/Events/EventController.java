@@ -1,4 +1,4 @@
-package com.klin.sbtest.datesandduties;
+package datesandduties.Events;
 
 import java.util.Optional;
 

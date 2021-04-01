@@ -1,4 +1,4 @@
-package com.klin.sbtest.datesandduties;
+package datesandduties.Accounts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
