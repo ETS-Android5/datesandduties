@@ -23,4 +23,5 @@
     <string name="loginPasswordText">Password:</string>
     <string name="loginUsername">user</string>
     <string name="loginPassword">pass</string>
+    <string name="AddEvents">Add Event</string>
 </resources>

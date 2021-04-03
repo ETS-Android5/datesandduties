@@ -21,6 +21,8 @@ import com.example.datesandduties.net_utils.Const;
 
 public class sign_in_page extends Activity {
 
+    public static String username;
+
     private Button signIn;
     private EditText loginUsername, loginPassword;
 
@@ -63,6 +65,7 @@ public class sign_in_page extends Activity {
                         if(accept.equals("Login successful!")){
                             //do stuff
                             test.setText(accept);
+                            username = loginUsername.getText().toString();
                             startActivity(new Intent(sign_in_page.this, homePage.class));
                         }
                         else{
@@ -83,4 +86,13 @@ public class sign_in_page extends Activity {
 
 
     }
+
+    public static String getUsername(){
+        return username;
+    }
+    public void clearUsername(){
+        username = "";
+    }
+
+
 }
