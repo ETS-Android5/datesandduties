@@ -27,7 +27,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:rippleColor="#BC9722" />
+        app:rippleColor="#2B2B2B" />
 
     <Button
         android:id="@+id/button2"
