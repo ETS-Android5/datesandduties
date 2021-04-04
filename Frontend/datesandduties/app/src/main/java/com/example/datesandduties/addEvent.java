@@ -51,27 +51,29 @@ public class addEvent extends Activity implements View.OnClickListener{
 
         String title, description, date, time;
 
+
         title = inputTitle.getText().toString();
         description = inputDesc.getText().toString();
-
         date = inputDate.getText().toString();
         time = inputTime.getText().toString();
 
-        if(title==null){
+        if(title.isEmpty()){
             outError.setText("Please insert a valid title");
         }
-        else if(description==null){
+        else if(description.isEmpty()){
             outError.setText("Please enter a description");
         }
-        else if(date==null){
+        else if(date.isEmpty()){
             outError.setText("Please enter a date");
         }
-        else if(time==null){
+        else if(time.isEmpty()) {
             outError.setText("please enter time of event.");
         }
 
         //other stuff that checks if date and time are valid based on inputs to backend;
-
+        else{
+            outError.setText("Valid inputs Event will be created");
+        }
 
 
     }
