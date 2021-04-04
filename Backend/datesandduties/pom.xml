@@ -68,7 +68,7 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<release>8</release>
+					<!--  <release>8</release> Commenting this out per a StackOverflow thing I found that -->
 				</configuration>
 			</plugin>
 
