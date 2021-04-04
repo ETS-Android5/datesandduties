@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiResponse;
 @RestController
 @RequestMapping(path = "/account")
 public class AccountController {
-	@Autowired
+	@Autowired 
 	private AccountRepository accountRepository;
 
 	@ApiOperation(value = "Adds an Account to the Database", response = Account.class, tags = "addNewAccount")
