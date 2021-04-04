@@ -1820,6 +1820,7 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
+id delEvent
 id deltaRelative
 id dependency_ordering
 id design_bottom_sheet
@@ -1844,6 +1845,7 @@ id dropdown_menu
 id easeIn
 id easeInOut
 id easeOut
+id editEvents
 id edit_query
 id elastic
 id email
@@ -2139,7 +2141,6 @@ id unlabeled
 id up
 id useLogo
 id username
-id viewEvents
 id view_offset_helper
 id visible
 id withText

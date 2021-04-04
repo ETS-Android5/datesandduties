@@ -1,28 +1,24 @@
 package com.example.datesandduties;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
-import com.example.datesandduties.sign_in_page;
+
 import java.util.Calendar;
-import java.util.Date;
-import android.text.format.Time;
 
 import org.json.JSONArray;
 
 public class dates extends Activity implements View.OnClickListener{
 
-    private Button addEvent;
-
     private static int Gday;
+    private Button addEvent, viewEvents;
+
     private static int Gmonth;
     private static int Gyear;
     private CalendarView calendar;
@@ -48,7 +44,7 @@ public class dates extends Activity implements View.OnClickListener{
         Gmonth = cal.get(Calendar.MONTH) + 1;
         Gday = cal.get(Calendar.DAY_OF_MONTH);
         xEvents.setText(countEvents());
-
+        viewEvents = (Button) findViewById(R.id.editEvents);
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -113,13 +109,13 @@ public class dates extends Activity implements View.OnClickListener{
     public static int getYear(){
         return Gyear;
     }
-    public void setYear(int year){
+    public static void setYear(int year){
         Gyear = year;
     }
-    public void setMonth(int Month){
+    public static void setMonth(int Month){
         Gmonth = Month;
     }
-    public void setDay(int Day){
+    public static void setDay(int Day){
         Gday = Day;
     }
 
@@ -133,6 +129,9 @@ public class dates extends Activity implements View.OnClickListener{
         switch (v.getId()){
             case R.id.AddEvent:
                 startActivity(new Intent(dates.this, addEvent.class));
+                break;
+            case R.id.editEvents:
+                startActivity(new Intent(dates.this, eventMain.class));
                 break;
         }
     }

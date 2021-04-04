@@ -2,12 +2,16 @@ com/example/datesandduties/MainActivity.java
  com.example.datesandduties.MainActivity
  com.example.datesandduties.MainActivity$1
  com.example.datesandduties.MainActivity$2
-com/example/datesandduties/eventMain.java
- com.example.datesandduties.eventMain
+com/example/datesandduties/BuildConfig.java
+ com.example.datesandduties.BuildConfig
 com/example/datesandduties/net_utils/Const.java
  com.example.datesandduties.net_utils.Const
-com/example/datesandduties/homePage.java
- com.example.datesandduties.homePage
+com/example/datesandduties/createAccount.java
+ com.example.datesandduties.createAccount
+ com.example.datesandduties.createAccount$1
+ com.example.datesandduties.createAccount$2
+ com.example.datesandduties.createAccount$3
+ com.example.datesandduties.createAccount$4
 com/example/datesandduties/app/AppController.java
  com.example.datesandduties.app.AppController
 com/example/datesandduties/sign_in_page.java
@@ -15,16 +19,12 @@ com/example/datesandduties/sign_in_page.java
  com.example.datesandduties.sign_in_page$1
  com.example.datesandduties.sign_in_page$2
  com.example.datesandduties.sign_in_page$3
-com/example/datesandduties/BuildConfig.java
- com.example.datesandduties.BuildConfig
-com/example/datesandduties/createAccount.java
- com.example.datesandduties.createAccount
- com.example.datesandduties.createAccount$1
- com.example.datesandduties.createAccount$2
- com.example.datesandduties.createAccount$3
- com.example.datesandduties.createAccount$4
+com/example/datesandduties/addEvent.java
+ com.example.datesandduties.addEvent
+com/example/datesandduties/homePage.java
+ com.example.datesandduties.homePage
+com/example/datesandduties/eventMain.java
+ com.example.datesandduties.eventMain
 com/example/datesandduties/dates.java
  com.example.datesandduties.dates
  com.example.datesandduties.dates$1
-com/example/datesandduties/addEvent.java
- com.example.datesandduties.addEvent
