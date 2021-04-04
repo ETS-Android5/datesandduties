@@ -104,11 +104,11 @@
         "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
-    },
-    {
         "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_add_event.xml.flat",
         "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\layout\\activity_add_event.xml"
+    },
+    {
+        "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     }
 ]
