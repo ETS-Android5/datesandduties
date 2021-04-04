@@ -104,7 +104,7 @@ public class AccountController {
 	}
 	
 
-	@PutMapping("/assignEvent/{accountId}/{eventId}")
+	@PutMapping(path = "/assignEvent/{accountId}/{eventId}")
 	public String addEventToAccount(@PathVariable int accountId, @PathVariable int eventId) {
 		Account account = accountRepository.findById(accountId).get();
 		Event event = eventRepository.findById(eventId).get();
@@ -118,7 +118,7 @@ public class AccountController {
 		return "Success!";
 	}
 	
-	@PutMapping("/assignTask/{accountId}/{taskId}")
+	@PutMapping(path = "/assignTask/{accountId}/{taskId}")
 	public String addTaskToAccount(@PathVariable int accountId, @PathVariable int taskId) {
 		Account account = accountRepository.findById(accountId).get();
 		Task task = taskRepository.findById(taskId).get();
@@ -130,6 +130,32 @@ public class AccountController {
 		accountRepository.save(account);
 		taskRepository.save(task);
 		return "Success!";
+	}
+	@PutMapping(path = "/removeEvent/{accountId}/{eventId}")
+	public String removeEvent(@PathVariable int accountId, @PathVariable int eventId) {
+		Account account = accountRepository.findById(accountId).get();
+		Event event = eventRepository.findById(eventId).get();
+		if (account == null || event == null) {
+			return "Remove Event Failed";
+		}
+		event.resetAccount();
+		account.removeEvents(event);
+		accountRepository.save(account);
+		eventRepository.save(event);
+		return "Event Removed From Account!";
+	}
+	@PutMapping(path = "/removeTask/{accountId}/{eventId}")
+	public String removeTask(@PathVariable int accountId, @PathVariable int taskId) {
+		Account account = accountRepository.findById(accountId).get();
+		Task task = taskRepository.findById(taskId).get();
+		if (account == null || task == null) {
+			return "Remove Task Failed";
+		}
+		task.resetAccount();
+		account.removeTasks(task);
+		accountRepository.save(account);
+		taskRepository.save(task);
+		return "Task Removed from Account!";
 	}
 
 }

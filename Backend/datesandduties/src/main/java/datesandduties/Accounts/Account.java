@@ -152,6 +152,10 @@ public class Account {
 		this.events.add(event);
 	}
 
+	public void removeEvents(Event event) {
+		this.events.remove(event);
+	}
+
 	public List<Task> getTasks() {
 		return tasks;
 	}
@@ -162,6 +166,10 @@ public class Account {
 
 	public void addTasks(Task task) {
 		this.tasks.add(task);
+	}
+
+	public void removeTasks(Task task) {
+		this.tasks.remove(task);
 	}
 
 }

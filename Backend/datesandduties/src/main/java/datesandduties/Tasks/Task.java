@@ -116,5 +116,8 @@ public class Task {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+	public void resetAccount() {
+		this.account = null;
+	}
 	
 }
