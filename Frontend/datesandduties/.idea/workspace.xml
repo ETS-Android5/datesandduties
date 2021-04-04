@@ -24,6 +24,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="26d836d6-f286-4d14-93d0-bf3e10dcafc4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
@@ -44,6 +45,9 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/datesandduties/sign_in_page.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/datesandduties/sign_in_page.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_home_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_home_page.xml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="26d836d6-f286-4d14-93d0-bf3e10dcafc4" name="Default Changelist" comment="" />
+>>>>>>> 15Dates.Events.UI
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,6 +89,9 @@
       <recent name="com.example.datesandduties" />
     </key>
     <key name="android.template.1429405437">
+      <recent name="com.example.datesandduties" />
+    </key>
+    <key name="android.template.-1403050683">
       <recent name="com.example.datesandduties" />
     </key>
   </component>
@@ -180,7 +187,15 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+<<<<<<< HEAD
     <state x="92" y="-988" width="1736" height="856" key="AVDManager" timestamp="1617473279583">
+=======
+    <state x="765" y="-854" key="#com.intellij.ide.util.MemberChooser" timestamp="1617495952321">
+      <screen x="0" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="765" y="-854" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1617495952321" />
+    <state x="92" y="-988" width="1736" height="856" key="AVDManager" timestamp="1615331762368">
+>>>>>>> 15Dates.Events.UI
       <screen x="0" y="-1080" width="1920" height="1040" />
     </state>
     <state x="92" y="-988" width="1736" height="856" key="AVDManager/0.0.1920.1040/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1617473279583" />
@@ -189,5 +204,17 @@
     </state>
     <state x="540" y="-805" key="AndroidCreateResourceFileDialog/0.0.1920.1040/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1615330830974" />
     <state x="540" y="275" key="AndroidCreateResourceFileDialog/0.0.1920.1040/0.-1080.1920.1040@0.0.1920.1040" timestamp="1615412184859" />
+    <state x="776" y="-782" key="chooseDestDirectoryDialog" timestamp="1617497045085">
+      <screen x="0" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="776" y="-782" key="chooseDestDirectoryDialog/0.0.1920.1040/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1617497045085" />
+    <state x="616" y="-299" key="run.anything.popup" timestamp="1617478151950">
+      <screen x="0" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="616" y="-299" key="run.anything.popup/0.0.1920.1040/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1617478151950" />
+    <state x="623" y="-855" width="672" height="678" key="search.everywhere.popup" timestamp="1617476395520">
+      <screen x="0" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="623" y="-855" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1617476395520" />
   </component>
 </project>

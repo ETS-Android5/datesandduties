@@ -21,7 +21,11 @@ import com.example.datesandduties.net_utils.Const;
 
 public class sign_in_page extends Activity {
 
+<<<<<<< HEAD
     public static String username = "0";
+=======
+    public static String username;
+>>>>>>> 15Dates.Events.UI
 
     private Button signIn;
     private EditText loginUsername, loginPassword;
@@ -91,7 +95,14 @@ public class sign_in_page extends Activity {
         return username;
     }
     public void clearUsername(){
+<<<<<<< HEAD
         username = null;
     }
 
+=======
+        username = "";
+    }
+
+
+>>>>>>> 15Dates.Events.UI
 }

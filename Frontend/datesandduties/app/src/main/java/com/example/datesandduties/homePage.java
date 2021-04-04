@@ -11,7 +11,7 @@ import com.example.datesandduties.sign_in_page;
 
 public class homePage extends Activity implements View.OnClickListener {
 
-    private Button signOut, goToDates;
+    private Button signOut, goToDates, settingz;
 
     String user = sign_in_page.getUsername();
 
@@ -20,6 +20,7 @@ public class homePage extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        settingz = (Button) findViewById(R.id.settings);
         signOut = (Button) findViewById(R.id.signOut);
         goToDates = (Button) findViewById(R.id.goToDates);
     }
@@ -35,6 +36,10 @@ public class homePage extends Activity implements View.OnClickListener {
                 break;
             case R.id.goToDates:
                 startActivity(new Intent(homePage.this, dates.class ));
+                break;
+            case R.id.settings:
+                    settingz.setText(sign_in_page.getUsername());
+                break;
 
         }
     }
