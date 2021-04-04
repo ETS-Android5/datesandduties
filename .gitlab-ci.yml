@@ -12,7 +12,7 @@ maven-build:
   script:
     - cd Backend
     - cd datesandduties
-    - mvn package -B
+    - mvn package
     
 maven-test:
   stage: maventest
