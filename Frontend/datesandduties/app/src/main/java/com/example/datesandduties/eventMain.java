@@ -8,14 +8,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class eventMain extends Activity implements View.OnClickListener{
 
     private TextView curDate;
 
-    private Button leftb, rightb, edit, delete;
+    private Button leftb, rightb, edit, delete, up, down;
 
+    private EditText title, desc, date, time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,13 @@ public class eventMain extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_event_main);
 
 
+        title = (EditText) findViewById(R.id.outTitle);
+        desc = (EditText) findViewById(R.id.outDesc);
+        date = (EditText) findViewById(R.id.outDate);
+        time = (EditText) findViewById(R.id.outTime);
+
+        up = (Button) findViewById(R.id.upButt);
+        down = (Button) findViewById(R.id.downButt);
         leftb= (Button) findViewById(R.id.left);
         rightb = (Button) findViewById(R.id.right);
         edit = (Button) findViewById(R.id.editEvents);
@@ -125,6 +134,16 @@ public class eventMain extends Activity implements View.OnClickListener{
                 break;
 
             case R.id.editEvents:
+
+                String newTitle, newDesc, newDate, newTime;
+
+                newTitle = title.getText().toString();
+                newDesc = desc.getText().toString();
+                newDate = date.getText().toString();
+                newTime = time.getText().toString();
+                //insert code to update the event
+
+
 
                 break;
 
