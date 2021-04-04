@@ -2,6 +2,7 @@ package com.example.datesandduties;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.datesandduties.dates;
+import com.example.datesandduties.net_utils.Const;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -72,7 +73,19 @@ public class addEvent extends Activity implements View.OnClickListener{
 
         //other stuff that checks if date and time are valid based on inputs to backend;
         else{
-            outError.setText("Valid inputs Event will be created");
+            outError.setText("Valid inputs Event will be created" + date);
+
+            String suffix = "?owner=" + sign_in_page.getUsername()
+                    +"&title=" + title
+                    +"&description=" + description
+                    +"&date=" + date
+                    +"&time=" + time;
+            suffix = Const.ADD_EVENT + suffix; //request out for adding event
+
+
+
+
+
         }
 
 
