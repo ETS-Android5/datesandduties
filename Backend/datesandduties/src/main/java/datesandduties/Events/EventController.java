@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import datesandduties.Accounts.Account;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
@@ -67,6 +70,16 @@ public class EventController {
         return eventRepository.findById(id);
     }
 	
+	@PutMapping(path = "/update/{id}")
+	public Event updateEvent(@PathVariable int id, @RequestBody Event request) {
+		Optional<Event> event = eventRepository.findById(id);
+		if (event == null) {
+			return null;
+		}
+		eventRepository.save(request);
+		return eventRepository.findById(id).get();
+	}
+
 	
 
 }
