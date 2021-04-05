@@ -65,10 +65,10 @@ public class EventController {
 		return "Deleted Event!";
 	}
 	
-    @GetMapping(path = "/find/{id}")
-    public Optional<Event> getEventtById( @PathVariable int id){
-        return eventRepository.findById(id);
-    }
+    	@GetMapping(path = "/find/{id}")
+    	public Optional<Event> getEventtById( @PathVariable int id){
+        	return eventRepository.findById(id);
+    	}
 	
 	@PutMapping(path = "/update/{id}")
 	public Event updateEvent(@PathVariable int id, @RequestBody Event request) {

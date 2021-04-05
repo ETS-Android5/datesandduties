@@ -84,4 +84,19 @@ public class AccountController {
 	 * eventRepository.save(event); return "Success!"; }
 	 */
 
+	@GetMapping(path = "/getByUsername/{username}")
+	public Account findByUsername(@PathVariable String username) {
+		return accountRepository.findByUsername(username);
+	}
+
+	@RequestMapping(path = "/login/{username}/{password}")
+	public <Optional>Account loginWork(@PathVariable String username, @PathVariable String password) {
+		if (accountRepository.findByUsername(username).getPassword().equals(password)) {
+			return accountRepository.findByUsername(username);
+		}
+		
+		return accountRepository.findByUsername(null);
+	}
+	
+	
 }
