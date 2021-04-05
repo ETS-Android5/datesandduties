@@ -79,4 +79,8 @@ public class TaskController {
 		return taskRepository.findById(id).get();
 	}
 
+	@GetMapping(path = "/findTask/{title}")
+	public Task searchByTitle(@PathVariable String title) {
+		return taskRepository.findByTitle(title);
+	}
 }
