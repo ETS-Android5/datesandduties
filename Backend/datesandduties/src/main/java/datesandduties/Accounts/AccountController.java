@@ -91,7 +91,7 @@ public class AccountController {
 	@GetMapping(path = "/getByUsername/{username}")
 	public Account findByUsername(@PathVariable String username) {
 		return accountRepository.findByUsername(username);
-	}
+	} //Adding this comment so that I can push again, because it says I'm up to date.
 
 	@RequestMapping(path = "/login/{username}/{password}")
 	public String loginWork(@PathVariable String username, @PathVariable String password) {
