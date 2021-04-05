@@ -32,6 +32,10 @@ public class AccountController {
 	@Autowired 
 	private AccountRepository accountRepository;
 
+	public AccountController(AccountRepository accountRepository) {
+		this.accountRepository = accountRepository;
+	}
+
 	@ApiOperation(value = "Adds an Account to the Database", response = Account.class, tags = "addNewAccount")
 	@PostMapping(path = "/add") // Map ONLY POST Requests
 	public String addNewAccount(@RequestParam String name, @RequestParam String username, @RequestParam String password,
@@ -90,12 +94,12 @@ public class AccountController {
 	}
 
 	@RequestMapping(path = "/login/{username}/{password}")
-	public <Optional>Account loginWork(@PathVariable String username, @PathVariable String password) {
+	public String loginWork(@PathVariable String username, @PathVariable String password) {
 		if (accountRepository.findByUsername(username).getPassword().equals(password)) {
-			return accountRepository.findByUsername(username);
+			return Integer.toString(accountRepository.findByUsername(username).getId());
 		}
 		
-		return accountRepository.findByUsername(null);
+		return "Login failed.";
 	}
 	
 	

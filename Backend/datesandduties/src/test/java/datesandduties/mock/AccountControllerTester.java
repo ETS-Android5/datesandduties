@@ -17,20 +17,32 @@ import org.mockito.Mockito.*;
 
 @ExtendedWith(MockitoExtension.class)
 public class AccountControllerTester {
-
+	
+	AccountController accountController = null;
+	
 	@Mock
-	Account accountMock;
+	AccountRepository accountRepository; //= Mockito.mock(AccountRepository.class); 
 
-	public static void main(String[] args) {
+	@Rule
+	public MockitoRule rule = MockitoJUnit.rule();
+
+/*	public static void main(String[] args) {
 		AccountControllerTester tester = new AccountControllerTester();
 		tester.setUp();
 		System.out.println(tester.testFunctions()?"pass":"fail");
 	}
+*/
 
+	@Before
 	public void setUp() {
+		accountController = new AccountController(accountRepository);
 	}
 
-	public boolean testFunctions() {
+	public void testGetAllAccounts() {
+		when()
+	}	
+
+/*	public boolean testFunctions() {
 		assertNotNull(accountMock);
 
 		when(accountMock.isAvailable()).thenReturn(true);
@@ -39,6 +51,8 @@ public class AccountControllerTester {
 		t.addNewAccount();
 		
 	}
+*/
+
 
 }
 
