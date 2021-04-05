@@ -79,6 +79,10 @@ public class EventController {
 		eventRepository.save(request);
 		return eventRepository.findById(id).get();
 	}
+	@GetMapping(path = "/findEvent/{title}")
+	public Event searchByTitle(@PathVariable String title) {
+		return eventRepository.findByTitle(title);
+	}
 
 	
 

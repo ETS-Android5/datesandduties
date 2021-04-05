@@ -157,5 +157,10 @@ public class AccountController {
 		taskRepository.save(task);
 		return "Task Removed from Account!";
 	}
+	@GetMapping(path = "/findUser/{username}")
+	public Account searchByUsername(@PathVariable String username) {
+		return accountRepository.findByUsername(username);
+	}
+	
 
 }
