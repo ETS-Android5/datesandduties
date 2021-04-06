@@ -27,12 +27,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 // rough :(
 
+@ExtendWith(MockitoExtension.class)
 public class AccountControllerTest {
 
 	AccountController accountController = null;
 
 	@Mock	
-	AccountRepository accountRepository; //= Mockito.mock(AccountRepository.class); 
+	AccountRepository accountRepository;// = mock(AccountRepository.class); 
 
 /*	public static void main(String[] args) {
 		AccountControllerTester tester = new AccountControllerTester();
@@ -40,10 +41,6 @@ public class AccountControllerTest {
 		System.out.println(tester.testFunctions()?"pass":"fail");
 	}
 */
-
-	public static void main(String[] args) {
-		System.out.println("\n\n\nwe got this \n\n\n");
-	}
 
 	public void setUp() {
 		accountController = new AccountController(accountRepository);
@@ -58,6 +55,11 @@ public class AccountControllerTest {
 	@DisplayName("first test pls work")
 	public void justAnExampleTest() {
 		assertEquals("Login failed.", "Login failed.");
+	}
+
+	@Test
+	public void loginWork() {
+		accountController = new AccountController(accountRepository);
 	}
 
 }
