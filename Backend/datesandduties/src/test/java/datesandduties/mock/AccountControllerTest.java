@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.InjectMocks;
 import org.mockito.Captor;
 
-import org.mockito.Mockito.*;
+import static org.mockito.Mockito.*;
 
 import org.mockito.junit.*;
 
@@ -19,8 +19,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import org.junit.*;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.*;
+//import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,10 +30,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @ExtendWith(MockitoExtension.class)
 public class AccountControllerTest {
 
-	AccountController accountController = null;
+	private static AccountController accountController = null;
 
-	@Mock	
-	AccountRepository accountRepository;// = mock(AccountRepository.class); 
+
+	private static AccountRepository accountRepository = mock(AccountRepository.class); 
 
 /*	public static void main(String[] args) {
 		AccountControllerTester tester = new AccountControllerTester();
@@ -42,7 +42,8 @@ public class AccountControllerTest {
 	}
 */
 
-	public void setUp() {
+	@BeforeAll
+	public static void setUp() {
 		accountController = new AccountController(accountRepository);
 	}
 
@@ -60,6 +61,7 @@ public class AccountControllerTest {
 	@Test
 	public void loginWork() {
 		accountController = new AccountController(accountRepository);
+		assertEquals(accountController.loginWork("username", "password"), "Login not work");
 	}
 
 }
