@@ -1,9 +1,9 @@
 stages:
   - mavenbuild
   - maventest
-  - mavenDeploy
   - androidbuild
   - androidtest
+  - autoDeploy
 
 maven-build:
   stage: mavenbuild
@@ -56,7 +56,7 @@ android-test:
     - ./gradlew test
 
 autoDeploy:
-  stage: mavenDeploy
+  stage: autoDeploy
   tags:
     - springboot_tag
   script:
