@@ -49,17 +49,31 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-inline</artifactId>
-			<version>3.7.7</version>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
-			<version>2.0.2-beta</version>
+			<version>1.10.19</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.5.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-surefire-provider</artifactId>
+			<version>1.2.0</version>
+		</dependency>-->
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.5.2</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -80,10 +94,12 @@
 			</plugin>  -->
 
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
 				<configuration>
-				    <source>1.8</source>
-        			<target>1.8</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				<!-- <release>8</release> Commenting this out per a StackOverflow thing I found that -->
 				</configuration>
 			</plugin>
@@ -91,7 +107,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19.1</version>
+				<version>3.0.0-M5</version>
 			</plugin>
 
 		</plugins>
