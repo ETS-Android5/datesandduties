@@ -58,7 +58,6 @@ public class Event {
 	public Event() {
 
 	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -114,9 +113,7 @@ public class Event {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-
 	public void resetAccount() {
 		this.account = null;
 	}
-
 }

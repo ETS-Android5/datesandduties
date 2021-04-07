@@ -28,6 +28,14 @@ public class TaskController {
 	@Autowired
 	private TaskRepository taskRepository;
 
+
+	public TaskController() {
+	}
+
+	public TaskController(TaskRepository taskRepository) {
+		this.taskRepository = taskRepository;
+	}
+
 	@ApiOperation(value = "Adds an Task to the Database", response = Task.class, tags = "addNewTask")
 	@PostMapping(path = "/add") // Map ONLY POST Requests
 	public String addNewTask(@RequestBody Task task) {
@@ -71,8 +79,15 @@ public class TaskController {
 		return taskRepository.findById(id).get();
 	}
 
+
+	@GetMapping(path = "/getByOwnerAndTitle/{owner}/{title}")
+	public Task getByOwnerAndTitle(@PathVariable String owner, @PathVariable String title) {
+		return taskRepository.findByOwnerAndTitle(owner, title);
+	}
+
 	@GetMapping(path = "/findTask/{title}")
 	public Task findByTitle	(@PathVariable String title) {
 		return taskRepository.findByTitle(title);
 	}
+
 }

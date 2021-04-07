@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.web.bind.annotation.PathVariable;
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
+	//public String loginWork(String username, String password);
 	Account findByUsername(String username);
-
 }

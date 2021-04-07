@@ -29,6 +29,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 
 @Entity // This tells Hibernate to make a table out of this class
+
 public class Account {
 
 	@Id
@@ -70,6 +71,7 @@ public class Account {
 	@OneToMany
 	private List<Task> tasks;
 
+
 	// Constructor in order to have Dependencies
 	public Account(String name, String username, String password, String email, String gender, Integer age,
 			Integer phone, String country) {
@@ -81,8 +83,6 @@ public class Account {
 		this.age = age;
 		this.phone = phone;
 		this.country = country;
-		events = new ArrayList<>();
-		tasks = new ArrayList<>();
 	}
 
 	public Account() {
