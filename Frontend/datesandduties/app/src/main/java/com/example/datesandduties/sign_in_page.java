@@ -25,6 +25,7 @@ public class sign_in_page extends Activity {
 
 
     public static String username;
+    private static int userID;
 
 
     private Button signIn;
@@ -35,6 +36,8 @@ public class sign_in_page extends Activity {
     private String accept;
 
     private TextView test;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,7 @@ public class sign_in_page extends Activity {
                             //do stuff
                             test.setText(accept);
                             username = loginUsername.getText().toString();
+                            findUserID();
                             startActivity(new Intent(sign_in_page.this, homePage.class));
                         }
                         else{
@@ -97,6 +101,32 @@ public class sign_in_page extends Activity {
     public void clearUsername(){
 
         username = null;
+    }
+
+    public void findUserID(){
+
+        String findUser = Const.FIND_USER + "/" + username;
+
+        StringRequest find = new StringRequest(Method.GET, findUser,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, response.toString());
+                        userID = Integer.parseInt(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: "+ error.getMessage());
+            }
+        });
+
+        AppController.getInstance().addToRequestQueue(find);
+
+    }
+
+    public static int getID(){
+        return userID;
     }
 
 
