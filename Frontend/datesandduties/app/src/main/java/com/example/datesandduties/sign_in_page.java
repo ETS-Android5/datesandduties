@@ -25,7 +25,7 @@ public class sign_in_page extends Activity {
 
 
     public static String username;
-    private static int userID;
+    public static int userID;
 
 
     private Button signIn;
@@ -69,18 +69,18 @@ public class sign_in_page extends Activity {
                         Log.d(TAG, response.toString());
                         accept = response.toString();
 
-                        if(accept.equals("Login successful!")){
+                        if(accept.equals("Login failed.")){
                             //do stuff
                             test.setText(accept);
-                            username = loginUsername.getText().toString();
-                            findUserID();
-                            startActivity(new Intent(sign_in_page.this, homePage.class));
                         }
                         else{
                             //login incorrect do nothing
                             test.setText(accept);
+                            username = loginUsername.getText().toString();
+                            userID = Integer.parseInt(accept);
+                            //findUserID();
+                            startActivity(new Intent(sign_in_page.this, homePage.class));
                         }
-
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -88,11 +88,7 @@ public class sign_in_page extends Activity {
                 VolleyLog.d(TAG, "Error: "+ error.getMessage());
             }
         });
-
         AppController.getInstance().addToRequestQueue(signon);
-
-
-
     }
 
     public static String getUsername(){
@@ -103,7 +99,7 @@ public class sign_in_page extends Activity {
         username = null;
     }
 
-    public void findUserID(){
+    /*public void findUserID(){
 
         String findUser = Const.FIND_USER + "/" + username;
 
@@ -123,7 +119,7 @@ public class sign_in_page extends Activity {
 
         AppController.getInstance().addToRequestQueue(find);
 
-    }
+    }*/
 
     public static int getID(){
         return userID;
