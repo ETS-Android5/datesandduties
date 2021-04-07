@@ -149,7 +149,7 @@ public class addEvent extends Activity implements View.OnClickListener{
                         // put parse the id of event here
                         try {
                             JSONObject event = response.getJSONObject("this");
-                            String eventid = event.getString("id");
+                            String eventid = event.getString("eventID");
                             eventID = Integer.parseInt(eventid);
                         } catch (JSONException e) {
                             e.printStackTrace();
