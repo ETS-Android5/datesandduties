@@ -38,7 +38,8 @@ public class homePage extends Activity implements View.OnClickListener {
                 startActivity(new Intent(homePage.this, dates.class ));
                 break;
             case R.id.settings:
-                    settingz.setText(sign_in_page.getUsername());
+                startActivity(new Intent(homePage.this, deleteAccount.class ));
+
                 break;
 
         }

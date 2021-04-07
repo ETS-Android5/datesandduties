@@ -45,7 +45,7 @@ public class deleteAccount extends Activity {
 
     private void deleteCheck() {
 
-        String url = Const.DEL_USER + "/" + sign_in_page.getID();
+       String url = Const.DEL_USER + "/" + sign_in_page.getUsername();
 
         StringRequest del = new StringRequest(Method.DELETE, url,
 

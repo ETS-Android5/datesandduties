@@ -1820,6 +1820,7 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
+id delAct
 id delEvent
 id deltaRelative
 id dependency_ordering
@@ -2051,6 +2052,7 @@ id selected
 id selection_type
 id sendEvent
 id settings
+id settingsHead
 id shortcut
 id showCustom
 id showHome
@@ -2220,6 +2222,7 @@ layout activity_dates
 layout activity_event_main
 layout activity_home_page
 layout activity_main
+layout activity_setting
 layout activity_sign_in_page
 layout custom_dialog
 layout design_bottom_navigation_item
