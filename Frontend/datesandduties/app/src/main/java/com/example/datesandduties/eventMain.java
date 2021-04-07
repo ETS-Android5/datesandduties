@@ -1,15 +1,27 @@
 package com.example.datesandduties;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.example.datesandduties.app.AppController;
 import com.example.datesandduties.dates;
+import com.example.datesandduties.net_utils.Const;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.json.JSONArray;
 
 public class eventMain extends Activity implements View.OnClickListener{
 
@@ -18,6 +30,12 @@ public class eventMain extends Activity implements View.OnClickListener{
     private Button leftb, rightb, edit, delete, up, down;
 
     private EditText title, desc, date, time;
+
+    public int idEvent;
+
+    private int dateOfNow;
+
+    private String TAG = eventMain.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +48,7 @@ public class eventMain extends Activity implements View.OnClickListener{
         date = (EditText) findViewById(R.id.outDate);
         time = (EditText) findViewById(R.id.outTime);
 
+
         up = (Button) findViewById(R.id.upButt);
         down = (Button) findViewById(R.id.downButt);
         leftb= (Button) findViewById(R.id.left);
@@ -37,6 +56,7 @@ public class eventMain extends Activity implements View.OnClickListener{
         edit = (Button) findViewById(R.id.editEvents);
         delete = (Button) findViewById(R.id.delEvent);
         setCurDate();
+        pullEvents();
 
         //function to display all events
 
@@ -149,7 +169,69 @@ public class eventMain extends Activity implements View.OnClickListener{
 
             case R.id.delEvent:
 
+
+                String currentEvent = Const.FIND_EVENT + "/" + title.getText().toString();
+                StringRequest eventID = new StringRequest(Request.Method.GET, currentEvent,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Log.d(TAG, response.toString());
+                                idEvent = Integer.parseInt(response.toString());
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.d(TAG, "Error: "+ error.getMessage());
+                    }
+                });
+                AppController.getInstance().addToRequestQueue(eventID);
+
+
+
+
+
+
+
+                String delEvent = Const.LINK_EVENT + "/" + idEvent ;
+                //    string post request for linking id to event to user
+                StringRequest deleteEvent = new StringRequest(Request.Method.DELETE, delEvent,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Log.d(TAG, response.toString());
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.d(TAG, "Error: "+ error.getMessage());
+                    }
+                });
+                AppController.getInstance().addToRequestQueue(deleteEvent);
+
+
+                //use id for delete event request
                 break;
         }
+    }
+
+
+    private void pullEvents(){
+
+        String url = Const.GET_EVENTS + "/" + sign_in_page.getID();
+        JsonArrayRequest getEvents = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d(TAG, response.toString());
+                        desc.setText(response.toString());
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: "+ error.getMessage());
+            }
+        });
+        AppController.getInstance().addToRequestQueue(getEvents);
     }
 }

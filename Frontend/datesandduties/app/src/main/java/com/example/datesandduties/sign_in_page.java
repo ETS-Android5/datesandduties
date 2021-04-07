@@ -25,6 +25,7 @@ public class sign_in_page extends Activity {
 
 
     public static String username;
+    public static int userID;
 
 
     private Button signIn;
@@ -35,6 +36,8 @@ public class sign_in_page extends Activity {
     private String accept;
 
     private TextView test;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,17 +69,18 @@ public class sign_in_page extends Activity {
                         Log.d(TAG, response.toString());
                         accept = response.toString();
 
-                        if(accept.equals("Login successful!")){
+                        if(accept.equals("Login failed.")){
                             //do stuff
                             test.setText(accept);
-                            username = loginUsername.getText().toString();
-                            startActivity(new Intent(sign_in_page.this, homePage.class));
                         }
                         else{
                             //login incorrect do nothing
                             test.setText(accept);
+                            username = loginUsername.getText().toString();
+                            userID = Integer.parseInt(accept);
+                            //findUserID();
+                            startActivity(new Intent(sign_in_page.this, homePage.class));
                         }
-
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -84,11 +88,7 @@ public class sign_in_page extends Activity {
                 VolleyLog.d(TAG, "Error: "+ error.getMessage());
             }
         });
-
         AppController.getInstance().addToRequestQueue(signon);
-
-
-
     }
 
     public static String getUsername(){
@@ -97,6 +97,32 @@ public class sign_in_page extends Activity {
     public void clearUsername(){
 
         username = null;
+    }
+
+    /*public void findUserID(){
+
+        String findUser = Const.FIND_USER + "/" + username;
+
+        StringRequest find = new StringRequest(Method.GET, findUser,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, response.toString());
+                        userID = Integer.parseInt(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: "+ error.getMessage());
+            }
+        });
+
+        AppController.getInstance().addToRequestQueue(find);
+
+    }*/
+
+    public static int getID(){
+        return userID;
     }
 
 

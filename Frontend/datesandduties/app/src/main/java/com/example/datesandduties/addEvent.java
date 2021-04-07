@@ -1,22 +1,38 @@
 package com.example.datesandduties;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.example.datesandduties.app.AppController;
 import com.example.datesandduties.dates;
 import com.example.datesandduties.net_utils.Const;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class addEvent extends Activity implements View.OnClickListener{
 
     private EditText inputDate, inputTitle, inputTime, inputDesc;
     private Button addEvent;
     private TextView outError;
+    private int eventID;
+
+    private String TAG = addEvent.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,14 +98,84 @@ public class addEvent extends Activity implements View.OnClickListener{
                     +"&time=" + time;
             suffix = Const.ADD_EVENT + suffix; //request out for adding event
 
+            StringRequest addNewEvent = new StringRequest(Request.Method.GET, suffix,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d(TAG, response.toString());
+                            if(response.equals("Entry Saved!")){
+                                requestLink(title);
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d(TAG, "Error: "+ error.getMessage());
+                }
+            });
 
-
-
+            AppController.getInstance().addToRequestQueue(addNewEvent);
 
         }
 
 
     }
+
+    private void requestLink(String title){
+
+        String idRequest = Const.FIND_EVENT + "/" + title;
+
+
+
+        JsonObjectRequest findEventID = new JsonObjectRequest(Request.Method.GET, idRequest, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+                        // put parse the id of event here
+                        try {
+                            JSONObject event = response.getJSONObject("this");
+                            String eventid = event.getString("id");
+                            eventID = Integer.parseInt(eventid);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: "+ error.getMessage());
+            }
+        });
+
+        AppController.getInstance().addToRequestQueue(findEventID);
+
+
+        String linkEvent = Const.LINK_EVENT + "?accountId=" + sign_in_page.getID() + "&eventId=" + eventID;
+        //    string post request for linking id to event to user
+        StringRequest linkEventToUser = new StringRequest(Request.Method.GET, linkEvent,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, response.toString());
+                        //if Success!
+                        if(response.equals("Success!")){
+                            //return to previous page
+                            startActivity(new Intent(addEvent.this, dates.class));
+                        }
+                        //else nothing this should work
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: "+ error.getMessage());
+            }
+        });
+        AppController.getInstance().addToRequestQueue(linkEventToUser);
+    }
+
+
 
 
 }
