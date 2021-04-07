@@ -53,12 +53,12 @@ public class Task {
 	private Account account;
 	
 	public Task(String owner, String title, String description, Integer priority, Integer due_date, String recurrence) {
-		this.owner = owner;
-		this.title = title;
-		this.description = description;
-		this.priority= priority;
-		this.due_date = due_date;
-		this.recurrence = recurrence;
+		this.setOwner(owner);
+		this.setTitle(title);
+		this.setDescription(description);
+		this.setPriority(priority);
+		this.setDue_date(due_date);
+		this.setRecurrence(recurrence);
 	}
 
 	public Task() {
@@ -78,7 +78,12 @@ public class Task {
 	}
 
 	public void setOwner(String owner) {
-		this.owner = owner;
+		if (owner.chars().allMatch(Character::isLetter)) {
+			this.owner = owner;
+		}
+		else {
+			this.owner = "null";
+		}
 	}
 
 	public String getTitle() {
@@ -86,7 +91,13 @@ public class Task {
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		String regex = "^[a-zA-Z0-9_]+$";
+		if (title.matches(regex)) {
+			this.title = title;
+		}
+		else {
+			this.title = "mull";
+		}
 	}
 
 	public String getDescription() {
@@ -94,7 +105,13 @@ public class Task {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		String regex = "^[a-zA-Z0-9_]+$";
+		if (description.matches(regex)) {
+			this.description = description;
+		}
+		else {
+			this.description = "null";
+		}
 	}
 
 	public Integer getPriority() {
@@ -102,7 +119,12 @@ public class Task {
 	}
 
 	public void setPriority(Integer priority) {
-		this.priority = priority;
+		if ((priority > 0) || (priority < 4)) {
+			this.priority = priority;
+		}
+		else {
+			this.priority = 0;
+		}
 	}
 
 	public Integer getDue_date() {
@@ -110,7 +132,13 @@ public class Task {
 	}
 
 	public void setDue_date(Integer due_date) {
-		this.due_date = due_date;
+		String regex = "[0-9]{2}{1}[0-9]{2}{1}[0-9]{4}";
+		if (Integer.toString(due_date).matches(regex)) {
+			this.due_date = due_date;
+		}
+		else {
+			this.due_date = 0;
+		}
 	}
 
 	public String getRecurrence() {

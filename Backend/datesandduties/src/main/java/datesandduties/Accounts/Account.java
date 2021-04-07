@@ -77,14 +77,14 @@ public class Account {
 	// Constructor in order to have Dependencies
 	public Account(String name, String username, String password, String email, String gender, Integer age,
 			Integer phone, String country) {
-		this.name = name;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.gender = gender;
-		this.age = age;
-		this.phone = phone;
-		this.country = country;
+		this.setName(name);
+		this.setUsername(username);
+		this.setPassword(password);
+		this.setEmail(email);
+		this.setGender(gender);
+		this.setAge(age);
+		this.setPhone(phone);
+		this.setCountry(country);
 	}
 
 	public Account() {

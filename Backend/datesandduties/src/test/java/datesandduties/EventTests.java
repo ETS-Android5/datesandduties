@@ -52,13 +52,13 @@ public class EventTests {
 	public void testFindByTitle() {
 
 		when(eventRepository.findByTitle("testTitle"))
-				.thenReturn(new Event("owner", "testTitle", "description", 2343, 2329));
+				.thenReturn(new Event("owner", "testTitle", "description", 23430000, 2329));
 		Event event = eventController.findByTitle("testTitle");
 
 		assertEquals("owner", event.getOwner());
 		assertEquals("testTitle", event.getTitle());
 		assertEquals("description", event.getDescription());
-		assertEquals((Integer) 2343, event.getDate());
+		assertEquals((Integer) 23430000, event.getDate());
 		assertEquals((Integer) 2329, event.getTime());
 
 	}

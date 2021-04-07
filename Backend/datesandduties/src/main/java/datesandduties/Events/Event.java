@@ -48,11 +48,11 @@ public class Event {
 	private Account account;
 
 	public Event(String owner, String title, String description, Integer date, Integer time) {
-		this.owner = owner;
-		this.title = title;
-		this.description = description;
-		this.date = date;
-		this.time = time;
+		this.setOwner(owner);
+		this.setTitle(title);
+		this.setDescription(description);
+		this.setDate(date);
+		this.setTime(time);
 	}
 
 	public Event() {
@@ -71,7 +71,12 @@ public class Event {
 	}
 
 	public void setOwner(String owner) {
-		this.owner = owner;
+		if (owner.chars().allMatch(Character::isLetter)) {
+			this.owner = owner;
+		}
+		else {
+			this.owner = "null";
+		}
 	}
 
 	public String getTitle() {
@@ -79,7 +84,13 @@ public class Event {
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		String regex = "^[a-zA-Z0-9_]+$";
+		if (title.matches(regex)) {
+			this.title = title;
+		}
+		else {
+			this.title = "null";
+		}
 	}
 
 	public String getDescription() {
@@ -87,7 +98,13 @@ public class Event {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		String regex = "^[a-zA-Z0-9_]+$";
+		if (description.matches(regex)) {
+			this.description = description;	
+		}
+		else {
+			this.description = "null";
+		}
 	}
 
 	public Integer getDate() {
@@ -95,7 +112,13 @@ public class Event {
 	}
 
 	public void setDate(Integer date) {
-		this.date = date;
+		String regex = "[0-9]{2}{1}[0-9]{2}{1}[0-9]{4}"; // This is just checking to make sure the input is [DD][MM][YYYY]
+		if (Integer.toString(date).matches(regex)) {
+			this.date = date;
+		}
+		else {
+			this.date = 0;
+		}
 	}
 
 	public Integer getTime() {
