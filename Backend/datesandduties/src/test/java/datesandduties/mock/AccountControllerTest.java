@@ -94,7 +94,16 @@ public class AccountControllerTest {
 	}
 	
 
+	@Test
+	public void updateAccountTest() throws Exception {
 
+		Account newAccount = new Account("name2", "mockUsername2", "password2", "email2", "gender2", 1, 1, "country2");
+		when(accountRepository.save(any(Account.class))).thenReturn(newAccount);
+
+		Account testAccount = accountRepository.save(new Account("name", "mockUsername", "password", "email", "gender", 12, 12, "country"));	
+
+		assertEquals(testAccount, newAccount);
+	}
 	
 }
 

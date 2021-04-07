@@ -32,7 +32,7 @@ public class AccountController {
 	@Autowired 
 	private AccountRepository accountRepository;
 
-	public AccountController(AccountRepository accountRepository) {
+	public AccountController(AccountRepository accountRepository) { // Necessary to mock Mockito repo
 		this.accountRepository = accountRepository;
 	}
 
@@ -100,6 +100,9 @@ public class AccountController {
 
 	@RequestMapping(path = "/login/{username}/{password}")
 	public String loginWork(@PathVariable String username, @PathVariable String password) {
+		if (accountRepository.findByUsername(username) == null) {
+			return "Login failed.";
+		}
 		if (accountRepository.findByUsername(username).getPassword().equals(password)) {
 			return Integer.toString(accountRepository.findByUsername(username).getId());
 		}
@@ -107,7 +110,15 @@ public class AccountController {
 		return "Login failed.";
 	}
 
-	
+	@PostMapping(path = "/update/{id}")
+	public Account updateAccountInfo(@PathVariable Integer id, Account request) {
+		Optional<Account> account = accountRepository.findById(id);
+		/*if (account == null) {
+			return null;
+		}*/
+		accountRepository.save(request);
+		return accountRepository.findById(id).get(); 
+	}	
 	
 	
 }
