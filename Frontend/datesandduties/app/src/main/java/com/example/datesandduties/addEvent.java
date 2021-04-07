@@ -10,6 +10,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.datesandduties.app.AppController;
 import com.example.datesandduties.dates;
+import com.example.datesandduties.sign_in_page;
 import com.example.datesandduties.net_utils.Const;
 
 import android.app.Activity;
@@ -32,6 +33,8 @@ public class addEvent extends Activity implements View.OnClickListener{
     private Button addEvent;
     private TextView outError;
     private int eventID;
+    private String title;
+    private String titled;
 
     private String TAG = addEvent.class.getSimpleName();
 
@@ -90,7 +93,7 @@ public class addEvent extends Activity implements View.OnClickListener{
 
         //other stuff that checks if date and time are valid based on inputs to backend;
         else{
-            outError.setText("Valid inputs Event will be created" + date);
+
 
             String suffix = "?owner=" + sign_in_page.getUsername()
                     +"&title=" + title
@@ -99,28 +102,46 @@ public class addEvent extends Activity implements View.OnClickListener{
                     +"&time=" + time;
              //request out for adding event
 
-            JSONObject newUser = new JSONObject();
+            JSONObject newEvent = new JSONObject();
             try {
-                newUser.put("owner", sign_in_page.getUsername());
-                newUser.put("title", title);
-                newUser.put("description", description);
-                newUser.put("date", date);
-                newUser.put("time", time);
+                newEvent.put("owner", sign_in_page.getUsername());
+                newEvent.put("title", title);
+                newEvent.put("description", description);
+                newEvent.put("date", date);
+                newEvent.put("time", time);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
+            String url = Const.ADD_EVENT + "?event=" + newEvent.toString();
+            titled = title;
+            /*
+            StringRequest addNewEvent = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d(TAG, response.toString());
+                            outError.setText("Valid inputs Event will be created" + date);
+                            requestLink(title);
 
+                            //startActivity(new Intent(addEvent.this, dates.class));
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d(TAG, "Error: "+ error.getMessage());
+                }
+            });*/
 
-            JsonObjectRequest addNewEvent = new JsonObjectRequest(Request.Method.POST, Const.ADD_EVENT, newUser,
+            //outError.setText(newEvent.toString());
+            JsonObjectRequest addNewEvent = new JsonObjectRequest(Request.Method.POST, Const.ADD_EVENT, newEvent,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
                             Log.d(TAG, response.toString());
-                            if(response.equals("Entry Saved!")){
-                                requestLink(title);
+                                outError.setText("Valid inputs Event will be created");
+                                requestLink();
                                 startActivity(new Intent(addEvent.this, dates.class));
-                            }
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -136,13 +157,37 @@ public class addEvent extends Activity implements View.OnClickListener{
 
     }
 
-    private void requestLink(String title){
+    private void requestLink(){
 
-        String idRequest = Const.FIND_EVENT + "/" + title;
-
-
-
+        String idRequest = Const.FIND_EVENT + "/" + titled;
+        outError.setText("Fail link1");
         JsonObjectRequest findEventID = new JsonObjectRequest(Request.Method.GET, idRequest, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+                        // put parse the id of event here
+
+                        String eventid = null;
+                        try {
+                            eventid = response.getString("id");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Integer eventnum = Integer.parseInt(eventid);
+                        eventID = eventnum;
+
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: "+ error.getMessage());
+            }
+        });
+
+        /*JsonObjectRequest findEventID = new JsonObjectRequest(Request.Method.GET, idRequest, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -162,14 +207,15 @@ public class addEvent extends Activity implements View.OnClickListener{
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: "+ error.getMessage());
             }
-        });
+        });*/
 
         AppController.getInstance().addToRequestQueue(findEventID);
-
-
-        String linkEvent = Const.LINK_EVENT + "?accountId=" + sign_in_page.getID() + "&eventId=" + eventID;
+        outError.setText("Fail link2");
+        Integer user = sign_in_page.getID();
+        int userid = user;
+        String linkEvent = Const.LINK_EVENT + "/" + userid + "/" + eventID;
         //    string post request for linking id to event to user
-        StringRequest linkEventToUser = new StringRequest(Request.Method.GET, linkEvent,
+        StringRequest linkEventToUser = new StringRequest(Request.Method.PUT, linkEvent,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
