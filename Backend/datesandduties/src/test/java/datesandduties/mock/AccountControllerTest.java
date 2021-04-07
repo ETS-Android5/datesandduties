@@ -96,15 +96,34 @@ public class AccountControllerTest {
 
 	@Test
 	public void updateAccountTest() throws Exception {
-
 		Account newAccount = new Account("name2", "mockUsername2", "password2", "email2", "gender2", 1, 1, "country2");
 		when(accountRepository.save(any(Account.class))).thenReturn(newAccount);
 
 		Account testAccount = accountRepository.save(new Account("name", "mockUsername", "password", "email", "gender", 12, 12, "country"));	
 
-		assertEquals(testAccount, newAccount);
+		assertEquals(testAccount.getName(), "name2");
 	}
-	
+
+	@Test
+	public void updateEventTest() throws Exception {
+		Event newEvent = new Event("testOwner2", "testTitle2", "testDescription2", 1, 1);
+		when(eventRepository.save(any(Event.class))).thenReturn(newEvent);
+
+		Event testEvent = eventRepository.save(new Event("testOwner", "testTitle", "testDescription", 123456, 654321));
+
+		assertEquals(testEvent.getOwner(), "testOwner2");
+	}
+
+	@Test
+	public void updateTaskTest() throws Exception {
+		Task newTask = new Task("testOwner2", "testTitle2", "testDescription2", 2, 1, "always");
+		when(taskRepository.save(any(Task.class))).thenReturn(newTask);
+
+		Task testTask = taskRepository.save(new Task("testOwner", "testTitle", "testDescription", 1, 2, "never"));
+
+		assertEquals(testTask.getOwner(), "testOwner2");
+	}
+
 }
 
 
