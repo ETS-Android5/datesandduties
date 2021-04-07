@@ -57,20 +57,17 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			
-			<!-- 			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<release>8</release>
-				</configuration>
-			</plugin>  -->
+
+			<!-- <plugin> <artifactId>maven-compiler-plugin</artifactId> <configuration> 
+				<release>8</release> </configuration> </plugin> -->
 
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-				    <source>1.8</source>
-        			<target>1.8</target>
-					<!--  <release>8</release> Commenting this out per a StackOverflow thing I found that -->
+					<source>1.8</source>
+					<target>1.8</target>
+					<!-- <release>8</release> Commenting this out per a StackOverflow thing 
+						I found that -->
 				</configuration>
 			</plugin>
 
