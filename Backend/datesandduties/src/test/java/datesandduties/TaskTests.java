@@ -52,14 +52,14 @@ public class TaskTests {
 	public void testFindByTitle() {
 
 		when(taskRepository.findByTitle("testTitle"))
-				.thenReturn(new Task("owner", "testTitle", "description", 2343, 2329, "recurrence"));
+				.thenReturn(new Task("owner", "testTitle", "description", 2343, 23291234, "recurrence"));
 		Task task = taskController.findByTitle("testTitle");
 
 		assertEquals("owner", task.getOwner());
 		assertEquals("testTitle", task.getTitle());
 		assertEquals("description", task.getDescription());
 		assertEquals((Integer) 2343, task.getPriority());
-		assertEquals((Integer) 2329, task.getDue_date());
+		assertEquals((Integer) 23291234, task.getDue_date());
 		assertEquals("recurrence", task.getRecurrence());
 
 	}

@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.regex.Pattern.*;
+
 import datesandduties.Events.Event;
 import datesandduties.Tasks.Task;
 import io.swagger.annotations.ApiModelProperty;
@@ -75,14 +77,14 @@ public class Account {
 	// Constructor in order to have Dependencies
 	public Account(String name, String username, String password, String email, String gender, Integer age,
 			Integer phone, String country) {
-		this.name = name;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.gender = gender;
-		this.age = age;
-		this.phone = phone;
-		this.country = country;
+		this.setName(name);
+		this.setUsername(username);
+		this.setPassword(password);
+		this.setEmail(email);
+		this.setGender(gender);
+		this.setAge(age);
+		this.setPhone(phone);
+		this.setCountry(country);
 	}
 
 	public Account() {
@@ -103,7 +105,12 @@ public class Account {
 	}
 
 	public void setAge(Integer age) {
-		this.age = age;
+		if ((age > 0 ) || (age <= 122)) {
+			this.age = age;
+		}
+		else {
+			this.age = 0;
+		}
 	}
 
 	public String getName() {
@@ -111,7 +118,12 @@ public class Account {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if (name.chars().allMatch(Character::isLetter)) {
+			this.name = name;
+		}
+		else {
+			this.name = "null";
+		}
 	}
 
 	public String getEmail() {
@@ -119,7 +131,10 @@ public class Account {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+		if (email.matches(regex)) {
+			this.email = email;
+		}
 	}
 
 	public String getCountry() {
@@ -127,7 +142,12 @@ public class Account {
 	}
 
 	public void setCountry(String country) {
-		this.country = country;
+		if (country.chars().allMatch(Character::isLetter)) {
+			this.country = country;
+		}
+		else {
+			this.country = "null";
+		}
 	}
 
 	public String getPassword() {
@@ -143,7 +163,12 @@ public class Account {
 	}
 
 	public void setGender(String gender) {
-		this.gender = gender;
+		if (gender.chars().allMatch(Character::isLetter)) {
+			this.gender = gender;
+		}
+		else {
+			this.gender = "null";
+		}
 	}
 
 	public String getUsername() {
@@ -151,7 +176,12 @@ public class Account {
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		if (username.chars().allMatch(Character::isLetter)) {
+			this.username = username;
+		}
+		else {
+			this.username = "null";
+		}
 	}
 
 	public Integer getPhone() {
@@ -159,7 +189,12 @@ public class Account {
 	}
 
 	public void setPhone(Integer phone) {
-		this.phone = phone;
+		if ((Integer.toString(phone).matches("\\d{10}")) || (Integer.toString(phone).matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) || (Integer.toString(phone).matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}")) || (Integer.toString(phone).matches("\\(\\d{3}\\)-\\d{3}-\\d{4}")) || (Integer.toString(phone).matches("\\d{4}[-\\.\\s]\\d{3}[-\\.\\s]\\d{3}")) || (Integer.toString(phone).matches("\\(\\d{5}\\)-\\d{3}-\\d{3}")) || (Integer.toString(phone).matches("\\(\\d{4}\\)-\\d{3}-\\d{3}"))) {
+			this.phone = phone;
+		}
+		else {
+			this.phone = 0;
+		}
 	}
 
 	public List<Event> getEvents() {

@@ -52,13 +52,13 @@ public class AccountTests {
 	@Test
 	public void testFindByUsername() { 
 
-		when(acctRepository.findByUsername("mockUsername")).thenReturn(new Account("name", "mockUsername", "password", "email", "gender", 15, 1234567890, "country"));
+		when(acctRepository.findByUsername("mockUsername")).thenReturn(new Account("name", "mockUsername", "password", "email@email.com", "gender", 15, 1234567890, "country"));
 		Account account = acctController.findByUsername("mockUsername");
 
 		assertEquals("name", account.getName());
 		assertEquals("mockUsername", account.getUsername());
 		assertEquals("password", account.getPassword());
-		assertEquals("email", account.getEmail());
+		assertEquals("email@email.com", account.getEmail());
 		assertEquals("gender", account.getGender());
 		assertEquals((Integer) 15, account.getAge());
 		assertEquals((Integer) 1234567890, account.getPhone());
