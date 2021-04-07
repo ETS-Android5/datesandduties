@@ -86,7 +86,7 @@ public class AccountController {
 		return accountRepository.findById(id).get();
 	}
 
-	@RequestMapping(path = "/login/{username}/{password}")
+	@GetMapping(path = "/login/{username}/{password}")
 	public String loginWork(@PathVariable String username, @PathVariable String password) {
 		if (accountRepository.findByUsername(username) == null) {
 			return "Login failed.";
