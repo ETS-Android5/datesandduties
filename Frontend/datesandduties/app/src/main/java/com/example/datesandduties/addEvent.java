@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -96,12 +97,25 @@ public class addEvent extends Activity implements View.OnClickListener{
                     +"&description=" + description
                     +"&date=" + date
                     +"&time=" + time;
-            suffix = Const.ADD_EVENT + suffix; //request out for adding event
+             //request out for adding event
 
-            StringRequest addNewEvent = new StringRequest(Request.Method.GET, suffix,
-                    new Response.Listener<String>() {
+            JSONObject newUser = new JSONObject();
+            try {
+                newUser.put("owner", sign_in_page.getUsername());
+                newUser.put("title", title);
+                newUser.put("description", description);
+                newUser.put("date", date);
+                newUser.put("time", time);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+            JsonObjectRequest addNewEvent = new JsonObjectRequest(Request.Method.POST, Const.ADD_EVENT, newUser,
+                    new Response.Listener<JSONObject>() {
                         @Override
-                        public void onResponse(String response) {
+                        public void onResponse(JSONObject response) {
                             Log.d(TAG, response.toString());
                             if(response.equals("Entry Saved!")){
                                 requestLink(title);

@@ -10,6 +10,8 @@ com/example/datesandduties/createAccount.java
  com.example.datesandduties.createAccount$2
  com.example.datesandduties.createAccount$3
  com.example.datesandduties.createAccount$4
+com/example/datesandduties/deleteAccount.java
+ com.example.datesandduties.deleteAccount
 com/example/datesandduties/MainActivity.java
  com.example.datesandduties.MainActivity
  com.example.datesandduties.MainActivity$1
@@ -20,8 +22,6 @@ com/example/datesandduties/eventMain.java
  com.example.datesandduties.eventMain$2
  com.example.datesandduties.eventMain$3
  com.example.datesandduties.eventMain$4
- com.example.datesandduties.eventMain$5
- com.example.datesandduties.eventMain$6
 com/example/datesandduties/homePage.java
  com.example.datesandduties.homePage
 com/example/datesandduties/sign_in_page.java
@@ -32,6 +32,8 @@ com/example/datesandduties/sign_in_page.java
 com/example/datesandduties/dates.java
  com.example.datesandduties.dates
  com.example.datesandduties.dates$1
+ com.example.datesandduties.dates$2
+ com.example.datesandduties.dates$3
 com/example/datesandduties/addEvent.java
  com.example.datesandduties.addEvent
  com.example.datesandduties.addEvent$1

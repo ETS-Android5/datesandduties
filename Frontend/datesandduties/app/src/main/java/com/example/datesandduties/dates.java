@@ -5,16 +5,32 @@ import androidx.annotation.NonNull;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.example.datesandduties.net_utils.Const;
+
 import java.util.Calendar;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class dates extends Activity implements View.OnClickListener{
+
+    private static JSONArray UserEvents;
+    private String TAG = dates.class.getSimpleName();
+    private String tag_string_req = "event_Req";
 
     private static int Gday;
     private Button addEvent, viewEvents;
@@ -27,6 +43,7 @@ public class dates extends Activity implements View.OnClickListener{
     private String user;
     //public Time intialDate = new Time();
     private JSONArray currentEvents;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +74,13 @@ public class dates extends Activity implements View.OnClickListener{
 
                 //check date for events with username
                 //count events for day
+
+                try {
+                    setCurrentEvents();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 xEvents.setText(countEvents());
-                currentEvents = setCurrentEvents();
             }
         });
 
@@ -72,7 +94,7 @@ public class dates extends Activity implements View.OnClickListener{
 
         //count json length
 
-        int count = 0;
+        int count = UserEvents.length();
         String refund = "You have ";
         //say how many events are for that day
         if(count>1){
@@ -89,14 +111,42 @@ public class dates extends Activity implements View.OnClickListener{
         return refund;
     }
 
-    private JSONArray setCurrentEvents(){
+    public void setCurrentEvents() throws JSONException {
+
 
         //json array request for current events
+        String url = Const.GET_EVENTS + "/" + sign_in_page.getUsername();
         //save input into private currentEvents
-
+        JsonArrayRequest req = new JsonArrayRequest(Request.Method.POST, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d(TAG, response.toString());
+                        currentEvents = response;
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: "+ error.getMessage());
+            }
+        });
+        UserEvents = new JSONArray();
+        JSONObject jason;
+        String Data = Gmonth+"";
+        if(Gday<10){
+            Data += "0" + Gday + Gyear;
+        }
+        else{
+            Data += Gday + Gyear;
+        }
+        for(int i = 0;i < currentEvents.length();i++){
+            jason = currentEvents.getJSONObject(i);
+            if(jason.getString("date").equals(Data)){
+                UserEvents.put(jason);
+            }
+        }
 
         //return json array
-        return new JSONArray();
 
     }
 
@@ -134,5 +184,10 @@ public class dates extends Activity implements View.OnClickListener{
                 startActivity(new Intent(dates.this, eventMain.class));
                 break;
         }
+    }
+
+
+    public static JSONArray getEvents(){
+        return UserEvents;
     }
 }

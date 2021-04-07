@@ -62,7 +62,7 @@ public class sign_in_page extends Activity {
         loginPassword = (EditText) findViewById(R.id.loginPassword);
 
         String url = Const.URL_LOGIN + "/" + loginUsername.getText().toString() + "/" + loginPassword.getText().toString();
-        StringRequest signon = new StringRequest(Method.POST, url,
+        StringRequest signon = new StringRequest(Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -88,6 +88,7 @@ public class sign_in_page extends Activity {
                 VolleyLog.d(TAG, "Error: "+ error.getMessage());
             }
         });
+
         AppController.getInstance().addToRequestQueue(signon);
     }
 

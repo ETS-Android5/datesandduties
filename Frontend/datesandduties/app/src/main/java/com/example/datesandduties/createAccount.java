@@ -3,6 +3,7 @@ package com.example.datesandduties;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.datesandduties.app.AppController;
 import com.example.datesandduties.net_utils.Const;
 import com.example.datesandduties.MainActivity;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -49,7 +52,11 @@ public class createAccount extends Activity {
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createAccountRequest();
+                try {
+                    createAccountRequest();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -57,7 +64,7 @@ public class createAccount extends Activity {
 
 
 
-    private void createAccountRequest() {
+    private void createAccountRequest() throws JSONException {
 
         inputName = (EditText) findViewById(R.id.inputName);
         inputUsername = (EditText) findViewById(R.id.inputUsername);
@@ -91,6 +98,21 @@ public class createAccount extends Activity {
                 "&phone=" + phone +
                 "&country=" + country;
 
+        JSONObject newUser = new JSONObject();
+        JSONArray newUsers= new JSONArray();
+        newUser.put("name", name);
+        newUser.put("username", username);
+        newUser.put("password", password);
+        newUser.put("email", email);
+        newUser.put("gender", gender);
+        newUser.put("age", age);
+        newUser.put("phone", phone);
+        newUser.put("country", country);
+        //newUser.put("username", username);
+
+
+
+
        /* HashMap<String, String> params = new HashMap<String, String>();
         params.put("name", name);
         params.put("username", username);
@@ -119,15 +141,16 @@ public class createAccount extends Activity {
         }); */
 
 
-        String url = Const.URL_CREATE_ACCOUNT + urlSuffix; //created suffix to
+        String url = Const.URL_CREATE_ACCOUNT; //created suffix to
         outTest.setText(url);
 
-         StringRequest req = new StringRequest(Method.POST, url,
-                new Response.Listener<String>() {
+         JsonObjectRequest req = new JsonObjectRequest(Method.POST, url, newUser,
+                new Response.Listener<JSONObject>() {
                     @Override
-                      public void onResponse(String response) {
+                      public void onResponse(JSONObject response) {
                          Log.d(TAG, response.toString());
                          outTest.setText(response.toString());
+                         startActivity(new Intent(createAccount.this, MainActivity.class));
                    }
                 }, new Response.ErrorListener() {
             @Override
