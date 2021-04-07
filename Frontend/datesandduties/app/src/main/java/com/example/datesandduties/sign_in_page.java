@@ -25,7 +25,7 @@ public class sign_in_page extends Activity {
 
 
     public static String username;
-    public static int userID;
+    public static Integer userID = -1;
 
 
     private Button signIn;
@@ -62,7 +62,7 @@ public class sign_in_page extends Activity {
         loginPassword = (EditText) findViewById(R.id.loginPassword);
 
         String url = Const.URL_LOGIN + "/" + loginUsername.getText().toString() + "/" + loginPassword.getText().toString();
-        StringRequest signon = new StringRequest(Method.POST, url,
+        StringRequest signon = new StringRequest(Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -77,8 +77,14 @@ public class sign_in_page extends Activity {
                             //login incorrect do nothing
                             test.setText(accept);
                             username = loginUsername.getText().toString();
-                            userID = Integer.parseInt(accept);
+                            try {
+                                int test = Integer.parseInt(accept.toString());
+                                setID(test);
+                            }catch(NumberFormatException nfe){
+
+                            }
                             //findUserID();
+                            test.setText(userID.toString());
                             startActivity(new Intent(sign_in_page.this, homePage.class));
                         }
                     }
@@ -88,6 +94,7 @@ public class sign_in_page extends Activity {
                 VolleyLog.d(TAG, "Error: "+ error.getMessage());
             }
         });
+
         AppController.getInstance().addToRequestQueue(signon);
     }
 
@@ -123,6 +130,9 @@ public class sign_in_page extends Activity {
 
     public static int getID(){
         return userID;
+    }
+    public static void setID(int id){
+        userID = id;
     }
 
 

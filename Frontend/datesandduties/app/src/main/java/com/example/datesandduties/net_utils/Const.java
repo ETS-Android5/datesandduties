@@ -17,4 +17,5 @@ public class Const {
 
     public static final String LINK_EVENT = "http://coms-309-008.cs.iastate.edu:8080/account/assignEvent"; //accid //eventid
     public static final String GET_EVENTS = "http://coms-309-008.cs.iastate.edu:8080/account/events"; //id
+
 }

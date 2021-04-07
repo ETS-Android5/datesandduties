@@ -218,20 +218,6 @@ public class eventMain extends Activity implements View.OnClickListener{
 
     private void pullEvents(){
 
-        String url = Const.GET_EVENTS + "/" + sign_in_page.getID();
-        JsonArrayRequest getEvents = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
-                        desc.setText(response.toString());
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: "+ error.getMessage());
-            }
-        });
-        AppController.getInstance().addToRequestQueue(getEvents);
+        JSONArray currentEvents = dates.getEvents();
     }
 }
