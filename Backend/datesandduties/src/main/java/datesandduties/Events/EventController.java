@@ -73,7 +73,7 @@ public class EventController {
 		return eventRepository.findById(id).get();
 	}
 	@GetMapping(path = "/findEvent/{title}")
-	public Event searchByTitle(@PathVariable String title) {
+	public Event findByTitle(@PathVariable String title) {
 		return eventRepository.findByTitle(title);
 	}
 

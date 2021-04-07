@@ -72,7 +72,7 @@ public class TaskController {
 	}
 
 	@GetMapping(path = "/findTask/{title}")
-	public Task searchByTitle(@PathVariable String title) {
+	public Task findByTitle(@PathVariable String title) {
 		return taskRepository.findByTitle(title);
 	}
 }

@@ -22,7 +22,7 @@ import datesandduties.Accounts.AccountController;
 import datesandduties.Accounts.AccountRepository;
 
 //@RunWith(MockitoJUnitRunner.class)
-public class AccountControllerTests {
+public class AccountTests {
 	
 	@BeforeEach
 	public void setup() {
