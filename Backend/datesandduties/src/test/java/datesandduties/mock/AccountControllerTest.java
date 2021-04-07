@@ -4,6 +4,10 @@ import datesandduties.Accounts.AccountController;
 import datesandduties.Accounts.Account;
 import datesandduties.Accounts.AccountRepository;
 
+import datesandduties.Events.*;
+
+import datesandduties.Tasks.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,45 +29,73 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 
-// rough :(
 
 @ExtendWith(MockitoExtension.class)
 public class AccountControllerTest {
 
 	private static AccountController accountController = null;
-
+	private static EventController eventController = null;
+	private static TaskController taskController = null;
 
 	private static AccountRepository accountRepository = mock(AccountRepository.class); 
+	private static EventRepository eventRepository = mock(EventRepository.class);
+	private static TaskRepository taskRepository = mock(TaskRepository.class);
 
-/*	public static void main(String[] args) {
-		AccountControllerTester tester = new AccountControllerTester();
-		tester.setUp();
-		System.out.println(tester.testFunctions()?"pass":"fail");
-	}
-*/
 
-	@BeforeAll
-	public static void setUp() {
+	@BeforeEach
+	public void setUp() {
 		accountController = new AccountController(accountRepository);
+		eventController = new EventController(eventRepository);
+		taskController = new TaskController(taskRepository);
 	}
 
-/*	public void testGetAllAccounts() {
+	@Test
+	public void findAccountByUsernameTest() {
+		when(accountRepository.findByUsername("mockUsername")).thenReturn(new Account("name", "mockUsername", "password", "email", "gender", 15, 1234567890, "country"));
 		
-	}	
-*/
+		Account account = accountController.findByUsername("mockUsername");
 
-	@Test
-	@DisplayName("first test pls work")
-	public void justAnExampleTest() {
-		assertEquals("Login failed.", "Login failed.");
+		assertEquals("name", account.getName());
+		assertEquals("mockUsername", account.getUsername());
+		assertEquals("password", account.getPassword());  
+		assertEquals("email", account.getEmail());
+		assertEquals("gender", account.getGender());
+		assertEquals(15, account.getAge());
+		assertEquals(1234567890, account.getPhone());
+		assertEquals("country", account.getCountry());
 	}
 
 	@Test
-	public void loginWork() {
-		accountController = new AccountController(accountRepository);
-		assertEquals(accountController.loginWork("username", "password"), "Login not work");
+	public void findEventByOwnerAndTitleTest() {
+		when(eventRepository.findByOwnerAndTitle("testOwner", "testTitle")).thenReturn(new Event("testOwner", "testTitle", "testDescription", 123456, 654321));
+
+		Event event = eventController.getByOwnerAndTitle("testOwner", "testTitle");
+
+		assertEquals("testOwner", event.getOwner());
+		assertEquals("testTitle", event.getTitle());
+		assertEquals("testDescription", event.getDescription());
+		assertEquals(123456, event.getDate());
+		assertEquals(654321, event.getTime());			
+
 	}
 
+	@Test
+	public void findTaskByOwnerAndTitleTest() {
+		when(taskRepository.findByOwnerAndTitle("testOwner", "testTitle")).thenReturn(new Task("testOwner", "testTitle", "testDescription", 1, 12, "never"));
+
+		Task task = taskController.getByOwnerAndTitle("testOwner", "testTitle");
+
+		assertEquals("testOwner", task.getOwner());
+		assertEquals("testTitle", task.getTitle());
+		assertEquals("testDescription", task.getDescription());
+		assertEquals(1, task.getPriority());
+		assertEquals(12, task.getDue_date());
+		assertEquals("never", task.getRecurrence());
+	}
+	
+
+
+	
 }
 
 

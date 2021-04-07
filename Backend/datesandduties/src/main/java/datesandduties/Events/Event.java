@@ -52,6 +52,18 @@ public class Event {
 	// idk how to implement this. List of IDs that have access?
 	// private String sharing;
 
+
+	public Event() {
+	}
+
+	public Event(String owner, String title, String description, Integer date, Integer time) {
+		this.owner = owner;
+		this.title = title;
+		this.description = description;
+		this.date = date;
+		this.time = time;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -108,5 +120,4 @@ public class Event {
 		this.account = account;
 	}
 	
-
 }

@@ -27,7 +27,13 @@ import io.swagger.annotations.ApiResponse;
 public class EventController {
 	@Autowired
 	private EventRepository eventRepository;
-	
+
+
+
+	public EventController(EventRepository eventRepository) {
+		this.eventRepository = eventRepository;
+	}
+
 	@ApiOperation(value = "Adds an Event to the Database", response = Event.class, tags = "addNewEvent")
 	@PostMapping(path = "/add") // Map ONLY POST Requests
 	public String addNewEvent(@RequestParam String owner, @RequestParam String title, 
@@ -44,7 +50,7 @@ public class EventController {
 		eventRepository.save(n);
 		return "Entry Saved!";
 	}
-	
+
 	@ApiOperation(value = "Return all the Events in Database", response = Iterable.class, tags = "getAllEvents")
 	@ApiResponses(value = { 
 	            @ApiResponse(code = 200, message = "Success|OK"),
@@ -69,7 +75,12 @@ public class EventController {
     	public Optional<Event> getEventtById( @PathVariable int id){
         	return eventRepository.findById(id);
     	}
-	
+
+	@GetMapping(path = "/getByOwnerAndTitle/{owner}/{title}") 
+	public Event getByOwnerAndTitle(@PathVariable String owner, @PathVariable String title) {
+		return eventRepository.findByOwnerAndTitle(owner, title);
+	}
+
 	@PutMapping(path = "/update/{id}")
 	public Event updateEvent(@PathVariable int id, @RequestBody Event request) {
 		Optional<Event> event = eventRepository.findById(id);

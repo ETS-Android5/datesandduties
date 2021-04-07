@@ -27,6 +27,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 
 @Entity // This tells Hibernate to make a table out of this class
+
 public class Account {
 
 	@Id
@@ -67,6 +68,21 @@ public class Account {
 
 	@OneToMany
 	private List<Task> tasks;
+
+
+	public Account(String name, String username, String password, String email, String gender, Integer age, Integer phone, String country) {
+		this.name = name;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.gender = gender;
+		this.age = age;
+		this.phone = phone;
+		this.country = country;
+	}
+
+	public Account() {
+	}
 
 	public Integer getId() {
 		return id;

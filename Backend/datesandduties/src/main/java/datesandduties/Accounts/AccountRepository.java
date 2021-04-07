@@ -8,5 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 // CRUD refers Create, Read, Update, Delete
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
+	//public String loginWork(String username, String password);
 	public Account findByUsername(String username);
 }

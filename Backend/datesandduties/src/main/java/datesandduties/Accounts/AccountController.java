@@ -56,6 +56,11 @@ public class AccountController {
 		return "Entry Saved!";
 	}
 
+	public String addNewAccount(Account account) { // adding this to make my life easier for Mockito
+		accountRepository.save(account);
+		return "Entry Saved!";
+	}
+
 	@ApiOperation(value = "Return all the Accouints in Database", response = Iterable.class, tags = "getAllAccounts")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success|OK"),
 			@ApiResponse(code = 401, message = "not authorized!"), @ApiResponse(code = 403, message = "forbidden!!!"),
@@ -101,6 +106,8 @@ public class AccountController {
 		
 		return "Login failed.";
 	}
+
+	
 	
 	
 }

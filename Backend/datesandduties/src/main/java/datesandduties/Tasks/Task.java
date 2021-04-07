@@ -53,6 +53,18 @@ public class Task {
 	@JsonIgnore
 	private Account account;
 
+	public Task() {
+	}
+
+	public Task(String owner, String title, String description, Integer priority, Integer due_date, String recurrence) {
+		this.owner = owner;
+		this.title = title;
+		this.description = description;
+		this.priority= priority;
+		this.due_date = due_date;
+		this.recurrence = recurrence;
+	}
+
 	public Integer getId() {
 		return id;
 	}
