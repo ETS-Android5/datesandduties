@@ -222,6 +222,7 @@
         android:hint="@string/createAccount"
         android:textColorHint="#000000"
         app:backgroundTint="#CDCDCD"
+        app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
