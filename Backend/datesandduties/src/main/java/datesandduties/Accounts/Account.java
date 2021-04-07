@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
 import datesandduties.Events.Event;
 import datesandduties.Tasks.Task;
 import io.swagger.annotations.ApiModelProperty;
@@ -67,6 +69,26 @@ public class Account {
 
 	@OneToMany
 	private List<Task> tasks;
+
+	// Constructor in order to have Dependencies
+	public Account(String name, String username, String password, String email, String gender, Integer age,
+			Integer phone, String country) {
+		this.name = name;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.gender = gender;
+		this.age = age;
+		this.phone = phone;
+		this.country = country;
+		events = new ArrayList<>();
+		tasks = new ArrayList<>();
+	}
+
+	public Account() {
+		events = new ArrayList<>();
+		tasks = new ArrayList<>();
+	}
 
 	public Integer getId() {
 		return id;

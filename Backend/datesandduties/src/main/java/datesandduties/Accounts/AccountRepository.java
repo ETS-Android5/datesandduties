@@ -8,4 +8,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 	Account findByUsername(String username);
+
 }

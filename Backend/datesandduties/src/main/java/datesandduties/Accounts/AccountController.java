@@ -30,32 +30,23 @@ import io.swagger.annotations.ApiResponse;
 @RestController
 @RequestMapping(path = "/account")
 public class AccountController {
-	@Autowired 
+
+	@Autowired
 	private AccountRepository accountRepository;
-	
-	@Autowired 
+
+	@Autowired
 	private EventRepository eventRepository;
-	
-	@Autowired 
+
+	@Autowired
 	private TaskRepository taskRepository;
 
 	@ApiOperation(value = "Adds an Account to the Database", response = Account.class, tags = "addNewAccount")
 	@PostMapping(path = "/add") // Map ONLY POST Requests
-	public String addNewAccount(@RequestParam String name, @RequestParam String username, @RequestParam String password,
-			@RequestParam String email, @RequestParam String gender, @RequestParam Integer age,
-			@RequestParam Integer phone, @RequestParam String country) {
-
-		Account n = new Account();
-		n.setName(name);
-		n.setUsername(username);
-		n.setPassword(password);
-		n.setEmail(email);
-		n.setGender(gender);
-		n.setAge(age);
-		n.setPhone(phone);
-		n.setCountry(country);
-
-		accountRepository.save(n);
+	public String addNewAccount(@RequestBody Account account) {
+		if (account == null) {
+			return "Account Creation Failed";
+		}
+		accountRepository.save(account);
 		return "Entry Saved!";
 	}
 
@@ -80,7 +71,7 @@ public class AccountController {
 	public Optional<Account> getAccountById(@PathVariable int id) {
 		return accountRepository.findById(id);
 	}
-	
+
 	@PutMapping(path = "/update/{id}")
 	public Account updateAccount(@PathVariable int id, @RequestBody Account request) {
 		Optional<Account> event = accountRepository.findById(id);
@@ -90,19 +81,18 @@ public class AccountController {
 		accountRepository.save(request);
 		return accountRepository.findById(id).get();
 	}
-	
+
 	@GetMapping(path = "/events/{id}")
-	public List <Event> accountEvents(@PathVariable int id){
+	public List<Event> accountEvents(@PathVariable int id) {
 		Account account = accountRepository.findById(id).get();
 		return account.getEvents();
 	}
-	
+
 	@GetMapping(path = "/tasks/{id}")
-	public List <Task> accountTasks(@PathVariable int id){
+	public List<Task> accountTasks(@PathVariable int id) {
 		Account account = accountRepository.findById(id).get();
 		return account.getTasks();
 	}
-	
 
 	@PutMapping(path = "/assignEvent/{accountId}/{eventId}")
 	public String addEventToAccount(@PathVariable int accountId, @PathVariable int eventId) {
@@ -117,7 +107,7 @@ public class AccountController {
 		eventRepository.save(event);
 		return "Success!";
 	}
-	
+
 	@PutMapping(path = "/assignTask/{accountId}/{taskId}")
 	public String addTaskToAccount(@PathVariable int accountId, @PathVariable int taskId) {
 		Account account = accountRepository.findById(accountId).get();
@@ -131,6 +121,7 @@ public class AccountController {
 		taskRepository.save(task);
 		return "Success!";
 	}
+
 	@PutMapping(path = "/removeEvent/{accountId}/{eventId}")
 	public String removeEvent(@PathVariable int accountId, @PathVariable int eventId) {
 		Account account = accountRepository.findById(accountId).get();
@@ -144,6 +135,7 @@ public class AccountController {
 		eventRepository.save(event);
 		return "Event Removed From Account!";
 	}
+
 	@PutMapping(path = "/removeTask/{accountId}/{eventId}")
 	public String removeTask(@PathVariable int accountId, @PathVariable int taskId) {
 		Account account = accountRepository.findById(accountId).get();
@@ -157,10 +149,9 @@ public class AccountController {
 		taskRepository.save(task);
 		return "Task Removed from Account!";
 	}
+
 	@GetMapping(path = "/findUser/{username}")
-	public Account searchByUsername(@PathVariable String username) {
+	public Account findByUsername(@PathVariable String username) {
 		return accountRepository.findByUsername(username);
 	}
-	
-
 }

@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import datesandduties.Accounts.Account;
 
-
 /*
  * Task_id
  * Owner
@@ -27,31 +26,44 @@ Recurrence
 public class Task {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
+
 	private Integer id;
-	
-	@ApiModelProperty(notes = "Owner of Task", name="owner", required=true, value="test owner")
+
+	@ApiModelProperty(notes = "Owner of Task", name = "owner", required = true, value = "test owner")
 	private String owner;
-	
-	@ApiModelProperty(notes = "Title of Task", name="title", required=true, value="test title")
+
+	@ApiModelProperty(notes = "Title of Task", name = "title", required = true, value = "test title")
 	private String title;
-	
-	@ApiModelProperty(notes = "Description of Task", name="description", required=true, value="test description")
+
+	@ApiModelProperty(notes = "Description of Task", name = "description", required = true, value = "test description")
 	private String description;
-	
-	@ApiModelProperty(notes = "Priority of Task", name="priority", required=true, value="1,2,3")
+
+	@ApiModelProperty(notes = "Priority of Task", name = "priority", required = true, value = "1,2,3")
 	private Integer priority;
-	
-	@ApiModelProperty(notes = "Due Date of Task", name="date", required=true, value="test date")
+
+	@ApiModelProperty(notes = "Due Date of Task", name = "date", required = true, value = "test date")
 	private Integer due_date;
 
-	@ApiModelProperty(notes = "Recurrence", name="recurrence", required=true, value="daily/weekly/monthly")
+	@ApiModelProperty(notes = "Recurrence", name = "recurrence", required = true, value = "daily/weekly/monthly")
 	private String recurrence;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "account_id")
 	@JsonIgnore
 	private Account account;
+
+	public Task(String owner, String title, String description, Integer priority, Integer due_date, String recurrence) {
+		this.owner = owner;
+		this.title = title;
+		this.description = description;
+		this.priority = priority;
+		this.due_date = due_date;
+		this.recurrence = recurrence;
+	}
+
+	public Task() {
+
+	}
 
 	public Integer getId() {
 		return id;
@@ -116,8 +128,9 @@ public class Task {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+
 	public void resetAccount() {
 		this.account = null;
 	}
-	
+
 }
