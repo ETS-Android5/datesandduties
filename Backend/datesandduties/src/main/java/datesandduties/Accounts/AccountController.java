@@ -41,21 +41,11 @@ public class AccountController {
 
 	@ApiOperation(value = "Adds an Account to the Database", response = Account.class, tags = "addNewAccount")
 	@PostMapping(path = "/add") // Map ONLY POST Requests
-	public String addNewAccount(@RequestParam String name, @RequestParam String username, @RequestParam String password,
-			@RequestParam String email, @RequestParam String gender, @RequestParam Integer age,
-			@RequestParam Integer phone, @RequestParam String country) {
-
-		Account n = new Account();
-		n.setName(name);
-		n.setUsername(username);
-		n.setPassword(password);
-		n.setEmail(email);
-		n.setGender(gender);
-		n.setAge(age);
-		n.setPhone(phone);
-		n.setCountry(country);
-
-		accountRepository.save(n);
+	public String addNewAccount(@RequestBody Account account) {
+		if (account == null) {
+			return "Account Creation Failed";
+		}
+		accountRepository.save(account);
 		return "Entry Saved!";
 	}
 

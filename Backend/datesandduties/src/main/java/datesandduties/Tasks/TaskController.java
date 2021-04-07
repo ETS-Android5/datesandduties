@@ -30,19 +30,11 @@ public class TaskController {
 
 	@ApiOperation(value = "Adds an Task to the Database", response = Task.class, tags = "addNewTask")
 	@PostMapping(path = "/add") // Map ONLY POST Requests
-	public String addNewTask(@RequestParam String owner, @RequestParam String title, @RequestParam String description,
-			@RequestParam Integer priority, @RequestParam Integer due_date, @RequestParam String recurrence) {
-
-		Task n = new Task();
-
-		n.setOwner(owner);
-		n.setTitle(title);
-		n.setDescription(description);
-		n.setPriority(priority);
-		n.setDue_date(due_date);
-		n.setRecurrence(recurrence);
-
-		taskRepository.save(n);
+	public String addNewTask(@RequestBody Task task) {
+		if (task == null) {
+			return "Creating Task Failed";
+		}
+		taskRepository.save(task);
 		return "Entry Saved!";
 	}
 
