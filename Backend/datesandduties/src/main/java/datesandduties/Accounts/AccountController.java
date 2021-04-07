@@ -151,8 +151,7 @@ public class AccountController {
 	}
 
 	@GetMapping(path = "/findUser/{username}")
-	public Account searchByUsername(@PathVariable String username) {
+	public Account findByUsername(@PathVariable String username) {
 		return accountRepository.findByUsername(username);
 	}
-
 }
