@@ -17,6 +17,14 @@ com/example/datesandduties/sign_in_page.java
  com.example.datesandduties.sign_in_page$3
  com.example.datesandduties.sign_in_page$4
  com.example.datesandduties.sign_in_page$5
+com/example/datesandduties/BuildConfig.java
+ com.example.datesandduties.BuildConfig
+com/example/datesandduties/createAccount.java
+ com.example.datesandduties.createAccount
+ com.example.datesandduties.createAccount$1
+ com.example.datesandduties.createAccount$2
+ com.example.datesandduties.createAccount$3
+ com.example.datesandduties.createAccount$4
 com/example/datesandduties/dates.java
  com.example.datesandduties.dates
  com.example.datesandduties.dates$1
@@ -28,11 +36,3 @@ com/example/datesandduties/addEvent.java
  com.example.datesandduties.addEvent$4
  com.example.datesandduties.addEvent$5
  com.example.datesandduties.addEvent$6
-com/example/datesandduties/createAccount.java
- com.example.datesandduties.createAccount
- com.example.datesandduties.createAccount$1
- com.example.datesandduties.createAccount$2
- com.example.datesandduties.createAccount$3
- com.example.datesandduties.createAccount$4
-com/example/datesandduties/BuildConfig.java
- com.example.datesandduties.BuildConfig

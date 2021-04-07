@@ -13,6 +13,7 @@ import com.example.datesandduties.dates;
 import com.example.datesandduties.net_utils.Const;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class addEvent extends Activity implements View.OnClickListener{
@@ -131,7 +133,14 @@ public class addEvent extends Activity implements View.OnClickListener{
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
                         // put parse the id of event here
-                        eventID = 1;
+                        try {
+                            JSONObject event = response.getJSONObject("this");
+                            String eventid = event.getString("id");
+                            eventID = Integer.parseInt(eventid);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -153,6 +162,7 @@ public class addEvent extends Activity implements View.OnClickListener{
                         //if Success!
                         if(response.equals("Success!")){
                             //return to previous page
+                            startActivity(new Intent(addEvent.this, dates.class));
                         }
                         //else nothing this should work
                     }
