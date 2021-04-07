@@ -63,4 +63,6 @@ public class TaskTests {
 		assertEquals("recurrence", task.getRecurrence());
 
 	}
+	
+	
 }

@@ -34,27 +34,22 @@ public class AccountController {
 	@Autowired
 	private AccountRepository accountRepository;
 
-	public AccountController(AccountRepository accountRepository) { // Necessary to mock Mockito repo
+	/*public AccountController(AccountRepository accountRepository) { // Necessary to mock Mockito repo
 		this.accountRepository = accountRepository;
-	}
-	
+	}*/ //removing since this broke all of my mockito tests
+
 	@Autowired
 	private EventRepository eventRepository;
 
 	@Autowired
 	private TaskRepository taskRepository;
-	
+
 	@ApiOperation(value = "Adds an Account to the Database", response = Account.class, tags = "addNewAccount")
 	@PostMapping(path = "/add") // Map ONLY POST Requests
 	public String addNewAccount(@RequestBody Account account) {
 		if (account == null) {
 			return "Account Creation Failed";
 		}
-		accountRepository.save(account);
-		return "Entry Saved!";
-	}
-
-	public String addNewAccount(Account account) { // adding this to make my life easier for Mockito
 		accountRepository.save(account);
 		return "Entry Saved!";
 	}
@@ -91,12 +86,6 @@ public class AccountController {
 		return accountRepository.findById(id).get();
 	}
 
-<<<<<<< Backend/datesandduties/src/main/java/datesandduties/Accounts/AccountController.java
-	@GetMapping(path = "/getByUsername/{username}")
-	public Account findByUsername(@PathVariable String username) {
-		return accountRepository.findByUsername(username);
-	} //Adding this comment so that I can push again, because it says I'm up to date.
-
 	@RequestMapping(path = "/login/{username}/{password}")
 	public String loginWork(@PathVariable String username, @PathVariable String password) {
 		if (accountRepository.findByUsername(username) == null) {
@@ -105,21 +94,10 @@ public class AccountController {
 		if (accountRepository.findByUsername(username).getPassword().equals(password)) {
 			return Integer.toString(accountRepository.findByUsername(username).getId());
 		}
-		
+
 		return "Login failed.";
 	}
 
-	@PostMapping(path = "/update/{id}")
-	public Account updateAccountInfo(@PathVariable Integer id, Account request) {
-		Optional<Account> account = accountRepository.findById(id);
-		/*if (account == null) {
-			return null;
-		}*/
-		accountRepository.save(request);
-		return accountRepository.findById(id).get(); 
-	}	
-}
-=======
 	@GetMapping(path = "/events/{id}")
 	public List<Event> accountEvents(@PathVariable int id) {
 		Account account = accountRepository.findById(id).get();
@@ -193,4 +171,3 @@ public class AccountController {
 		return accountRepository.findByUsername(username);
 	}
 }
->>>>>>> Backend/datesandduties/src/main/java/datesandduties/Accounts/AccountController.java

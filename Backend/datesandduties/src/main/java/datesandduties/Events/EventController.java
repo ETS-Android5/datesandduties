@@ -30,9 +30,9 @@ public class EventController {
 
 
 
-	public EventController(EventRepository eventRepository) {
+	/*public EventController(EventRepository eventRepository) {
 		this.eventRepository = eventRepository;
-	}
+	}*///removing because this broke all of my mockito tests
 
 	@ApiOperation(value = "Adds an Event to the Database", response = Event.class, tags = "addNewEvent")
 	@PostMapping(path = "/add") // Map ONLY POST Requests

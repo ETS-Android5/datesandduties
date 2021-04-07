@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.InjectMocks;
 import org.mockito.Captor;
 
@@ -24,6 +25,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.*;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
+
 //import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,40 +36,31 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @ExtendWith(MockitoExtension.class)
 public class AccountControllerTest {
 
-	private static AccountController accountController = null;
+	/*private static AccountController accountController = null;
 	private static EventController eventController = null;
-	private static TaskController taskController = null;
+	private static TaskController taskController = null;*/
 
 	private static AccountRepository accountRepository = mock(AccountRepository.class); 
 	private static EventRepository eventRepository = mock(EventRepository.class);
 	private static TaskRepository taskRepository = mock(TaskRepository.class);
-
-
+	
 	@BeforeEach
-	public void setUp() {
-		accountController = new AccountController(accountRepository);
-		eventController = new EventController(eventRepository);
-		taskController = new TaskController(taskRepository);
+	public void setup() {
+		MockitoAnnotations.openMocks(this);
 	}
 
-	@Test
-	public void findAccountByUsernameTest() {
-		when(accountRepository.findByUsername("mockUsername")).thenReturn(new Account("name", "mockUsername", "password", "email", "gender", 15, 1234567890, "country"));
-		
-		Account account = accountController.findByUsername("mockUsername");
+	@InjectMocks
+	EventController eventController;
 
-		assertEquals("name", account.getName());
-		assertEquals("mockUsername", account.getUsername());
-		assertEquals("password", account.getPassword());  
-		assertEquals("email", account.getEmail());
-		assertEquals("gender", account.getGender());
-		assertEquals(15, account.getAge());
-		assertEquals(1234567890, account.getPhone());
-		assertEquals("country", account.getCountry());
-	}
-
+	@InjectMocks
+	TaskController taskController;
+	
+	@InjectMocks
+	AccountController accountController;
+	
 	@Test
 	public void findEventByOwnerAndTitleTest() {
+
 		when(eventRepository.findByOwnerAndTitle("testOwner", "testTitle")).thenReturn(new Event("testOwner", "testTitle", "testDescription", 123456, 654321));
 
 		Event event = eventController.getByOwnerAndTitle("testOwner", "testTitle");
@@ -81,6 +75,7 @@ public class AccountControllerTest {
 
 	@Test
 	public void findTaskByOwnerAndTitleTest() {
+
 		when(taskRepository.findByOwnerAndTitle("testOwner", "testTitle")).thenReturn(new Task("testOwner", "testTitle", "testDescription", 1, 12, "never"));
 
 		Task task = taskController.getByOwnerAndTitle("testOwner", "testTitle");
