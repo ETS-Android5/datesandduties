@@ -18,8 +18,10 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.example.datesandduties.app.AppController;
 import com.example.datesandduties.net_utils.Const;
-
+import com.example.datesandduties.sign_in_page;
+import com.android.volley.Request.Method;
 import java.util.Calendar;
 
 import org.json.JSONArray;
@@ -28,7 +30,7 @@ import org.json.JSONObject;
 
 public class dates extends Activity implements View.OnClickListener{
 
-    private static JSONArray UserEvents;
+    private static JSONArray UserEvents = new JSONArray();
     private String TAG = dates.class.getSimpleName();
     private String tag_string_req = "event_Req";
 
@@ -42,7 +44,7 @@ public class dates extends Activity implements View.OnClickListener{
 
     private String user;
     //public Time intialDate = new Time();
-    private JSONArray currentEvents;
+    public JSONArray currentEvents = new JSONArray();
 
 
     @Override
@@ -70,16 +72,19 @@ public class dates extends Activity implements View.OnClickListener{
                 Gmonth = month+1;
                 Gday = dayOfMonth;
                 String str = (Gmonth+ "/" + Gday + "/" + Gyear);
-                today.setText(str);
+                //today.setText(str);
 
                 //check date for events with username
                 //count events for day
+
+                UserEvents = new JSONArray();
 
                 try {
                     setCurrentEvents();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
                 xEvents.setText(countEvents());
             }
         });
@@ -94,7 +99,8 @@ public class dates extends Activity implements View.OnClickListener{
 
         //count json length
 
-        int count = UserEvents.length();
+        UserEvents.put(1);
+        int count = UserEvents.length() -1 ;
         String refund = "You have ";
         //say how many events are for that day
         if(count>1){
@@ -115,40 +121,63 @@ public class dates extends Activity implements View.OnClickListener{
 
 
         //json array request for current events
-        String url = Const.GET_EVENTS + "/" + sign_in_page.getUsername();
+        //UserEvents = new JSONArray();
+        Integer id = sign_in_page.getID();
+        int idd = id;
+        String url = Const.GET_EVENTS + "/" + idd;
+        JSONArray testy = new JSONArray();
+        JSONObject testing = new JSONObject();
+        testing.put("id", idd);
+        testy.put(testing);
         //save input into private currentEvents
-        JsonArrayRequest req = new JsonArrayRequest(Request.Method.POST, url, null,
+        //today.setText(testy.toString());
+        JsonArrayRequest req = new JsonArrayRequest(Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
+                        //Log.d(TAG, response.toString());
                         currentEvents = response;
+                        //today.setText(response.toString());
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: "+ error.getMessage());
+                today.setText("Fail");
             }
         });
-        UserEvents = new JSONArray();
-        JSONObject jason;
-        String Data = Gmonth+"";
+        AppController.getInstance().addToRequestQueue(req);
+        //today.setText("2");
+        //UserEvents = new JSONArray();
+        JSONObject jason = new JSONObject();
+
+        String Data = ""+Gmonth;
         if(Gday<10){
-            Data += "0" + Gday + Gyear;
+            Data =Data +  "0" + Gday + Gyear;
         }
         else{
-            Data += Gday + Gyear;
+            Data = Data +  Gday + Gyear;
         }
-        for(int i = 0;i < currentEvents.length();i++){
+        //today.setText("3");
+        if(currentEvents.length()==2){
+            today.setText(Data);
+        }
+
+
+        for(int i = 0;i < currentEvents.length();i++) {
             jason = currentEvents.getJSONObject(i);
-            if(jason.getString("date").equals(Data)){
+            //today.setText(jason.getString("date"));
+            if (jason.getString("date").equals(Data)) {
                 UserEvents.put(jason);
+               // today.setText(jason.toString());
             }
         }
+
+    }
 
         //return json array
 
-    }
+
 
     public static int getDay(){
         return Gday;

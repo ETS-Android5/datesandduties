@@ -119,6 +119,7 @@ public class addEvent extends Activity implements View.OnClickListener{
                             Log.d(TAG, response.toString());
                             if(response.equals("Entry Saved!")){
                                 requestLink(title);
+                                startActivity(new Intent(addEvent.this, dates.class));
                             }
                         }
                     }, new Response.ErrorListener() {
