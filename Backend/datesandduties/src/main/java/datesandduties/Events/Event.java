@@ -47,15 +47,6 @@ public class Event {
 	@JsonIgnore
 	private Account account;
 
-	// @ApiModelProperty(notes = "Gender of Account Holder", name="password",
-	// required=false, value="test gender")
-	// idk how to implement this. List of IDs that have access?
-	// private String sharing;
-
-
-	public Event() {
-	}
-
 	public Event(String owner, String title, String description, Integer date, Integer time) {
 		this.owner = owner;
 		this.title = title;
@@ -64,6 +55,9 @@ public class Event {
 		this.time = time;
 	}
 
+	public Event() {
+
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -119,5 +113,7 @@ public class Event {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	
+	public void resetAccount() {
+		this.account = null;
+	}
 }

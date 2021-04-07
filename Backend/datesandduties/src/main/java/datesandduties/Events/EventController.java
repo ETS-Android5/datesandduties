@@ -36,18 +36,11 @@ public class EventController {
 
 	@ApiOperation(value = "Adds an Event to the Database", response = Event.class, tags = "addNewEvent")
 	@PostMapping(path = "/add") // Map ONLY POST Requests
-	public String addNewEvent(@RequestParam String owner, @RequestParam String title, 
-			@RequestParam String description, @RequestParam Integer date, @RequestParam Integer time) {
-		
-		Event n = new Event();
-		n.setOwner(owner);
-		n.setTitle(title);
-		n.setDescription(description);
-		n.setDate(date);
-		n.setTime(time);
-
-
-		eventRepository.save(n);
+	public String addNewEvent(@RequestBody Event event) {
+		if (event == null) {
+			return "Event Creation Failed";
+		}
+		eventRepository.save(event);
 		return "Entry Saved!";
 	}
 
@@ -89,6 +82,10 @@ public class EventController {
 		}
 		eventRepository.save(request);
 		return eventRepository.findById(id).get();
+	}
+	@GetMapping(path = "/findEvent/{title}")
+	public Event findByTitle(@PathVariable String title) {
+		return eventRepository.findByTitle(title);
 	}
 
 	

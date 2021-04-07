@@ -1,13 +1,12 @@
 package datesandduties.Accounts;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.web.bind.annotation.PathVariable;
 
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
-
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 	//public String loginWork(String username, String password);
-	public Account findByUsername(String username);
+	Account findByUsername(String username);
 }
