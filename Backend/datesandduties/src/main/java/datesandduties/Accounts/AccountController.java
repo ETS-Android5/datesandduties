@@ -63,7 +63,7 @@ public class AccountController {
 	public Iterable<Account> getAllAccounts() {
 		return accountRepository.findAll();
 	}
-
+	
 	@ApiOperation(value = "Deletes an Account from the Database", response = Account.class, tags = "deleteAccount")
 	@DeleteMapping(path = "/delete/{id}")
 	public String deleteAccount(@PathVariable int id) {
