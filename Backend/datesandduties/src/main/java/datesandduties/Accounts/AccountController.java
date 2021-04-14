@@ -34,10 +34,6 @@ public class AccountController {
 	@Autowired
 	private AccountRepository accountRepository;
 
-	/*public AccountController(AccountRepository accountRepository) { // Necessary to mock Mockito repo
-		this.accountRepository = accountRepository;
-	}*/ //removing since this broke all of my mockito tests
-
 	@Autowired
 	private EventRepository eventRepository;
 
@@ -63,7 +59,7 @@ public class AccountController {
 	public Iterable<Account> getAllAccounts() {
 		return accountRepository.findAll();
 	}
-	
+
 	@ApiOperation(value = "Deletes an Account from the Database", response = Account.class, tags = "deleteAccount")
 	@DeleteMapping(path = "/delete/{id}")
 	public String deleteAccount(@PathVariable int id) {

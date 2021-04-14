@@ -28,7 +28,6 @@ public class TaskController {
 	@Autowired
 	private TaskRepository taskRepository;
 
-
 	public TaskController() {
 	}
 
@@ -79,14 +78,13 @@ public class TaskController {
 		return taskRepository.findById(id).get();
 	}
 
-
 	@GetMapping(path = "/getByOwnerAndTitle/{owner}/{title}")
 	public Task getByOwnerAndTitle(@PathVariable String owner, @PathVariable String title) {
 		return taskRepository.findByOwnerAndTitle(owner, title);
 	}
 
 	@GetMapping(path = "/findTask/{title}")
-	public Task findByTitle	(@PathVariable String title) {
+	public Task findByTitle(@PathVariable String title) {
 		return taskRepository.findByTitle(title);
 	}
 

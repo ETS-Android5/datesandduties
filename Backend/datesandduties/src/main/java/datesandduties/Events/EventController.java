@@ -28,12 +28,6 @@ public class EventController {
 	@Autowired
 	private EventRepository eventRepository;
 
-
-
-	/*public EventController(EventRepository eventRepository) {
-		this.eventRepository = eventRepository;
-	}*///removing because this broke all of my mockito tests
-
 	@ApiOperation(value = "Adds an Event to the Database", response = Event.class, tags = "addNewEvent")
 	@PostMapping(path = "/add") // Map ONLY POST Requests
 	public String addNewEvent(@RequestBody Event event) {
@@ -45,31 +39,29 @@ public class EventController {
 	}
 
 	@ApiOperation(value = "Return all the Events in Database", response = Iterable.class, tags = "getAllEvents")
-	@ApiResponses(value = { 
-	            @ApiResponse(code = 200, message = "Success|OK"),
-	            @ApiResponse(code = 401, message = "not authorized!"), 
-	            @ApiResponse(code = 403, message = "forbidden!!!"),
-	            @ApiResponse(code = 404, message = "not found!!!") })
-	
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success|OK"),
+			@ApiResponse(code = 401, message = "not authorized!"), @ApiResponse(code = 403, message = "forbidden!!!"),
+			@ApiResponse(code = 404, message = "not found!!!") })
+
 	@GetMapping(path = "/all")
 	public Iterable<Event> getAllEvents() {
 		// This returns a JSON or XML with the users
 		return eventRepository.findAll();
 	}
-	
+
 	@ApiOperation(value = "Deletes an Event from the Database", response = Event.class, tags = "deleteEvent")
 	@DeleteMapping(path = "/delete/{id}")
 	public String deleteEvent(@PathVariable int id) {
 		eventRepository.deleteById(id);
 		return "Deleted Event!";
 	}
-	
-    	@GetMapping(path = "/find/{id}")
-    	public Optional<Event> getEventtById( @PathVariable int id){
-        	return eventRepository.findById(id);
-    	}
 
-	@GetMapping(path = "/getByOwnerAndTitle/{owner}/{title}") 
+	@GetMapping(path = "/find/{id}")
+	public Optional<Event> getEventtById(@PathVariable int id) {
+		return eventRepository.findById(id);
+	}
+
+	@GetMapping(path = "/getByOwnerAndTitle/{owner}/{title}")
 	public Event getByOwnerAndTitle(@PathVariable String owner, @PathVariable String title) {
 		return eventRepository.findByOwnerAndTitle(owner, title);
 	}
@@ -83,11 +75,10 @@ public class EventController {
 		eventRepository.save(request);
 		return eventRepository.findById(id).get();
 	}
+
 	@GetMapping(path = "/findEvent/{title}")
 	public Event findByTitle(@PathVariable String title) {
 		return eventRepository.findByTitle(title);
 	}
-
-	
 
 }
