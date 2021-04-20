@@ -1,5 +1,7 @@
 package datesandduties.Tasks;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +11,7 @@ import javax.persistence.ManyToOne;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import datesandduties.Accounts.Account;
@@ -42,7 +45,8 @@ public class Task {
 	private Integer priority;
 
 	@ApiModelProperty(notes = "Due Date of Task", name = "date", required = true, value = "test date")
-	private Integer due_date;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime due_date;
 
 	@ApiModelProperty(notes = "Recurrence", name = "recurrence", required = true, value = "daily/weekly/monthly")
 	private String recurrence;
@@ -52,7 +56,7 @@ public class Task {
 	@JsonIgnore
 	private Account account;
 	
-	public Task(String owner, String title, String description, Integer priority, Integer due_date, String recurrence) {
+	public Task(String owner, String title, String description, Integer priority, LocalDateTime due_date, String recurrence) {
 		this.setOwner(owner);
 		this.setTitle(title);
 		this.setDescription(description);
@@ -127,18 +131,21 @@ public class Task {
 		}
 	}
 
-	public Integer getDue_date() {
+	public LocalDateTime getDue_date() {
 		return due_date;
 	}
 
-	public void setDue_date(Integer due_date) {
-		String regex = "[0-9]{2}{1}[0-9]{2}{1}[0-9]{4}";
+	public void setDue_date(LocalDateTime due_date) {
+		
+		this.due_date = due_date;
+		//No need for this if we use LocalDateTime
+		/*String regex = "[0-9]{2}{1}[0-9]{2}{1}[0-9]{4}";
 		if (Integer.toString(due_date).matches(regex)) {
 			this.due_date = due_date;
 		}
 		else {
 			this.due_date = 0;
-		}
+		}*/
 	}
 
 	public String getRecurrence() {
