@@ -1,6 +1,7 @@
 package datesandduties.Events;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,23 +40,23 @@ public class Event {
 	@ApiModelProperty(notes = "Description of Event", name = "description", required = true, value = "test description")
 	private String description;
 
-	@ApiModelProperty(notes = "Date of Event", name = "date", required = true, value = "test date")
-	//private Integer date;
+	@ApiModelProperty(notes = "Date of Event", name = "date", required = true, value = "te	st date")
 	@JsonFormat(pattern="yyyy-MM-dd")
-	private Date date;
+	private LocalDate date;
 
 	//https://www.baeldung.com/spring-date-parameters
 	//https://www.baeldung.com/spring-boot-formatting-json-dates 
 
 	@ApiModelProperty(notes = "Time of Event", name = "time", required = true, value = "test time")
-	private Integer time;
+	@JsonFormat(pattern = "HH:mm:ss")
+	private LocalTime time;
 
 	@ManyToOne
 	@JoinColumn(name = "account_id")
 	@JsonIgnore
 	private Account account;
 
-	public Event(String owner, String title, String description, Date date, Integer time) {
+	public Event(String owner, String title, String description, LocalDate date, LocalTime time) {
 		this.setOwner(owner);
 		this.setTitle(title);
 		this.setDescription(description);
@@ -115,11 +116,11 @@ public class Event {
 		}
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 		//No longer need below because only valid Dates are taken in by ava.util.Date
 		/*String regex = "[0-9]{2}{1}[0-9]{2}{1}[0-9]{4}"; // This is just checking to make sure the input is [DD][MM][YYYY]
@@ -132,11 +133,11 @@ public class Event {
 
 	}
 
-	public Integer getTime() {
+	public LocalTime getTime() {
 		return time;
 	}
 
-	public void setTime(Integer time) {
+	public void setTime(LocalTime time) {
 		this.time = time;
 	}
 
