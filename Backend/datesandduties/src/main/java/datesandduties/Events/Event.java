@@ -1,6 +1,6 @@
 package datesandduties.Events;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,19 +40,12 @@ public class Event {
 	private String description;
 
 	@ApiModelProperty(notes = "Date of Event", name = "date", required = true, value = "test date")
-	private Integer date;
-	//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy/MM/dd")
-	//private Date date;
+	//private Integer date;
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private Date date;
 
-	//https://stackoverflow.com/questions/37612603/parsing-date-object-in-postman-to-be-converted-to-c-sharp-datetime
-	//https://salesforce.stackexchange.com/questions/128685/how-to-give-date-and-time-values-in-request-body-using-postman
-	//https://www.javaer101.com/en/article/11527705.html
-	//https://medium.com/@andylke/rest-controller-configure-date-time-format-for-request-parameter-80fd76a7dff1
-	//https://stackoverflow.com/questions/15164864/how-to-accept-date-params-in-a-get-request-to-spring-mvc-controller
 	//https://www.baeldung.com/spring-date-parameters
-	//https://www.baeldung.com/spring-boot-formatting-json-dates
-
-	//A lot of things to troubleshoot hopefully by end of tonight
+	//https://www.baeldung.com/spring-boot-formatting-json-dates 
 
 	@ApiModelProperty(notes = "Time of Event", name = "time", required = true, value = "test time")
 	private Integer time;
@@ -62,7 +55,7 @@ public class Event {
 	@JsonIgnore
 	private Account account;
 
-	public Event(String owner, String title, String description, Integer date, Integer time) {
+	public Event(String owner, String title, String description, Date date, Integer time) {
 		this.setOwner(owner);
 		this.setTitle(title);
 		this.setDescription(description);
@@ -122,27 +115,20 @@ public class Event {
 		}
 	}
 
-	public Integer getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Integer date) {
-		//this.date = date;
-		//trying out java.util.Date 
-		//Trying out Date gave this error when inputting new Event: 
-		//SQL Error: 1265, SQLState: 01000
-		//Data truncated for column 'date' at row 1
-		//Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.orm.jpa.JpaSystemException: 
-		//could not execute statement; nested exception is org.hibernate.exception.GenericJDBCException: could not execute statement] with root cause
-
-		//Essentially this error is saying that the the column date doesn't have enough room. Not sure how to fix this.
-		String regex = "[0-9]{2}{1}[0-9]{2}{1}[0-9]{4}"; // This is just checking to make sure the input is [DD][MM][YYYY]
+	public void setDate(Date date) {
+		this.date = date;
+		//No longer need below because only valid Dates are taken in by ava.util.Date
+		/*String regex = "[0-9]{2}{1}[0-9]{2}{1}[0-9]{4}"; // This is just checking to make sure the input is [DD][MM][YYYY]
 		if (Integer.toString(date).matches(regex)) {
 			this.date = date;
 		}
 		else {
 			this.date = 0;
-		}
+		}*/
 
 	}
 
