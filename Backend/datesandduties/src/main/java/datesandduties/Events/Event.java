@@ -1,5 +1,7 @@
 package datesandduties.Events;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import datesandduties.Accounts.Account;
@@ -38,6 +41,8 @@ public class Event {
 
 	@ApiModelProperty(notes = "Date of Event", name = "date", required = true, value = "test date")
 	private Integer date;
+	//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy/MM/dd")
+	//private Date date;
 
 	@ApiModelProperty(notes = "Time of Event", name = "time", required = true, value = "test time")
 	private Integer time;
@@ -112,6 +117,15 @@ public class Event {
 	}
 
 	public void setDate(Integer date) {
+		//this.date = date;
+		//trying out java.util.Date 
+		//Trying out Date gave this error when inputting new Event: 
+		//SQL Error: 1265, SQLState: 01000
+		//Data truncated for column 'date' at row 1
+		//Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.orm.jpa.JpaSystemException: 
+		//could not execute statement; nested exception is org.hibernate.exception.GenericJDBCException: could not execute statement] with root cause
+
+		//Essentially this error is saying that the the column date doesn't have enough room. Not sure how to fix this.
 		String regex = "[0-9]{2}{1}[0-9]{2}{1}[0-9]{4}"; // This is just checking to make sure the input is [DD][MM][YYYY]
 		if (Integer.toString(date).matches(regex)) {
 			this.date = date;
@@ -119,6 +133,7 @@ public class Event {
 		else {
 			this.date = 0;
 		}
+
 	}
 
 	public Integer getTime() {
