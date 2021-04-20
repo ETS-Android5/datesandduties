@@ -44,6 +44,16 @@ public class Event {
 	//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy/MM/dd")
 	//private Date date;
 
+	//https://stackoverflow.com/questions/37612603/parsing-date-object-in-postman-to-be-converted-to-c-sharp-datetime
+	//https://salesforce.stackexchange.com/questions/128685/how-to-give-date-and-time-values-in-request-body-using-postman
+	//https://www.javaer101.com/en/article/11527705.html
+	//https://medium.com/@andylke/rest-controller-configure-date-time-format-for-request-parameter-80fd76a7dff1
+	//https://stackoverflow.com/questions/15164864/how-to-accept-date-params-in-a-get-request-to-spring-mvc-controller
+	//https://www.baeldung.com/spring-date-parameters
+	//https://www.baeldung.com/spring-boot-formatting-json-dates
+
+	//A lot of things to troubleshoot hopefully by end of tonight
+
 	@ApiModelProperty(notes = "Time of Event", name = "time", required = true, value = "test time")
 	private Integer time;
 
