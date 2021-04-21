@@ -45,7 +45,7 @@ public class Task {
 	private Integer priority;
 
 	@ApiModelProperty(notes = "Due Date of Task", name = "date", required = true, value = "test date")
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime due_date;
 
 	@ApiModelProperty(notes = "Recurrence", name = "recurrence", required = true, value = "daily/weekly/monthly")
@@ -55,8 +55,9 @@ public class Task {
 	@JoinColumn(name = "account_id")
 	@JsonIgnore
 	private Account account;
-	
-	public Task(String owner, String title, String description, Integer priority, LocalDateTime due_date, String recurrence) {
+
+	public Task(String owner, String title, String description, Integer priority, LocalDateTime due_date,
+			String recurrence) {
 		this.setOwner(owner);
 		this.setTitle(title);
 		this.setDescription(description);
@@ -84,8 +85,7 @@ public class Task {
 	public void setOwner(String owner) {
 		if (owner.chars().allMatch(Character::isLetter)) {
 			this.owner = owner;
-		}
-		else {
+		} else {
 			this.owner = "null";
 		}
 	}
@@ -98,8 +98,7 @@ public class Task {
 		String regex = "^[a-zA-Z0-9_]+$";
 		if (title.matches(regex)) {
 			this.title = title;
-		}
-		else {
+		} else {
 			this.title = "mull";
 		}
 	}
@@ -112,8 +111,7 @@ public class Task {
 		String regex = "^[a-zA-Z0-9_]+$";
 		if (description.matches(regex)) {
 			this.description = description;
-		}
-		else {
+		} else {
 			this.description = "null";
 		}
 	}
@@ -125,8 +123,7 @@ public class Task {
 	public void setPriority(Integer priority) {
 		if ((priority > 0) || (priority < 4)) {
 			this.priority = priority;
-		}
-		else {
+		} else {
 			this.priority = 0;
 		}
 	}
@@ -136,16 +133,14 @@ public class Task {
 	}
 
 	public void setDue_date(LocalDateTime due_date) {
-		
+
 		this.due_date = due_date;
-		//No need for this if we use LocalDateTime
-		/*String regex = "[0-9]{2}{1}[0-9]{2}{1}[0-9]{4}";
-		if (Integer.toString(due_date).matches(regex)) {
-			this.due_date = due_date;
-		}
-		else {
-			this.due_date = 0;
-		}*/
+		// No need for this if we use LocalDateTime
+		/*
+		 * String regex = "[0-9]{2}{1}[0-9]{2}{1}[0-9]{4}"; if
+		 * (Integer.toString(due_date).matches(regex)) { this.due_date = due_date; }
+		 * else { this.due_date = 0; }
+		 */
 	}
 
 	public String getRecurrence() {

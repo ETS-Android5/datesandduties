@@ -41,11 +41,11 @@ public class Event {
 	private String description;
 
 	@ApiModelProperty(notes = "Date of Event", name = "date", required = true, value = "te	st date")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 
-	//https://www.baeldung.com/spring-date-parameters
-	//https://www.baeldung.com/spring-boot-formatting-json-dates 
+	// https://www.baeldung.com/spring-date-parameters
+	// https://www.baeldung.com/spring-boot-formatting-json-dates
 
 	@ApiModelProperty(notes = "Time of Event", name = "time", required = true, value = "test time")
 	@JsonFormat(pattern = "HH:mm:ss")
@@ -67,6 +67,7 @@ public class Event {
 	public Event() {
 
 	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -82,8 +83,7 @@ public class Event {
 	public void setOwner(String owner) {
 		if (owner.chars().allMatch(Character::isLetter)) {
 			this.owner = owner;
-		}
-		else {
+		} else {
 			this.owner = "null";
 		}
 	}
@@ -96,8 +96,7 @@ public class Event {
 		String regex = "^[a-zA-Z0-9_]+$";
 		if (title.matches(regex)) {
 			this.title = title;
-		}
-		else {
+		} else {
 			this.title = "null";
 		}
 	}
@@ -109,9 +108,8 @@ public class Event {
 	public void setDescription(String description) {
 		String regex = "^[a-zA-Z0-9_]+$";
 		if (description.matches(regex)) {
-			this.description = description;	
-		}
-		else {
+			this.description = description;
+		} else {
 			this.description = "null";
 		}
 	}
@@ -122,14 +120,13 @@ public class Event {
 
 	public void setDate(LocalDate date) {
 		this.date = date;
-		//No longer need below because only valid Dates are taken in by ava.util.Date
-		/*String regex = "[0-9]{2}{1}[0-9]{2}{1}[0-9]{4}"; // This is just checking to make sure the input is [DD][MM][YYYY]
-		if (Integer.toString(date).matches(regex)) {
-			this.date = date;
-		}
-		else {
-			this.date = 0;
-		}*/
+		// No longer need below because only valid Dates are taken in by ava.util.Date
+		/*
+		 * String regex = "[0-9]{2}{1}[0-9]{2}{1}[0-9]{4}"; // This is just checking to
+		 * make sure the input is [DD][MM][YYYY] if
+		 * (Integer.toString(date).matches(regex)) { this.date = date; } else {
+		 * this.date = 0; }
+		 */
 
 	}
 
@@ -148,6 +145,7 @@ public class Event {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+
 	public void resetAccount() {
 		this.account = null;
 	}

@@ -73,7 +73,6 @@ public class Account {
 	@OneToMany
 	private List<Task> tasks;
 
-
 	// Constructor in order to have Dependencies
 	public Account(String name, String username, String password, String email, String gender, Integer age,
 			Integer phone, String country) {
@@ -105,10 +104,9 @@ public class Account {
 	}
 
 	public void setAge(Integer age) {
-		if ((age > 0 ) || (age <= 122)) {
+		if ((age > 0) || (age <= 122)) {
 			this.age = age;
-		}
-		else {
+		} else {
 			this.age = 0;
 		}
 	}
@@ -120,8 +118,7 @@ public class Account {
 	public void setName(String name) {
 		if (name.chars().allMatch(Character::isLetter)) {
 			this.name = name;
-		}
-		else {
+		} else {
 			this.name = "null";
 		}
 	}
@@ -144,8 +141,7 @@ public class Account {
 	public void setCountry(String country) {
 		if (country.chars().allMatch(Character::isLetter)) {
 			this.country = country;
-		}
-		else {
+		} else {
 			this.country = "null";
 		}
 	}
@@ -165,8 +161,7 @@ public class Account {
 	public void setGender(String gender) {
 		if (gender.chars().allMatch(Character::isLetter)) {
 			this.gender = gender;
-		}
-		else {
+		} else {
 			this.gender = "null";
 		}
 	}
@@ -178,8 +173,7 @@ public class Account {
 	public void setUsername(String username) {
 		if (username.chars().allMatch(Character::isLetter)) {
 			this.username = username;
-		}
-		else {
+		} else {
 			this.username = "null";
 		}
 	}
@@ -189,10 +183,15 @@ public class Account {
 	}
 
 	public void setPhone(Integer phone) {
-		if ((Integer.toString(phone).matches("\\d{10}")) || (Integer.toString(phone).matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) || (Integer.toString(phone).matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}")) || (Integer.toString(phone).matches("\\(\\d{3}\\)-\\d{3}-\\d{4}")) || (Integer.toString(phone).matches("\\d{4}[-\\.\\s]\\d{3}[-\\.\\s]\\d{3}")) || (Integer.toString(phone).matches("\\(\\d{5}\\)-\\d{3}-\\d{3}")) || (Integer.toString(phone).matches("\\(\\d{4}\\)-\\d{3}-\\d{3}"))) {
+		if ((Integer.toString(phone).matches("\\d{10}"))
+				|| (Integer.toString(phone).matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}"))
+				|| (Integer.toString(phone).matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}"))
+				|| (Integer.toString(phone).matches("\\(\\d{3}\\)-\\d{3}-\\d{4}"))
+				|| (Integer.toString(phone).matches("\\d{4}[-\\.\\s]\\d{3}[-\\.\\s]\\d{3}"))
+				|| (Integer.toString(phone).matches("\\(\\d{5}\\)-\\d{3}-\\d{3}"))
+				|| (Integer.toString(phone).matches("\\(\\d{4}\\)-\\d{3}-\\d{3}"))) {
 			this.phone = phone;
-		}
-		else {
+		} else {
 			this.phone = 0;
 		}
 	}
