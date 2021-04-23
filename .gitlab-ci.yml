@@ -42,10 +42,6 @@ android-build:
     paths:
       - Android_test/app/build/outputs/
       
-  only:
-    refs:
-      - master
-      
 android-test:
   image: javiersantos/android-ci:latest
   stage: androidtest
