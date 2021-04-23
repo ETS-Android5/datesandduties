@@ -3,35 +3,22 @@ package datesandduties.mock;
 import datesandduties.Accounts.AccountController;
 import datesandduties.Accounts.Account;
 import datesandduties.Accounts.AccountRepository;
-
 import datesandduties.Events.*;
-
 import datesandduties.Tasks.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.InjectMocks;
-import org.mockito.Captor;
-
 import static org.mockito.Mockito.*;
 
-import org.mockito.junit.*;
-
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import org.junit.*;
-
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(MockitoExtension.class)
@@ -118,7 +105,8 @@ public class AccountControllerTest {
 		Task newTask = new Task("testOwnerTwo", "testTitle2", "testDescription2", 2, due_date, "always");
 		when(taskRepository.save(any(Task.class))).thenReturn(newTask);
 
-		Task testTask = taskRepository.save(new Task("testOwner", "testTitle", "testDescription", 1, due_date, "never"));
+		Task testTask = taskRepository
+				.save(new Task("testOwner", "testTitle", "testDescription", 1, due_date, "never"));
 
 		assertEquals(testTask.getOwner(), "testOwnerTwo");
 	}

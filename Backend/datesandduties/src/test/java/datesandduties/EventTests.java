@@ -9,23 +9,17 @@ import static org.mockito.Mockito.when;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-//import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.mockito.junit.MockitoJUnitRunner;
 
 import datesandduties.Events.Event;
 import datesandduties.Events.EventController;
 import datesandduties.Events.EventRepository;
-import net.bytebuddy.asm.Advice.Local;
 
-//@RunWith(MockitoJUnitRunner.class)
 public class EventTests {
 
 	@BeforeEach
@@ -35,7 +29,7 @@ public class EventTests {
 
 	@Test
 	public void testAddNewEvent() {
-		LocalDate date =  LocalDate.of(2021, 04, 22);
+		LocalDate date = LocalDate.of(2021, 04, 22);
 		LocalTime time = LocalTime.of(6, 30);
 
 		Event event = new Event("owner", "title", "description", date, time);
@@ -57,7 +51,7 @@ public class EventTests {
 
 	@Test
 	public void testFindByTitle() {
-		LocalDate date =  LocalDate.of(2021, 04, 22);
+		LocalDate date = LocalDate.of(2021, 04, 22);
 		LocalTime time = LocalTime.of(6, 30);
 
 		when(eventRepository.findByTitle("testTitle"))

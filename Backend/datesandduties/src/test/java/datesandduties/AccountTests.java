@@ -6,16 +6,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-//import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.mockito.junit.MockitoJUnitRunner;
 
 import datesandduties.Accounts.Account;
 import datesandduties.Accounts.AccountController;
@@ -23,12 +19,12 @@ import datesandduties.Accounts.AccountRepository;
 
 //@RunWith(MockitoJUnitRunner.class)
 public class AccountTests {
-	
+
 	@BeforeEach
 	public void setup() {
 		MockitoAnnotations.openMocks(this);
 	}
-	
+
 	@Test
 	public void testAddNewAccount() {
 		Account account = new Account("name", "mockUsername", "password", "email", "gender", 15, 1234567890, "country");
@@ -42,17 +38,18 @@ public class AccountTests {
 		verify(testController, times(1)).addNewAccount(account);
 
 	}
-	
+
 	@InjectMocks
 	AccountController acctController = new AccountController();
 
 	@Mock
 	AccountRepository acctRepository;
-	
-	@Test
-	public void testFindByUsername() { 
 
-		when(acctRepository.findByUsername("mockUsername")).thenReturn(new Account("name", "mockUsername", "password", "email@email.com", "gender", 15, 1234567890, "country"));
+	@Test
+	public void testFindByUsername() {
+
+		when(acctRepository.findByUsername("mockUsername")).thenReturn(new Account("name", "mockUsername", "password",
+				"email@email.com", "gender", 15, 1234567890, "country"));
 		Account account = acctController.findByUsername("mockUsername");
 
 		assertEquals("name", account.getName());
@@ -63,7 +60,6 @@ public class AccountTests {
 		assertEquals((Integer) 15, account.getAge());
 		assertEquals((Integer) 1234567890, account.getPhone());
 		assertEquals("country", account.getCountry());
-
 
 	}
 }

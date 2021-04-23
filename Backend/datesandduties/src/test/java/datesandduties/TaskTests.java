@@ -8,16 +8,12 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-//import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.mockito.junit.MockitoJUnitRunner;
 
 import datesandduties.Tasks.Task;
 import datesandduties.Tasks.TaskController;
@@ -69,6 +65,5 @@ public class TaskTests {
 		assertEquals("recurrence", task.getRecurrence());
 
 	}
-	
-	
+
 }
