@@ -1,65 +1,74 @@
-// package datesandduties;
+package datesandduties;
 
-// import static org.junit.Assert.assertEquals;
-// import static org.mockito.Mockito.mock;
-// import static org.mockito.Mockito.times;
-// import static org.mockito.Mockito.verify;
-// import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-// import org.junit.Before;
-// import org.junit.jupiter.api.BeforeEach;
-// import org.junit.jupiter.api.Test;
-// //import org.junit.Test;
-// import org.junit.runner.RunWith;
-// import org.mockito.InjectMocks;
-// import org.mockito.Mock;
-// import org.mockito.MockitoAnnotations;
-// import org.mockito.junit.MockitoJUnitRunner;
-// import org.springframework.beans.factory.annotation.Autowired;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-// import datesandduties.Events.Event;
-// import datesandduties.Events.EventController;
-// import datesandduties.Events.EventRepository;
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+//import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 
-// //@RunWith(MockitoJUnitRunner.class)
-// public class EventTests {
+import datesandduties.Events.Event;
+import datesandduties.Events.EventController;
+import datesandduties.Events.EventRepository;
+import net.bytebuddy.asm.Advice.Local;
 
-// 	@BeforeEach
-// 	public void setup() {
-// 		MockitoAnnotations.openMocks(this);
-// 	}
+//@RunWith(MockitoJUnitRunner.class)
+public class EventTests {
 
-// 	@Test
-// 	public void testAddNewEvent() {
-// 		Event event = new Event("owner", "title", "description", 2343, 2329);
-// 		EventController eventController = mock(EventController.class);
+	@BeforeEach
+	public void setup() {
+		MockitoAnnotations.openMocks(this);
+	}
 
-// 		when(eventController.addNewEvent(event)).thenReturn("Entry Saved!");
+	@Test
+	public void testAddNewEvent() {
+		LocalDate date =  LocalDate.of(2021, 04, 22);
+		LocalTime time = LocalTime.of(6, 30);
 
-// 		String result = eventController.addNewEvent(event);
-// 		assertEquals("Entry Saved!", result);
+		Event event = new Event("owner", "title", "description", date, time);
+		EventController eventController = mock(EventController.class);
 
-// 		verify(eventController, times(1)).addNewEvent(event);
-// 	}
+		when(eventController.addNewEvent(event)).thenReturn("Entry Saved!");
 
-// 	@InjectMocks
-// 	EventController eventController = new EventController();
+		String result = eventController.addNewEvent(event);
+		assertEquals("Entry Saved!", result);
 
-// 	@Mock
-// 	EventRepository eventRepository;
+		verify(eventController, times(1)).addNewEvent(event);
+	}
 
-// 	@Test
-// 	public void testFindByTitle() {
+	@InjectMocks
+	EventController eventController = new EventController();
 
-// 		when(eventRepository.findByTitle("testTitle"))
-// 				.thenReturn(new Event("owner", "testTitle", "description", 23430000, 2329));
-// 		Event event = eventController.findByTitle("testTitle");
+	@Mock
+	EventRepository eventRepository;
 
-// 		assertEquals("owner", event.getOwner());
-// 		assertEquals("testTitle", event.getTitle());
-// 		assertEquals("description", event.getDescription());
-// 		assertEquals((Integer) 23430000, event.getDate());
-// 		assertEquals((Integer) 2329, event.getTime());
+	@Test
+	public void testFindByTitle() {
+		LocalDate date =  LocalDate.of(2021, 04, 22);
+		LocalTime time = LocalTime.of(6, 30);
 
-// 	}
-// }
+		when(eventRepository.findByTitle("testTitle"))
+				.thenReturn(new Event("owner", "testTitle", "description", date, time));
+		Event event = eventController.findByTitle("testTitle");
+
+		assertEquals("owner", event.getOwner());
+		assertEquals("testTitle", event.getTitle());
+		assertEquals("description", event.getDescription());
+		assertEquals(date, event.getDate());
+		assertEquals(time, event.getTime());
+
+	}
+}
