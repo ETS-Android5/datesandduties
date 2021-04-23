@@ -1,124 +1,114 @@
-// package datesandduties.mock;
+package datesandduties.mock;
 
-// import datesandduties.Accounts.AccountController;
-// import datesandduties.Accounts.Account;
-// import datesandduties.Accounts.AccountRepository;
+import datesandduties.Accounts.AccountController;
+import datesandduties.Accounts.Account;
+import datesandduties.Accounts.AccountRepository;
+import datesandduties.Events.*;
+import datesandduties.Tasks.*;
 
-// import datesandduties.Events.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
-// import datesandduties.Tasks.*;
+import org.mockito.MockitoAnnotations;
+import org.mockito.InjectMocks;
+import static org.mockito.Mockito.*;
 
-// import java.util.ArrayList;
-// import java.util.List;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 
-// import org.mockito.Mock;
-// import org.mockito.MockitoAnnotations;
-// import org.mockito.InjectMocks;
-// import org.mockito.Captor;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-// import static org.mockito.Mockito.*;
+@ExtendWith(MockitoExtension.class)
+public class AccountControllerTest {
 
-// import org.mockito.junit.*;
+	private static AccountRepository accountRepository = mock(AccountRepository.class);
+	private static EventRepository eventRepository = mock(EventRepository.class);
+	private static TaskRepository taskRepository = mock(TaskRepository.class);
 
-// import org.mockito.junit.jupiter.MockitoExtension;
+	LocalDate date = LocalDate.of(2021, 04, 22);
+	LocalTime time = LocalTime.of(6, 30);
+	LocalDateTime due_date = LocalDateTime.parse("2021-04-22T06:30:00");
 
-// import org.junit.*;
+	@BeforeEach
+	public void setup() {
+		MockitoAnnotations.openMocks(this);
+	}
 
-// import org.junit.jupiter.api.*;
-// import org.junit.jupiter.api.Test;
+	@InjectMocks
+	EventController eventController;
 
-// //import org.junit.jupiter.api.DisplayName;
-// import static org.junit.jupiter.api.Assertions.*;
+	@InjectMocks
+	TaskController taskController;
 
-// import org.junit.jupiter.api.extension.ExtendWith;
+	@InjectMocks
+	AccountController accountController;
 
+	@Test
+	public void findEventByOwnerAndTitleTest() {
 
-// @ExtendWith(MockitoExtension.class)
-// public class AccountControllerTest {
+		when(eventRepository.findByOwnerAndTitle("testOwner", "testTitle"))
+				.thenReturn(new Event("testOwner", "testTitle", "testDescription", date, time));
 
-// 	/*private static AccountController accountController = null;
-// 	private static EventController eventController = null;
-// 	private static TaskController taskController = null;*/
+		Event event = eventController.getByOwnerAndTitle("testOwner", "testTitle");
 
-// 	private static AccountRepository accountRepository = mock(AccountRepository.class); 
-// 	private static EventRepository eventRepository = mock(EventRepository.class);
-// 	private static TaskRepository taskRepository = mock(TaskRepository.class);
-	
-// 	@BeforeEach
-// 	public void setup() {
-// 		MockitoAnnotations.openMocks(this);
-// 	}
+		assertEquals("testOwner", event.getOwner());
+		assertEquals("testTitle", event.getTitle());
+		assertEquals("testDescription", event.getDescription());
+		assertEquals(date, event.getDate());
+		assertEquals(time, event.getTime());
 
-// 	@InjectMocks
-// 	EventController eventController;
+	}
 
-// 	@InjectMocks
-// 	TaskController taskController;
-	
-// 	@InjectMocks
-// 	AccountController accountController;
-	
-// 	@Test
-// 	public void findEventByOwnerAndTitleTest() {
+	@Test
+	public void findTaskByOwnerAndTitleTest() {
 
-// 		when(eventRepository.findByOwnerAndTitle("testOwner", "testTitle")).thenReturn(new Event("testOwner", "testTitle", "testDescription", 12345600, 654321));
+		when(taskRepository.findByOwnerAndTitle("testOwner", "testTitle"))
+				.thenReturn(new Task("testOwner", "testTitle", "testDescription", 1, due_date, "never"));
 
-// 		Event event = eventController.getByOwnerAndTitle("testOwner", "testTitle");
+		Task task = taskController.getByOwnerAndTitle("testOwner", "testTitle");
 
-// 		assertEquals("testOwner", event.getOwner());
-// 		assertEquals("testTitle", event.getTitle());
-// 		assertEquals("testDescription", event.getDescription());
-// 		assertEquals(12345600, event.getDate());
-// 		assertEquals(654321, event.getTime());			
+		assertEquals("testOwner", task.getOwner());
+		assertEquals("testTitle", task.getTitle());
+		assertEquals("testDescription", task.getDescription());
+		assertEquals(1, task.getPriority());
+		assertEquals(due_date, task.getDue_date());
+		assertEquals("never", task.getRecurrence());
+	}
 
-// 	}
+	@Test
+	public void updateAccountTest() throws Exception {
+		Account newAccount = new Account("nameTwo", "mockUsername2", "password2", "email2", "gender2", 1, 1,
+				"country2");
+		when(accountRepository.save(any(Account.class))).thenReturn(newAccount);
 
-// 	@Test
-// 	public void findTaskByOwnerAndTitleTest() {
+		Account testAccount = accountRepository
+				.save(new Account("name", "mockUsername", "password", "email", "gender", 12, 12, "country"));
 
-// 		when(taskRepository.findByOwnerAndTitle("testOwner", "testTitle")).thenReturn(new Task("testOwner", "testTitle", "testDescription", 1, 12121212, "never"));
+		assertEquals(testAccount.getName(), "nameTwo");
+	}
 
-// 		Task task = taskController.getByOwnerAndTitle("testOwner", "testTitle");
+	@Test
+	public void updateEventTest() throws Exception {
+		Event newEvent = new Event("testOwnerTwo", "testTitle2", "testDescription2", date, time);
+		when(eventRepository.save(any(Event.class))).thenReturn(newEvent);
 
-// 		assertEquals("testOwner", task.getOwner());
-// 		assertEquals("testTitle", task.getTitle());
-// 		assertEquals("testDescription", task.getDescription());
-// 		assertEquals(1, task.getPriority());
-// 		assertEquals(12121212, task.getDue_date());
-// 		assertEquals("never", task.getRecurrence());
-// 	}
-	
+		Event testEvent = eventRepository.save(new Event("testOwner", "testTitle", "testDescription", date, time));
 
-// 	@Test
-// 	public void updateAccountTest() throws Exception {
-// 		Account newAccount = new Account("nameTwo", "mockUsername2", "password2", "email2", "gender2", 1, 1, "country2");
-// 		when(accountRepository.save(any(Account.class))).thenReturn(newAccount);
+		assertEquals(testEvent.getOwner(), "testOwnerTwo");
+	}
 
-// 		Account testAccount = accountRepository.save(new Account("name", "mockUsername", "password", "email", "gender", 12, 12, "country"));	
+	@Test
+	public void updateTaskTest() throws Exception {
+		Task newTask = new Task("testOwnerTwo", "testTitle2", "testDescription2", 2, due_date, "always");
+		when(taskRepository.save(any(Task.class))).thenReturn(newTask);
 
-// 		assertEquals(testAccount.getName(), "nameTwo");
-// 	}
+		Task testTask = taskRepository
+				.save(new Task("testOwner", "testTitle", "testDescription", 1, due_date, "never"));
 
-// 	@Test
-// 	public void updateEventTest() throws Exception {
-// 		Event newEvent = new Event("testOwnerTwo", "testTitle2", "testDescription2", 1, 1);
-// 		when(eventRepository.save(any(Event.class))).thenReturn(newEvent);
+		assertEquals(testTask.getOwner(), "testOwnerTwo");
+	}
 
-// 		Event testEvent = eventRepository.save(new Event("testOwner", "testTitle", "testDescription", 123456, 654321));
-
-// 		assertEquals(testEvent.getOwner(), "testOwnerTwo");
-// 	}
-
-// 	@Test
-// 	public void updateTaskTest() throws Exception {
-// 		Task newTask = new Task("testOwnerTwo", "testTitle2", "testDescription2", 2, 1, "always");
-// 		when(taskRepository.save(any(Task.class))).thenReturn(newTask);
-
-// 		Task testTask = taskRepository.save(new Task("testOwner", "testTitle", "testDescription", 1, 2, "never"));
-
-// 		assertEquals(testTask.getOwner(), "testOwnerTwo");
-// 	}
-
-// }
-
-
+}

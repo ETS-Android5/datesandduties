@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.regex.Pattern.*;
 
 import datesandduties.Events.Event;

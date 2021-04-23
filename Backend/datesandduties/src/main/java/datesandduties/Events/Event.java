@@ -40,7 +40,7 @@ public class Event {
 	@ApiModelProperty(notes = "Description of Event", name = "description", required = true, value = "test description")
 	private String description;
 
-	@ApiModelProperty(notes = "Date of Event", name = "date", required = true, value = "te	st date")
+	@ApiModelProperty(notes = "Date of Event", name = "date", required = true, value = "test date")
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 

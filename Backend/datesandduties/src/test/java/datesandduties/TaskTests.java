@@ -1,68 +1,69 @@
-// package datesandduties;
+package datesandduties;
 
-// import static org.junit.Assert.assertEquals;
-// import static org.mockito.Mockito.mock;
-// import static org.mockito.Mockito.times;
-// import static org.mockito.Mockito.verify;
-// import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-// import org.junit.Before;
-// import org.junit.jupiter.api.BeforeEach;
-// import org.junit.jupiter.api.Test;
-// //import org.junit.Test;
-// import org.junit.runner.RunWith;
-// import org.mockito.InjectMocks;
-// import org.mockito.Mock;
-// import org.mockito.MockitoAnnotations;
-// import org.mockito.junit.MockitoJUnitRunner;
-// import org.springframework.beans.factory.annotation.Autowired;
+import java.time.LocalDateTime;
 
-// import datesandduties.Tasks.Task;
-// import datesandduties.Tasks.TaskController;
-// import datesandduties.Tasks.TaskRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+//import org.mockito.junit.MockitoJUnitRunner;
 
-// //@RunWith(MockitoJUnitRunner.class)
-// public class TaskTests {
+import datesandduties.Tasks.Task;
+import datesandduties.Tasks.TaskController;
+import datesandduties.Tasks.TaskRepository;
 
-// 	@BeforeEach
-// 	public void setup() {
-// 		MockitoAnnotations.openMocks(this);
-// 	}
+//@RunWith(MockitoJUnitRunner.class)
+public class TaskTests {
 
-// 	@Test
-// 	public void testAddNewTask() {
-// 		Task task = new Task("owner", "title", "description", 1, 01012001, "reccurence");
-// 		TaskController taskController = mock(TaskController.class);
+	@BeforeEach
+	public void setup() {
+		MockitoAnnotations.openMocks(this);
+	}
 
-// 		when(taskController.addNewTask(task)).thenReturn("Entry Saved!");
+	@Test
+	public void testAddNewTask() {
+		LocalDateTime due_date = LocalDateTime.parse("2021-04-22T06:30:00");
 
-// 		String result = taskController.addNewTask(task);
-// 		assertEquals("Entry Saved!", result);
+		Task task = new Task("owner", "title", "description", 1, due_date, "recurrence");
+		TaskController taskController = mock(TaskController.class);
 
-// 		verify(taskController, times(1)).addNewTask(task);
-// 	}
+		when(taskController.addNewTask(task)).thenReturn("Entry Saved!");
 
-// 	@InjectMocks
-// 	TaskController taskController = new TaskController();
+		String result = taskController.addNewTask(task);
+		assertEquals("Entry Saved!", result);
 
-// 	@Mock
-// 	TaskRepository taskRepository;
+		verify(taskController, times(1)).addNewTask(task);
+	}
 
-// 	@Test
-// 	public void testFindByTitle() {
+	@InjectMocks
+	TaskController taskController = new TaskController();
 
-// 		when(taskRepository.findByTitle("testTitle"))
-// 				.thenReturn(new Task("owner", "testTitle", "description", 2343, 23291234, "recurrence"));
-// 		Task task = taskController.findByTitle("testTitle");
+	@Mock
+	TaskRepository taskRepository;
 
-// 		assertEquals("owner", task.getOwner());
-// 		assertEquals("testTitle", task.getTitle());
-// 		assertEquals("description", task.getDescription());
-// 		assertEquals((Integer) 2343, task.getPriority());
-// 		assertEquals((Integer) 23291234, task.getDue_date());
-// 		assertEquals("recurrence", task.getRecurrence());
+	@Test
+	public void testFindByTitle() {
 
-// 	}
-	
-	
-// }
+		LocalDateTime due_date = LocalDateTime.parse("2021-04-22T06:30:00");
+
+		when(taskRepository.findByTitle("testTitle"))
+				.thenReturn(new Task("owner", "testTitle", "description", 2343, due_date, "recurrence"));
+		Task task = taskController.findByTitle("testTitle");
+
+		assertEquals("owner", task.getOwner());
+		assertEquals("testTitle", task.getTitle());
+		assertEquals("description", task.getDescription());
+		assertEquals((Integer) 2343, task.getPriority());
+		assertEquals(due_date, task.getDue_date());
+		assertEquals("recurrence", task.getRecurrence());
+
+	}
+
+}
