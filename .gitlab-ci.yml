@@ -42,6 +42,10 @@ android-build:
     paths:
       - Android_test/app/build/outputs/
       
+  only:
+    refs:
+      - master
+      
 android-test:
   image: javiersantos/android-ci:latest
   stage: androidtest
@@ -66,9 +70,6 @@ autoDeploy:
     - sudo mv target/*.jar /target/web-demo.jar
     - sudo systemctl stop system-web-demo
     - sudo systemctl start system-web-demo
-    
-only:
-  refs:
-    - master
-    changes:
-    - Backend/**/*
+  only:
+    refs:
+      - master
