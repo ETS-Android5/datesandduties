@@ -51,11 +51,6 @@ android-build:
   artifacts:
     paths:
       - Android_test/app/build/outputs/
-  only:
-    refs:
-      - master
-    changes:
-      - Backend/**/*
       
 android-test:
   image: javiersantos/android-ci:latest
@@ -69,11 +64,6 @@ android-test:
     - cd Frontend
     - cd datesandduties
     - ./gradlew test
-  only:
-    refs:
-      - master
-    changes:
-      - Backend/**/*
 
 autoDeploy:
   stage: autoDeploy
