@@ -13,6 +13,11 @@ maven-build:
     - cd Backend
     - cd datesandduties
     - mvn package
+  only:
+    refs:
+      - master
+    changes:
+      - Backend/**/*
     
 maven-test:
   stage: maventest
@@ -25,6 +30,11 @@ maven-test:
   artifacts:
     paths:
       - Backend/datesandduties/target/*.jar
+  only:
+    refs:
+      - master
+    changes:
+      - Backend/**/*
    
 android-build:
   image: javiersantos/android-ci:latest
@@ -41,6 +51,11 @@ android-build:
   artifacts:
     paths:
       - Android_test/app/build/outputs/
+  only:
+    refs:
+      - master
+    changes:
+      - Backend/**/*
       
 android-test:
   image: javiersantos/android-ci:latest
@@ -54,6 +69,11 @@ android-test:
     - cd Frontend
     - cd datesandduties
     - ./gradlew test
+  only:
+    refs:
+      - master
+    changes:
+      - Backend/**/*
 
 autoDeploy:
   stage: autoDeploy
@@ -69,3 +89,5 @@ autoDeploy:
   only:
     refs:
       - master
+    changes:
+      - Backend/**/*
