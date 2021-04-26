@@ -21,8 +21,23 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.servlet.View;
+import org.mockito.Mock;
+
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
+import java.util.Optional;
+import java.util.Objects;
+
 @ExtendWith(MockitoExtension.class)
-public class AccountControllerTest {
+public class mockitoTest {
 
 	private static AccountRepository accountRepository = mock(AccountRepository.class);
 	private static EventRepository eventRepository = mock(EventRepository.class);
@@ -32,9 +47,12 @@ public class AccountControllerTest {
 	LocalTime time = LocalTime.of(6, 30);
 	LocalDateTime due_date = LocalDateTime.parse("2021-04-22T06:30:00");
 
+	private MockMvc mockMvcAccount;
+
 	@BeforeEach
 	public void setup() {
 		MockitoAnnotations.openMocks(this);
+		mockMvcAccount = MockMvcBuilders.standaloneSetup(accountController).build();
 	}
 
 	@InjectMocks
@@ -111,4 +129,57 @@ public class AccountControllerTest {
 		assertEquals(testTask.getOwner(), "testOwnerTwo");
 	}
 
+
+	@Test
+	public void deleteAccountTest() throws Exception {
+
+		doThrow(new IllegalStateException("Ran the delete account.")).when(accountRepository).deleteById(1);
+		
+		Exception exception = assertThrows(IllegalStateException.class, () -> {
+			accountController.deleteAccount(1);
+		});
+
+		String expectedMessage = "Ran the delete account.";
+		String actualMessage = exception.getMessage();
+
+		assertTrue(actualMessage.contains(expectedMessage));
+
+		//Throwable exception = assertThrows(RuntimeException.class, accountController.deleteAccount(1));
+
+		//assertEquals("Ran the delete account.", exception.getMessage());
+		
+		//assertRaises(IllegalStateException);
+
+		//assertThrows(accountController.deleteAccount(1), RuntimeException);
+	}
+
+	@Test
+	public void deleteEventTest() throws Exception {
+		doThrow(new IllegalStateException("Ran the delete event.")).when(eventRepository).deleteById(1);
+
+		Exception exception = assertThrows(IllegalStateException.class, () -> {
+			eventController.deleteEvent(1);
+		});
+
+		String expectedMessage = "Ran the delete event.";
+		String actualMessage = exception.getMessage();
+
+		assertTrue(actualMessage.contains(expectedMessage));
+	
+	}
+
+	@Test
+	public void deleteTaskTest() throws Exception {
+		doThrow(new IllegalStateException("Ran the delete task.")).when(taskRepository).deleteById(1);
+
+		Exception exception = assertThrows(IllegalStateException.class, () -> {
+			taskController.deleteTask(1);
+		});
+
+		String expectedMessage = "Ran the delete task.";
+		String actualMessage = exception.getMessage();
+
+		assertTrue(actualMessage.contains(expectedMessage));
+	
+	}
 }
