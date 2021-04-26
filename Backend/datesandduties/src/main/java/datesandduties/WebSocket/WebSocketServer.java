@@ -16,25 +16,24 @@ import javax.websocket.server.ServerEndpoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import datesandduties.Messages.Message;
 import datesandduties.Messages.MessageRepository;
 
 @ServerEndpoint("/websocket/{username}")
-@Controller //@Component
+@Controller // @Component
 public class WebSocketServer {
-	
-	//Tried just doing @Autowired
+
+	// Tried just doing @Autowired
 	// and private MessageRepository, but that stated that the repo was null.
 	private static MessageRepository messageRepo;
-	
+
 	@Autowired
 	public void setMessageRepository(MessageRepository msgrepo) {
 		messageRepo = msgrepo;
 	}
-	
+
 	private static Map<Session, String> sessionUserMap = new HashMap<>();
 	private static Map<String, Session> userSessionMap = new HashMap<>();
 	private final Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
@@ -45,12 +44,13 @@ public class WebSocketServer {
 
 		sessionUserMap.put(session, username);
 		userSessionMap.put(username, session);
-		
-		//What happens here is that the user's prior message History is shown. 
-		sendToMentionedUser(username, getMessageHistory());
-		
+
 		String message = "User: " + username + " has joined the chat";
 		broadcast(message);
+
+		// What happens here is that the user's prior message History is shown.
+		String chatHistory = getMessageHistory(username);
+		sendToMentionedUser(username, chatHistory);
 	}
 
 	@OnMessage
@@ -61,12 +61,13 @@ public class WebSocketServer {
 		if (message.startsWith("@")) {
 			String sendToUsername = message.split(" ")[0].substring(1);
 			sendToMentionedUser(sendToUsername, "[DM] " + username + ": " + message);
-			sendToMentionedUser(username, "[DM] " + username + ": " + message);
+			sendToMentionedUser(username, message);
 		} else {
 			broadcast(username + ": " + message);
 
 		}
-		//This is the line that actually saves the message to the repository - in my previous tests, I didn't have this line. 
+		// This is the line that actually saves the message to the repository - in my
+		// previous tests, I didn't have this line.
 		messageRepo.save(new Message(username, message));
 	}
 
@@ -110,19 +111,23 @@ public class WebSocketServer {
 		});
 
 	}
-	private String getMessageHistory() {
-		List<Message> messages = messageRepo.findAll();
-		
-		StringBuilder sb = new StringBuilder();
-		
-		if(messages != null && messages.size() != 0) {
-			for (Message message : messages) {
-				sb.append(message.getUsername() + ": " + message.getMessageContent() + "\n");
-			}
-		}	
-		return sb.toString();
 
-		
+	private String getMessageHistory(String username) {
+		List<Message> messages = messageRepo.findAll();
+		// This way of building a string is way easier
+		String returnString = "";
+
+		if (messages != null && messages.size() != 0) {
+			for (Message message : messages) {
+				if (message.getUsername().equals(username)) {
+					returnString += message.getDate().toString() + " " + message.getUsername() + ": " + message.getMessageContent() + "\n";
+				}
+			}
+		}
+		logger.info(returnString);
+		return returnString;
+	
+		//In the log, the text is all jumbled together regardless of how I format it. At least for the websocket.org echo test site. 
 	}
 
 }
