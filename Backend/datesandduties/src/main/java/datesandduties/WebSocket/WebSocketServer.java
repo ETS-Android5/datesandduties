@@ -125,8 +125,7 @@ public class WebSocketServer {
 			}
 		}
 		logger.info(returnString);
-		return returnString;
-	
+		return returnString;	
 		//In the log, the text is all jumbled together regardless of how I format it. At least for the websocket.org echo test site. 
 	}
 
