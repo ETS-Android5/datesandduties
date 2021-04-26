@@ -46,7 +46,8 @@ public class WebSocketServer {
 		sessionUserMap.put(session, username);
 		userSessionMap.put(username, session);
 		
-		//sendToMentionedUser(username, getMessageHistory());
+		//What happens here is that the user's prior message History is shown. 
+		sendToMentionedUser(username, getMessageHistory());
 		
 		String message = "User: " + username + " has joined the chat";
 		broadcast(message);
@@ -65,6 +66,8 @@ public class WebSocketServer {
 			broadcast(username + ": " + message);
 
 		}
+		//This is the line that actually saves the message to the repository - in my previous tests, I didn't have this line. 
+		messageRepo.save(new Message(username, message));
 	}
 
 	@OnClose
@@ -107,7 +110,7 @@ public class WebSocketServer {
 		});
 
 	}
-	/*private String getMessageHistory() {
+	private String getMessageHistory() {
 		List<Message> messages = messageRepo.findAll();
 		
 		StringBuilder sb = new StringBuilder();
@@ -116,10 +119,10 @@ public class WebSocketServer {
 			for (Message message : messages) {
 				sb.append(message.getUsername() + ": " + message.getMessageContent() + "\n");
 			}
-		}
+		}	
 		return sb.toString();
 
 		
-	}*/
+	}
 
 }
