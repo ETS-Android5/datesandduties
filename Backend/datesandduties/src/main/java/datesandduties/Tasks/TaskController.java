@@ -1,5 +1,6 @@
 package datesandduties.Tasks;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class TaskController {
 			return "Creating Task Failed";
 		}
 		taskRepository.save(task);
-		return "Entry Saved!";
+		return "Entry Saved!" + " Your Task ID is: " + task.getId();
 	}
 
 	@ApiOperation(value = "Return all the Tasks in Database", response = Iterable.class, tags = "getAllTasks")
@@ -80,8 +81,8 @@ public class TaskController {
 	}
 
 	@GetMapping(path = "/findTask/{title}")
-	public Task findByTitle(@PathVariable String title) {
-		return taskRepository.findByTitle(title);
+	public List<Task> findByTitleLike(@PathVariable String title) {
+		return taskRepository.findByTitleLike(title);
 	}
 
 }
