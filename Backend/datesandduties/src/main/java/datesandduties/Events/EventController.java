@@ -1,5 +1,6 @@
 package datesandduties.Events;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class EventController {
 			return "Event Creation Failed";
 		}
 		eventRepository.save(event);
-		return "Entry Saved!";
+		return "Entry Saved!" + " Your Event ID is: " + event.getId();
 	}
 
 	@ApiOperation(value = "Return all the Events in Database", response = Iterable.class, tags = "getAllEvents")
@@ -73,8 +74,8 @@ public class EventController {
 	}
 
 	@GetMapping(path = "/findEvent/{title}")
-	public Event findByTitle(@PathVariable String title) {
-		return eventRepository.findByTitle(title);
+	public List<Event> findByTitleLike(@PathVariable String title) {
+		return eventRepository.findByTitleLike(title);
 	}
 
 }

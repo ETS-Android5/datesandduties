@@ -95,7 +95,7 @@ public class Task {
 	}
 
 	public void setTitle(String title) {
-		String regex = "^[a-zA-Z0-9_]+$";
+		String regex = "^[a-zA-Z0-9_!.\s]+$";
 		if (title.matches(regex)) {
 			this.title = title;
 		} else {
@@ -108,7 +108,7 @@ public class Task {
 	}
 
 	public void setDescription(String description) {
-		String regex = "^[a-zA-Z0-9_]+$";
+		String regex = "^[a-zA-Z0-9_!.,\s]+$";
 		if (description.matches(regex)) {
 			this.description = description;
 		} else {
