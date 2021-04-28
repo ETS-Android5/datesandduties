@@ -33,11 +33,12 @@ public class eventMain extends Activity implements View.OnClickListener{
 
     private Button leftb, rightb, edit, delete, up, down;
 
-    private EditText title, desc, date, time;
-
+    private EditText title, desc, date, time, shareUser;
+    public Button shareB;
     public int idEvent;
     public int eventNum = 0;
     public int totalEvents = 0;
+    public int shareID;
 
     private int dateOfNow;
     public JSONArray currentEvents = new JSONArray();
@@ -54,8 +55,9 @@ public class eventMain extends Activity implements View.OnClickListener{
         desc = (EditText) findViewById(R.id.outDesc);
         date = (EditText) findViewById(R.id.outDate);
         time = (EditText) findViewById(R.id.outTime);
+        shareUser = (EditText) findViewById(R.id.shareInput);
 
-
+        shareB = (Button) findViewById(R.id.shareBut);
         up = (Button) findViewById(R.id.upButt);
         down = (Button) findViewById(R.id.downButt);
         leftb= (Button) findViewById(R.id.left);
@@ -301,7 +303,50 @@ public class eventMain extends Activity implements View.OnClickListener{
             case R.id.upButt:
                 cycleEventsUp();
                 break;
+            case R.id.shareBut:
+                shareWithUser();
         }
+    }
+
+    public void shareWithUser(){
+        String gettid = Const.FIND_USER + "/" + shareUser.getText();
+
+        //    string post request for linking id to event to user
+        JsonObjectRequest getUserID = new JsonObjectRequest(Request.Method.GET, gettid, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+                        try {
+                            shareID = response.getInt("id");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: "+ error.getMessage());
+            }
+        });
+        AppController.getInstance().addToRequestQueue(getUserID);
+        int a = sign_in_page.getID();
+        String sharelink = Const.LINK_EVENT + "/" + a +"/" + shareID;
+        StringRequest shareEvent = new StringRequest(Request.Method.PUT, sharelink,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, response.toString());
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: "+ error.getMessage());
+            }
+        });
+
+        AppController.getInstance().addToRequestQueue(shareEvent);
+
     }
 
     public void cycleEventsDown(){

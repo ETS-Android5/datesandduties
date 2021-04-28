@@ -99,7 +99,7 @@
         android:id="@+id/downButt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="256dp"
         android:onClick="onClick"
         android:text="EventDown"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -166,4 +166,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/outTime" />
+
+    <EditText
+        android:id="@+id/shareInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="79dp"
+        android:layout_marginBottom="68dp"
+        android:ems="10"
+        android:hint="share with Username"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editEvents"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/downButt" />
+
+    <Button
+        android:id="@+id/shareBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="166dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="42dp"
+        android:text="Share"
+        app:layout_constraintBottom_toTopOf="@+id/delEvent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outDesc" />
 </androidx.constraintlayout.widget.ConstraintLayout>
