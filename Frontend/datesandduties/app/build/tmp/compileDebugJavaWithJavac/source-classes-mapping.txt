@@ -13,6 +13,11 @@ com/example/datesandduties/eventMain.java
  com.example.datesandduties.eventMain$2
  com.example.datesandduties.eventMain$3
  com.example.datesandduties.eventMain$4
+<<<<<<< HEAD
+=======
+ com.example.datesandduties.eventMain$5
+ com.example.datesandduties.eventMain$6
+>>>>>>> 22-able-to-view-accounts
 com/example/datesandduties/net_utils/Const.java
  com.example.datesandduties.net_utils.Const
 com/example/datesandduties/homePage.java
@@ -24,6 +29,17 @@ com/example/datesandduties/sign_in_page.java
  com.example.datesandduties.sign_in_page$1
  com.example.datesandduties.sign_in_page$2
  com.example.datesandduties.sign_in_page$3
+<<<<<<< HEAD
+=======
+com/example/datesandduties/BuildConfig.java
+ com.example.datesandduties.BuildConfig
+com/example/datesandduties/createAccount.java
+ com.example.datesandduties.createAccount
+ com.example.datesandduties.createAccount$1
+ com.example.datesandduties.createAccount$2
+ com.example.datesandduties.createAccount$3
+ com.example.datesandduties.createAccount$4
+>>>>>>> 22-able-to-view-accounts
 com/example/datesandduties/dates.java
  com.example.datesandduties.dates
  com.example.datesandduties.dates$1
@@ -36,6 +52,7 @@ com/example/datesandduties/addEvent.java
  com.example.datesandduties.addEvent$3
  com.example.datesandduties.addEvent$4
  com.example.datesandduties.addEvent$5
+<<<<<<< HEAD
  com.example.datesandduties.addEvent$6
 com/example/datesandduties/createAccount.java
  com.example.datesandduties.createAccount
@@ -45,3 +62,5 @@ com/example/datesandduties/createAccount.java
  com.example.datesandduties.createAccount$4
 com/example/datesandduties/BuildConfig.java
  com.example.datesandduties.BuildConfig
+=======
+>>>>>>> 22-able-to-view-accounts

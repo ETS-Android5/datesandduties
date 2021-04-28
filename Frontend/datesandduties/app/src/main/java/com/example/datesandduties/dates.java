@@ -44,14 +44,14 @@ public class dates extends Activity implements View.OnClickListener{
 
     private String user;
     //public Time intialDate = new Time();
-    public JSONArray currentEvents = new JSONArray();
-
+    public static JSONArray currentEvents;
+    private JSONArray dayEvents = new JSONArray();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dates);
-
+        currentEvents = new JSONArray();
         addEvent = (Button) findViewById(R.id.AddEvent);
 
         user = sign_in_page.getUsername();
@@ -62,8 +62,14 @@ public class dates extends Activity implements View.OnClickListener{
         Gyear = cal.get(Calendar.YEAR);
         Gmonth = cal.get(Calendar.MONTH) + 1;
         Gday = cal.get(Calendar.DAY_OF_MONTH);
-        xEvents.setText(countEvents());
+        //xEvents.setText(countEvents());
         viewEvents = (Button) findViewById(R.id.editEvents);
+        String str = (Gmonth+ "/" + Gday + "/" + Gyear);
+
+
+        setCurrentEvents();
+        today.setText(str);
+        xEvents.setText(countEvents());
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -72,19 +78,12 @@ public class dates extends Activity implements View.OnClickListener{
                 Gmonth = month+1;
                 Gday = dayOfMonth;
                 String str = (Gmonth+ "/" + Gday + "/" + Gyear);
-                //today.setText(str);
 
-                //check date for events with username
-                //count events for day
 
-                UserEvents = new JSONArray();
+                currentEvents = new JSONArray();
 
-                try {
-                    setCurrentEvents();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
+                setCurrentEvents();
+                today.setText(str);
                 xEvents.setText(countEvents());
             }
         });
@@ -93,14 +92,10 @@ public class dates extends Activity implements View.OnClickListener{
 
     }
 
-    private String countEvents(){ //day input
+    private String countEvents(){
 
-        //request events for user for day
-
-        //count json length
-
-        UserEvents.put(1);
-        int count = UserEvents.length() -1 ;
+        dayEvents.put(1);
+        int count = currentEvents.length();
         String refund = "You have ";
         //say how many events are for that day
         if(count>1){
@@ -117,61 +112,61 @@ public class dates extends Activity implements View.OnClickListener{
         return refund;
     }
 
-    public void setCurrentEvents() throws JSONException {
+    public static void setCurrentEvents(){
+        String TAG = dates.class.getSimpleName();
 
-
-        //json array request for current events
-        //UserEvents = new JSONArray();
         Integer id = sign_in_page.getID();
         int idd = id;
         String url = Const.GET_EVENTS + "/" + idd;
-        JSONArray testy = new JSONArray();
-        JSONObject testing = new JSONObject();
-        testing.put("id", idd);
-        testy.put(testing);
+
         //save input into private currentEvents
-        //today.setText(testy.toString());
         JsonArrayRequest req = new JsonArrayRequest(Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
+
                     @Override
                     public void onResponse(JSONArray response) {
-                        //Log.d(TAG, response.toString());
-                        currentEvents = response;
-                        //today.setText(response.toString());
+                        Log.d(TAG, response.toString());
+                        UserEvents = response;
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: "+ error.getMessage());
-                today.setText("Fail");
             }
         });
         AppController.getInstance().addToRequestQueue(req);
-        //today.setText("2");
-        //UserEvents = new JSONArray();
-        JSONObject jason = new JSONObject();
 
-        String Data = ""+Gmonth;
-        if(Gday<10){
-            Data =Data +  "0" + Gday + Gyear;
+        JSONObject jason = new JSONObject();
+        String Data = ""+Gyear;
+        if(Gmonth<10){
+            Data = Data + "-0" + Gmonth;
         }
         else{
-            Data = Data +  Gday + Gyear;
+            Data = Data + "-" + Gmonth;
         }
-        //today.setText("3");
-        if(currentEvents.length()==2){
-            today.setText(Data);
+        if(Gday<10){
+            Data = Data + "-0" + Gday;
+        }
+        else{
+            Data = Data + "-" + Gday;
         }
 
+        for(int i = 0;i<UserEvents.length();i++) {
+            try {
+                jason = UserEvents.getJSONObject(i);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (jason.getString("date").equals(Data)) {
+                    currentEvents.put(jason);
 
-        for(int i = 0;i < currentEvents.length();i++) {
-            jason = currentEvents.getJSONObject(i);
-            //today.setText(jason.getString("date"));
-            if (jason.getString("date").equals(Data)) {
-                UserEvents.put(jason);
-               // today.setText(jason.toString());
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
+
 
     }
 
@@ -217,6 +212,7 @@ public class dates extends Activity implements View.OnClickListener{
 
 
     public static JSONArray getEvents(){
-        return UserEvents;
+        setCurrentEvents();
+        return currentEvents;
     }
 }

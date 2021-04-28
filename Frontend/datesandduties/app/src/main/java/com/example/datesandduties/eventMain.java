@@ -7,11 +7,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.datesandduties.app.AppController;
 import com.example.datesandduties.dates;
 import com.example.datesandduties.net_utils.Const;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +24,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class eventMain extends Activity implements View.OnClickListener{
 
@@ -32,9 +36,12 @@ public class eventMain extends Activity implements View.OnClickListener{
     private EditText title, desc, date, time;
 
     public int idEvent;
+    public int eventNum = 0;
+    public int totalEvents = 0;
 
     private int dateOfNow;
-
+    public JSONArray currentEvents = new JSONArray();
+    public JSONObject displayEvent = new JSONObject();
     private String TAG = eventMain.class.getSimpleName();
 
     @Override
@@ -55,18 +62,51 @@ public class eventMain extends Activity implements View.OnClickListener{
         rightb = (Button) findViewById(R.id.right);
         edit = (Button) findViewById(R.id.editEvents);
         delete = (Button) findViewById(R.id.delEvent);
+        changeDate();
         setCurDate();
-        pullEvents();
 
-        //function to display all events
-
+        //currentEvents = new JSONArray();
     }
+    @SuppressLint("NewApi")
     public void setCurDate() {
+        showEvent();
+    }
+
+    @SuppressLint("NewApi")
+    public void changeDate(){
         curDate = (TextView) findViewById(R.id.dayOfEvents);
         curDate.setText(dates.displayDate());
+        for(int i = 0; i<100;i++){
+            currentEvents.remove(i);
+        }
+        currentEvents = dates.getEvents();
+        totalEvents = currentEvents.length();
+        eventNum = 0;
+        if(totalEvents == 0){
+            title.setText("");
+            desc.setText("");
+            date.setText("");
+            time.setText("");
+        }
     }
 
+    public void showEvent() {
+            try {
+                displayEvent = new JSONObject();
+                displayEvent = currentEvents.getJSONObject(eventNum);
+                title.setText(displayEvent.getString("title"));
+                desc.setText(displayEvent.getString("description"));
+                date.setText(displayEvent.getString("date"));
+                time.setText(displayEvent.getString("time"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
+        }
+
+
+
+    @SuppressLint("NewApi")
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -97,6 +137,10 @@ public class eventMain extends Activity implements View.OnClickListener{
                     dates.setMonth(12);
                     dates.setDay(31);
                 }
+                for(int i = 0; i<totalEvents+1;i++){
+                    currentEvents.remove(i);
+                }
+                changeDate();
                 setCurDate();
                 break;
 
@@ -150,33 +194,74 @@ public class eventMain extends Activity implements View.OnClickListener{
                     }
 
                 }
+                for(int i = 0; i<totalEvents+1;i++){
+                    currentEvents.remove(i);
+                }
+                changeDate();
                 setCurDate();
                 break;
 
             case R.id.editEvents:
 
-                String newTitle, newDesc, newDate, newTime;
+                String newTitle, newDesc, newDate, newTime, owner = null;
+                int id = -1;
 
                 newTitle = title.getText().toString();
                 newDesc = desc.getText().toString();
                 newDate = date.getText().toString();
                 newTime = time.getText().toString();
                 //insert code to update the event
+                try {
+                    id = displayEvent.getInt("id");
+                    owner = displayEvent.getString("owner");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                
+                JSONObject edit = new JSONObject();
+                try {
+                    edit.put("title", newTitle);
+                    edit.put("description", newDesc);
+                    edit.put("date", newDate);
+                    edit.put("time", newTime);
+                    edit.put("id", id);
+                    edit.put("owner", owner);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-
+                JsonObjectRequest editEvent = new JsonObjectRequest(Request.Method.PUT, Const.EDIT_EVENT, edit,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.d(TAG, response.toString());
+                                changeDate();
+                                setCurDate();
+                            }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.d(TAG, "Error: "+ error.getMessage());
+                    }
+                });
+                AppController.getInstance().addToRequestQueue(editEvent);
 
                 break;
 
             case R.id.delEvent:
+                int delID = -1;
+                try {
+                    delID = displayEvent.getInt("id");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-
-                String currentEvent = Const.FIND_EVENT + "/" + title.getText().toString();
-                StringRequest eventID = new StringRequest(Request.Method.GET, currentEvent,
+                String remove = Const.REM_EVENT + "/" + sign_in_page.getID() + "/" + delID;
+                StringRequest removeEvent = new StringRequest(Request.Method.PUT, remove,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 Log.d(TAG, response.toString());
-                                idEvent = Integer.parseInt(response.toString());
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -184,22 +269,20 @@ public class eventMain extends Activity implements View.OnClickListener{
                         VolleyLog.d(TAG, "Error: "+ error.getMessage());
                     }
                 });
-                AppController.getInstance().addToRequestQueue(eventID);
+                AppController.getInstance().addToRequestQueue(removeEvent);
 
 
 
-
-
-
-
-                String delEvent = Const.LINK_EVENT + "/" + idEvent ;
+                String delEvent = Const.DEL_EVENT + "/" + delID;
                 //    string post request for linking id to event to user
                 StringRequest deleteEvent = new StringRequest(Request.Method.DELETE, delEvent,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 Log.d(TAG, response.toString());
-
+                                currentEvents.remove(eventNum);
+                                changeDate();
+                                setCurDate();
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -209,15 +292,31 @@ public class eventMain extends Activity implements View.OnClickListener{
                 });
                 AppController.getInstance().addToRequestQueue(deleteEvent);
 
-
                 //use id for delete event request
+                break;
+
+            case R.id.downButt:
+                cycleEventsDown();
+                break;
+            case R.id.upButt:
+                cycleEventsUp();
                 break;
         }
     }
 
-
-    private void pullEvents(){
-
-        JSONArray currentEvents = dates.getEvents();
+    public void cycleEventsDown(){
+        eventNum++;
+        if(totalEvents<eventNum){
+            eventNum = 0;
+        }
+        setCurDate();
     }
+    public void cycleEventsUp(){
+        eventNum--;
+        if(eventNum<0){
+            eventNum = totalEvents-1;
+        }
+        setCurDate();
+    }
+
 }
