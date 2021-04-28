@@ -2,14 +2,8 @@ com/example/datesandduties/MainActivity.java
  com.example.datesandduties.MainActivity
  com.example.datesandduties.MainActivity$1
  com.example.datesandduties.MainActivity$2
-com/example/datesandduties/addTask.java
- com.example.datesandduties.addTask
- com.example.datesandduties.addTask$1
- com.example.datesandduties.addTask$2
- com.example.datesandduties.addTask$3
- com.example.datesandduties.addTask$4
- com.example.datesandduties.addTask$5
- com.example.datesandduties.addTask$6
+com/example/datesandduties/BuildConfig.java
+ com.example.datesandduties.BuildConfig
 com/example/datesandduties/deleteAccount.java
  com.example.datesandduties.deleteAccount
  com.example.datesandduties.deleteAccount$1
@@ -51,5 +45,11 @@ com/example/datesandduties/createAccount.java
  com.example.datesandduties.createAccount$2
  com.example.datesandduties.createAccount$3
  com.example.datesandduties.createAccount$4
-com/example/datesandduties/BuildConfig.java
- com.example.datesandduties.BuildConfig
+com/example/datesandduties/addTask.java
+ com.example.datesandduties.addTask
+ com.example.datesandduties.addTask$1
+ com.example.datesandduties.addTask$2
+ com.example.datesandduties.addTask$3
+ com.example.datesandduties.addTask$4
+ com.example.datesandduties.addTask$5
+ com.example.datesandduties.addTask$6

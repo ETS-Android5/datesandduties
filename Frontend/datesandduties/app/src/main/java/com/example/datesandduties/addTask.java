@@ -25,7 +25,7 @@ public class addTask extends Activity implements View.OnClickListener {
 
 
 
-        private EditText inputDueDate, inputTitle, inputDesc, inputPriority;
+        protected EditText inputDueDate, inputTitle, inputDesc, inputPriority;
         private Button addTask;
         private TextView outError;
         private int eventID;

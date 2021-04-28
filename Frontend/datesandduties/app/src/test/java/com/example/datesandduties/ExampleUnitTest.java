@@ -52,4 +52,20 @@ public class ExampleUnitTest {
         Assert.assertEquals(description, ev.inputDesc);
 
     }
+    @Test
+    public void testAddTask()
+    {
+        addTask task = Mockito.mock(addTask.class);
+        EditText title = Mockito.mock(EditText.class);
+        title.setText("Task Test");
+
+        task.inputTitle = title;
+        EditText priority = Mockito.mock(EditText.class);
+        priority.setText("2");
+
+        task.inputPriority = priority;
+
+        Assert.assertEquals(title, task.inputTitle);
+        Assert.assertEquals(priority, task.inputPriority);
+    }
 }
