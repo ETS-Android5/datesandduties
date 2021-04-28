@@ -42,7 +42,7 @@ public class taskMain extends Activity implements View.OnClickListener{
     private int dateOfNow;
     public JSONArray currentTasks = new JSONArray();
     public JSONObject displayTask = new JSONObject();
-    private String TAG = eventMain.class.getSimpleName();
+    private String TAG = taskMain.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +57,6 @@ public class taskMain extends Activity implements View.OnClickListener{
 
         up = (Button) findViewById(R.id.upButton);
         down = (Button) findViewById(R.id.downButton);
-        leftb= (Button) findViewById(R.id.leftT);
-        rightb = (Button) findViewById(R.id.rightT);
         edit = (Button) findViewById(R.id.editTasks);
         delete = (Button) findViewById(R.id.delTask);
         changeDate();
@@ -109,96 +107,7 @@ public class taskMain extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.leftT:
-                if(dates.getDay()>1){
-                    dates.setDay(dates.getDay()-1);
-                }
-                else if(dates.getMonth()>1){
-                    dates.setMonth(dates.getMonth()-1);
-                    int d = dates.getMonth();
-                    if(d==9||d==4||d==6||d==11){
-                        dates.setDay(30);
-                    }
-                    else if(d==2){
-                        if(dates.getYear()%4 ==0){
-                            dates.setDay(29);
-                        }
-                        else{
-                            dates.setDay(28);
-                        }
-                    }
-                    else{
-                        dates.setDay(31);
-                    }
-                }
-                else{
-                    dates.setYear(dates.getYear()-1);
-                    dates.setMonth(12);
-                    dates.setDay(31);
-                }
-                for(int i = 0; i<totalTasks+1;i++){
-                    currentTasks.remove(i);
-                }
-                changeDate();
-                setCurDate();
-                break;
 
-            case R.id.rightT:
-
-                int m = dates.getMonth();
-                int d = dates.getDay();
-                int y = dates.getYear();
-                if(m==9||m==4||m==6||m==11){
-                    if(d==30){
-                        dates.setDay(1);
-                        if(m+1==13){
-                            dates.setYear(y+1);
-                            dates.setMonth(1);
-                        }
-                        else{
-                            dates.setMonth(m+1);
-                        }
-                    }
-                    else{
-                        dates.setDay(d+1);
-                    }
-                }
-                else if(m==2){
-                    if(d==29&&y%4==0){
-                        dates.setDay(1);
-                        dates.setMonth(3);
-                    }
-                    else if(d==28&&y%4!=0){
-                        dates.setDay(1);
-                        dates.setMonth(3);
-                    }
-                    else{
-                        dates.setDay(d+1);
-                    }
-
-                }
-                else{
-                    if(d==31){
-                        dates.setDay(1);
-                        if(m+1==13){
-                            dates.setYear(y+1);
-                            dates.setMonth(1);
-                        }
-                        else{
-                            dates.setMonth(m+1);
-                        }
-                    }
-                    else{
-                        dates.setDay(d+1);
-                    }
-
-                }
-                for(int i = 0; i<totalTasks+1;i++){
-                    currentTasks.remove(i);
-                }
-                changeDate();
-                setCurDate();
-                break;
 
             case R.id.editTasks:
 
@@ -209,7 +118,7 @@ public class taskMain extends Activity implements View.OnClickListener{
                 newDesc = desc.getText().toString();
                 newDate = date.getText().toString();
                 newPriority = priority.getText().toString();
-                //insert code to update the event
+                //insert code to update the task
                 try {
                     id = displayTask.getInt("id");
                     owner = displayTask.getString("owner");
@@ -255,7 +164,7 @@ public class taskMain extends Activity implements View.OnClickListener{
                 }
 
                 String remove = Const.REM_TASK + "/" + sign_in_page.getID() + "/" + delID;
-                StringRequest removeEvent = new StringRequest(Request.Method.PUT, remove,
+                StringRequest removeTask = new StringRequest(Request.Method.PUT, remove,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -267,7 +176,7 @@ public class taskMain extends Activity implements View.OnClickListener{
                         VolleyLog.d(TAG, "Error: "+ error.getMessage());
                     }
                 });
-                AppController.getInstance().addToRequestQueue(removeEvent);
+                AppController.getInstance().addToRequestQueue(removeTask);
 
 
 
