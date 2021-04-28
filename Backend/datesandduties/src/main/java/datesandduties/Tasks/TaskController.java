@@ -84,5 +84,10 @@ public class TaskController {
 	public List<Task> findByTitleLike(@PathVariable String title) {
 		return taskRepository.findByTitleLike(title);
 	}
+	
+	@GetMapping(path = "/findTaskSpecific/{title}")
+	public Task findByTitle(@PathVariable String title) {
+		return taskRepository.findByTitle(title);
+	}
 
 }

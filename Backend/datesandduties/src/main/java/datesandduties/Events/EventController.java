@@ -78,4 +78,10 @@ public class EventController {
 		return eventRepository.findByTitleLike(title);
 	}
 
+	@GetMapping(path = "/findEventSpecific/{title}")
+	public Event findByTitle(@PathVariable String title) {
+		return eventRepository.findByTitle(title);
+	}
+
+
 }
