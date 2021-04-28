@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.example.datesandduties.app.AppController;
 import com.example.datesandduties.net_utils.Const;
 
@@ -113,9 +114,56 @@ public class Duties extends Activity implements View.OnClickListener{
             case R.id.homeButt:
                 startActivity(new Intent(Duties.this, homePage.class));
                 break;
+            case R.id.delTask:
+                deleteCurrentTask();
+                break;
         }
 
     }
+
+    public void deleteCurrentTask(){
+        int currTask = -1;
+        try {
+            currTask = displayTask.getInt("id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        String remove = Const.REM_TASK + "/" + sign_in_page.getID() + "/" + currTask;
+        StringRequest removeTaskLink = new StringRequest(Request.Method.PUT, remove,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, response.toString());
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: "+ error.getMessage());
+            }
+        });
+        AppController.getInstance().addToRequestQueue(removeTaskLink);
+
+        String delEvent = Const.DEL_TASK + "/" + currTask;
+        //    string post request for linking id to event to user
+        StringRequest deleteTask = new StringRequest(Request.Method.DELETE, delEvent,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, response.toString());
+                        reload();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: "+ error.getMessage());
+            }
+        });
+        AppController.getInstance().addToRequestQueue(deleteTask);
+
+    }
+
 
     public void reload(){
         String url = Const.GET_TASKS + "/" + userID;

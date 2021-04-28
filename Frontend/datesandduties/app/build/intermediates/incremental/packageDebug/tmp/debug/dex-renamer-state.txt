@@ -1,4 +1,4 @@
-#Wed Apr 28 18:15:12 CDT 2021
+#Wed Apr 28 18:24:39 CDT 2021
 base.0=C\:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
