@@ -25,7 +25,7 @@ public class addTask extends Activity implements View.OnClickListener {
 
 
 
-        private EditText inputDueDate, inputTitle, inputDesc;
+        private EditText inputDueDate, inputTitle, inputDesc, inputPriority;
         private Button addTask;
         private TextView outError;
         private int eventID;
@@ -39,9 +39,9 @@ public class addTask extends Activity implements View.OnClickListener {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_add_task);
 
-            inputTitle = (EditText) findViewById(R.id.inputTitle);
-            inputDesc = (EditText) findViewById(R.id.inputDescription);
-            inputPriority = (Button) findViewById(R.id.inputPriority);
+            inputTitle = (EditText) findViewById(R.id.inputTitleTask);
+            inputDesc = (EditText) findViewById(R.id.inputDescrTask);
+            inputPriority = (EditText) findViewById(R.id.inputPriority);
             inputDueDate = (EditText) findViewById(R.id.inputDueDate);
             addTask = (Button) findViewById(R.id.sendTask);
 
@@ -71,7 +71,7 @@ public class addTask extends Activity implements View.OnClickListener {
             title = inputTitle.getText().toString();
             description = inputDesc.getText().toString();
             dueDate = inputDueDate.getText().toString();
-            // #TODO priority = inputPriority.g
+            priority = inputPriority.getText().toString();
 
             if(title.isEmpty()){
                 outError.setText("Please insert a valid title");
@@ -81,6 +81,9 @@ public class addTask extends Activity implements View.OnClickListener {
             }
             else if(dueDate.isEmpty()){
                 outError.setText("Please enter a due date");
+            }
+            else if(priority.isEmpty()) {
+                outError.setText("Please enter a priority");
             }
 
             //other stuff that checks if date and time are valid based on inputs to backend;
@@ -163,27 +166,7 @@ public class addTask extends Activity implements View.OnClickListener {
                 }
             });
 
-        /*JsonObjectRequest findEventID = new JsonObjectRequest(Request.Method.GET, idRequest, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
-                        // put parse the id of event here
-                        try {
-                            JSONObject event = response.getJSONObject("this");
-                            String eventid = event.getString("eventID");
-                            eventID = Integer.parseInt(eventid);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
 
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: "+ error.getMessage());
-            }
-        });*/
 
             AppController.getInstance().addToRequestQueue(findEventID);
             outError.setText("Fail link2");
@@ -199,7 +182,7 @@ public class addTask extends Activity implements View.OnClickListener {
                             //if Success!
                             if(response.equals("Success!")){
                                 //return to previous page
-                                startActivity(new Intent(com.example.datesandduties.addEvent.this, dates.class));
+                                startActivity(new Intent(com.example.datesandduties.addTask.this, dates.class));
                             }
                             //else nothing this should work
                         }
@@ -216,4 +199,4 @@ public class addTask extends Activity implements View.OnClickListener {
 
 
     }
-}
+
