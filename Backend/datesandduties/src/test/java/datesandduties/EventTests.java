@@ -8,6 +8,8 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,10 +29,11 @@ public class EventTests {
 		MockitoAnnotations.openMocks(this);
 	}
 
+	LocalDate date = LocalDate.of(2021, 04, 22);
+	LocalTime time = LocalTime.of(6, 30);
+
 	@Test
 	public void testAddNewEvent() {
-		LocalDate date = LocalDate.of(2021, 04, 22);
-		LocalTime time = LocalTime.of(6, 30);
 
 		Event event = new Event("owner", "title", "description", date, time);
 		EventController eventController = mock(EventController.class);
@@ -51,8 +54,6 @@ public class EventTests {
 
 	@Test
 	public void testFindByTitle() {
-		LocalDate date = LocalDate.of(2021, 04, 22);
-		LocalTime time = LocalTime.of(6, 30);
 
 		when(eventRepository.findByTitle("testTitle"))
 				.thenReturn(new Event("owner", "testTitle", "description", date, time));
@@ -63,6 +64,25 @@ public class EventTests {
 		assertEquals("description", event.getDescription());
 		assertEquals(date, event.getDate());
 		assertEquals(time, event.getTime());
+
+	}
+
+	@Test
+	public void testFindByTitleLike() {
+
+		List<Event> eventList = new ArrayList<Event>() {
+			{
+				add(new Event("owner1", "testTitle", "descriptive description", date, time));
+				add(new Event("owner2", "testTitle", "description", date, time));
+			}
+		};
+
+		when(eventRepository.findByTitleLike("testTitle")).thenReturn(eventList);
+
+		List<Event> testList = eventController.findByTitleLike("testTitle");
+
+		assertEquals("testTitle", testList.get(0).getTitle());
+		assertEquals("testTitle", testList.get(1).getTitle());
 
 	}
 }

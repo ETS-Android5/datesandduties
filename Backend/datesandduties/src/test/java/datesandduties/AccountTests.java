@@ -6,6 +6,9 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -30,11 +33,12 @@ public class AccountTests {
 		Account account = new Account("name", "mockUsername", "password", "email", "gender", 15, 1234567890, "country");
 		AccountController testController = mock(AccountController.class);
 
-		when(testController.addNewAccount(account)).thenReturn("Entry Saved!" + " Your Account ID is: " + account.getId());
+		when(testController.addNewAccount(account))
+				.thenReturn("Entry Saved!" + " Your Account ID is: " + account.getId());
 
 		String result = testController.addNewAccount(account);
 		assertEquals("Entry Saved!" + " Your Account ID is: " + account.getId(), result);
-        
+
 		verify(testController, times(1)).addNewAccount(account);
 
 	}
@@ -60,6 +64,25 @@ public class AccountTests {
 		assertEquals((Integer) 15, account.getAge());
 		assertEquals((Integer) 1234567890, account.getPhone());
 		assertEquals("country", account.getCountry());
+
+	}
+
+	@Test
+	public void testFindByUsernameLike() {
+
+		List<Account> acctList = new ArrayList<Account>() {
+			{
+				add(new Account("name", "mockUser", "password", "email@email.com", "gender", 15, 1234567890,"country"));
+				add(new Account("test2", "mockUser", "pswd", "email@email.com", "male", 20, 1234567890, "country"));
+			}
+		};
+
+		when(acctRepository.findByUsernameLike("mockUser")).thenReturn(acctList);
+
+		List<Account> testList = acctController.findByUsernameLike("mockUser");
+
+		assertEquals("mockUser", testList.get(0).getUsername());
+		assertEquals("mockUser", testList.get(1).getUsername());
 
 	}
 }

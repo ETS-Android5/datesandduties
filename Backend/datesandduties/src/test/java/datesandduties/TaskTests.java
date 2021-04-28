@@ -7,6 +7,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,9 +29,10 @@ public class TaskTests {
 		MockitoAnnotations.openMocks(this);
 	}
 
+	LocalDateTime due_date = LocalDateTime.parse("2021-04-22T06:30:00");
+
 	@Test
 	public void testAddNewTask() {
-		LocalDateTime due_date = LocalDateTime.parse("2021-04-22T06:30:00");
 
 		Task task = new Task("owner", "title", "description", 1, due_date, "recurrence");
 		TaskController taskController = mock(TaskController.class);
@@ -51,8 +54,6 @@ public class TaskTests {
 	@Test
 	public void testFindByTitle() {
 
-		LocalDateTime due_date = LocalDateTime.parse("2021-04-22T06:30:00");
-
 		when(taskRepository.findByTitle("testTitle"))
 				.thenReturn(new Task("owner", "testTitle", "description", 2343, due_date, "recurrence"));
 		Task task = taskController.findByTitle("testTitle");
@@ -63,6 +64,25 @@ public class TaskTests {
 		assertEquals((Integer) 2343, task.getPriority());
 		assertEquals(due_date, task.getDue_date());
 		assertEquals("recurrence", task.getRecurrence());
+
+	}
+
+	@Test
+	public void testFindByTitleLike() {
+
+		List<Task> taskList = new ArrayList<Task>() {
+			{
+				add(new Task("owner1", "mockTitle", "descriptionHere", 2343, due_date, "recurrence"));
+				add(new Task("owner3", "mockTitle", "testDescription", 2343, due_date, "recurrence"));
+			}
+		};
+
+		when(taskRepository.findByTitleLike("mockTitle")).thenReturn(taskList);
+
+		List<Task> testList = taskRepository.findByTitleLike("mockTitle");
+
+		assertEquals("mockTitle", testList.get(0).getTitle());
+		assertEquals("mockTitle", testList.get(1).getTitle());
 
 	}
 
