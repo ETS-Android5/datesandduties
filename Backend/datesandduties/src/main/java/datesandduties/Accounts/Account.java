@@ -169,7 +169,6 @@ public class Account {
 	}
 
 	public void setUsername(String username) {
-
 		String regex = "^[a-zA-Z0-9.#!_]+$";
 		if (username.matches(regex)) {
 			this.username = username;
