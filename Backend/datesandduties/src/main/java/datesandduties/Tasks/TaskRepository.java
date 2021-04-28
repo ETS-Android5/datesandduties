@@ -9,6 +9,7 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 	public Task findByOwnerAndTitle(String owner, String title);
 
 	public List<Task> findByTitleLike(String title);
+	public Task findByTitle(String title);
 
 
 }

@@ -1,7 +1,10 @@
 package datesandduties.Events;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -76,6 +79,16 @@ public class EventController {
 	@GetMapping(path = "/findEvent/{title}")
 	public List<Event> findByTitleLike(@PathVariable String title) {
 		return eventRepository.findByTitleLike(title);
+	}
+
+	@GetMapping(path = "/findEventSpecific/{title}")
+	public Event findByTitle(@PathVariable String title) {
+		return eventRepository.findByTitle(title);
+	}
+
+	@GetMapping(path= "/findEventByDate")
+	public List<Event> findByDateLike(@RequestBody LocalDate date){//can just enter as a String e.g, 2021-04-27
+		return eventRepository.findByDateLike(date);
 	}
 
 }

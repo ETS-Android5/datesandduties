@@ -47,10 +47,7 @@ public class WebSocketServer {
 
 		String message = "User: " + username + " has joined the chat";
 		broadcast(message);
-
-		// What happens here is that the user's prior message History is shown.
-		String chatHistory = getMessageHistory(username);
-		sendToMentionedUser(username, chatHistory);
+		sendToMentionedUser(username, "\nHello " + username + "!");
 	}
 
 	@OnMessage
@@ -62,13 +59,25 @@ public class WebSocketServer {
 			String sendToUsername = message.split(" ")[0].substring(1);
 			sendToMentionedUser(sendToUsername, "[DM] " + username + ": " + message);
 			sendToMentionedUser(username, message);
+
+			messageRepo.save(new Message(username, message));
+		} else if (message.compareTo("DELETEME") == 0) {
+			messageRepo.deleteByUsername(username);
+			broadcast("Your Personal Messages Have Been Deleted");
+		} else if (message.compareTo("DELETEALL") == 0) {
+			messageRepo.deleteAll(); // nuke all messages
+			broadcast("All Messages Deleted");
+		} else if (message.compareTo("HISTORY") == 0) {
+			// What happens here is that the user's prior message History is shown.
+			String chatHistory = getMessageHistory(username);
+			sendToMentionedUser(username, chatHistory);
 		} else {
 			broadcast(username + ": " + message);
+			messageRepo.save(new Message(username, message));
 
 		}
 		// This is the line that actually saves the message to the repository - in my
 		// previous tests, I didn't have this line.
-		messageRepo.save(new Message(username, message));
 	}
 
 	@OnClose
@@ -120,13 +129,14 @@ public class WebSocketServer {
 		if (messages != null && messages.size() != 0) {
 			for (Message message : messages) {
 				if (message.getUsername().equals(username)) {
-					returnString += message.getDate().toString() + " " + message.getUsername() + ": " + message.getMessageContent() + "\n";
+					returnString += message.getDate().toString() + " " + message.getUsername() + ": "
+							+ message.getMessageContent() + "\n";
 				}
 			}
 		}
 		logger.info(returnString);
-		return returnString;	
-		//In the log, the text is all jumbled together regardless of how I format it. At least for the websocket.org echo test site. 
+		return returnString;
+		// In the log, the text is all jumbled together regardless of how I format it.
+		// At least for the websocket.org echo test site.
 	}
-
 }
