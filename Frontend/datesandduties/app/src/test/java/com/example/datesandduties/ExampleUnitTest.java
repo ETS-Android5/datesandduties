@@ -1,11 +1,15 @@
 package com.example.datesandduties;
 
+import android.content.Context;
 import android.widget.EditText;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
 
@@ -14,11 +18,23 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+@RunWith(MockitoJUnitRunner.class)
 public class ExampleUnitTest {
+    @Mock
+    private Context mockTest = null;
+
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+    @Before
+    public void setMock()
+    {
+        mockTest = Mockito.mock(Context.class);
+        Assert.assertNotNull("not null", mockTest);
+    }
+
     @Test
     public void testAddEvent()
     {

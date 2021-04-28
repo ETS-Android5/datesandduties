@@ -33,41 +33,40 @@
 21-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:13:9-54
 22        android:supportsRtl="true"
 22-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:14:9-35
-23        android:testOnly="true"
-24        android:theme="@style/Theme.Datesandduties" >
-24-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:15:9-52
-25        <activity android:name="com.example.datesandduties.addEvent" />
-25-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:16:9-55
-25-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:16:19-43
-26        <activity android:name="com.example.datesandduties.eventMain" />
-26-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:17:9-47
-26-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:17:19-44
-27        <activity android:name="com.example.datesandduties.dates" />
-27-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:18:9-43
-27-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:18:19-40
-28        <activity android:name="com.example.datesandduties.homePage" />
-28-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:19:9-46
-28-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:19:19-43
-29        <activity android:name="com.example.datesandduties.sign_in_page" />
-29-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:20:9-50
-29-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:20:19-47
-30        <activity android:name="com.example.datesandduties.createAccount" />
-30-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:21:9-51
-30-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:21:19-48
-31        <activity android:name="com.example.datesandduties.MainActivity" >
-31-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:22:9-28:20
-31-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:22:19-47
-32            <intent-filter>
-32-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:23:13-27:29
-33                <action android:name="android.intent.action.MAIN" />
-33-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:24:17-69
-33-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:24:25-66
-34
-35                <category android:name="android.intent.category.LAUNCHER" />
-35-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:26:17-77
-35-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:26:27-74
-36            </intent-filter>
-37        </activity>
-38    </application>
-39
-40</manifest>
+23        android:theme="@style/Theme.Datesandduties" >
+23-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:15:9-52
+24        <activity android:name="com.example.datesandduties.addEvent" />
+24-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:16:9-55
+24-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:16:19-43
+25        <activity android:name="com.example.datesandduties.eventMain" />
+25-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:17:9-47
+25-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:17:19-44
+26        <activity android:name="com.example.datesandduties.dates" />
+26-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:18:9-43
+26-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:18:19-40
+27        <activity android:name="com.example.datesandduties.homePage" />
+27-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:19:9-46
+27-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:19:19-43
+28        <activity android:name="com.example.datesandduties.sign_in_page" />
+28-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:20:9-50
+28-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:20:19-47
+29        <activity android:name="com.example.datesandduties.createAccount" />
+29-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:21:9-51
+29-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:21:19-48
+30        <activity android:name="com.example.datesandduties.MainActivity" >
+30-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:22:9-28:20
+30-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:22:19-47
+31            <intent-filter>
+31-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:23:13-27:29
+32                <action android:name="android.intent.action.MAIN" />
+32-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:24:17-69
+32-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:24:25-66
+33
+34                <category android:name="android.intent.category.LAUNCHER" />
+34-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:26:17-77
+34-->C:\Users\User\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:26:27-74
+35            </intent-filter>
+36        </activity>
+37    </application>
+38
+39</manifest>
