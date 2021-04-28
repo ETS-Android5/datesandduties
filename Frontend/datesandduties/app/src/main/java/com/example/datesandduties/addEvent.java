@@ -1,7 +1,5 @@
 package com.example.datesandduties;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -9,8 +7,6 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.datesandduties.app.AppController;
-import com.example.datesandduties.dates;
-import com.example.datesandduties.sign_in_page;
 import com.example.datesandduties.net_utils.Const;
 
 import android.app.Activity;
@@ -20,10 +16,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -47,7 +41,7 @@ public class addEvent extends Activity implements View.OnClickListener{
         inputDate.setText(dates.displayDate());
         inputTitle = (EditText) findViewById(R.id.inputTitle);
         inputTime= (EditText) findViewById(R.id.inputTime);
-        inputDesc = (EditText) findViewById(R.id.inputDescription);
+        inputDesc = (EditText) findViewById(R.id.inputDescr);
 
         addEvent = (Button) findViewById(R.id.sendEvent);
 
