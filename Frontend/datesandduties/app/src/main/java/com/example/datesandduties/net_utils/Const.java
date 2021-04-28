@@ -23,4 +23,5 @@ public class Const {
     public static final String ADD_TASK = "http://coms-309-008.cs.iastate.edu:8080/task/add"; //add task
     public static final String DEL_TASK = "http://coms-309-008.cs.iastate.edu:8080/task/delete";
     public static final String EDIT_TASK = "http://coms-309-008.cs.iastate.edu:8080/task/update";
+    public static final String GET_TASKS = "http://coms-309-008.cs.iastate.edu:8080/account/tasks";
 }

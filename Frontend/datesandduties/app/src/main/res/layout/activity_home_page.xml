@@ -22,7 +22,7 @@
         android:textColor="#000000"
         android:textSize="36sp"
         app:backgroundTint="#E1BE0E"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/goToDuties"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/goToDuties"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
