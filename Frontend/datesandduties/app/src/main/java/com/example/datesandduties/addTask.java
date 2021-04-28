@@ -46,7 +46,7 @@ public class addTask extends Activity implements View.OnClickListener {
             addTask = (Button) findViewById(R.id.sendTask);
 
 
-            outError = (TextView) findViewById(R.id.errorOut);
+            outError = (TextView) findViewById(R.id.outerror);
 
 
         }
