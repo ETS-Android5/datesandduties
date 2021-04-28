@@ -23,7 +23,7 @@ import org.json.JSONObject;
 
 public class addEvent extends Activity implements View.OnClickListener{
 
-    private EditText inputDate, inputTitle, inputTime, inputDesc;
+    protected EditText inputDate, inputTitle, inputTime, inputDesc;
     private Button addEvent;
     private TextView outError;
     private int eventID;
@@ -41,7 +41,7 @@ public class addEvent extends Activity implements View.OnClickListener{
         inputDate.setText(dates.displayDate());
         inputTitle = (EditText) findViewById(R.id.inputTitle);
         inputTime= (EditText) findViewById(R.id.inputTime);
-        inputDesc = (EditText) findViewById(R.id.inputDescr);
+        inputDesc = (EditText) findViewById(R.id.inputDescription);
 
         addEvent = (Button) findViewById(R.id.sendEvent);
 
