@@ -1,15 +1,12 @@
 package com.example.datesandduties;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.AuthFailureError;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.datesandduties.app.AppController;
 import com.example.datesandduties.net_utils.Const;
@@ -26,8 +23,6 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
-import java.util.Map;
 import java.util.Scanner;
 
 public class addEvent extends Activity implements View.OnClickListener{
@@ -46,15 +41,15 @@ public class addEvent extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_add_event);
         inputDate = (EditText) findViewById(R.id.inputDate);
         inputDate.setText(dates.getYear()+"-"+dates.getMonth()+"-"+dates.getDay());
-        inputTitle = (EditText) findViewById(R.id.inputTitle);
+        inputTitle = (EditText) findViewById(R.id.inputTitleTask);
         inputTime= (EditText) findViewById(R.id.inputTime);
 
-        inputDesc = (EditText) findViewById(R.id.inputDescription);
+        inputDesc = (EditText) findViewById(R.id.inputDescrTask);
 
         //inputDesc = (EditText) findViewById(R.id.inputDescr);
 
 
-        inputDesc = (EditText) findViewById(R.id.inputDescription);
+        inputDesc = (EditText) findViewById(R.id.inputDescrTask);
 
         addEvent = (Button) findViewById(R.id.sendEvent);
         outError = (TextView) findViewById(R.id.errorOut);

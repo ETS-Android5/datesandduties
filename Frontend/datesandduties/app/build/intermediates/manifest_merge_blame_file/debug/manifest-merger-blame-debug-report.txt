@@ -15,7 +15,7 @@
 11-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:5:22-64
 12
 13    <application
-13-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:7:5-29:19
+13-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:7:5-31:19
 14        android:name="com.example.datesandduties.app.AppController"
 14-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:8:9-42
 15        android:allowBackup="true"
@@ -36,38 +36,44 @@
 23        android:testOnly="true"
 24        android:theme="@style/Theme.Datesandduties" >
 24-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:15:9-52
-25        <activity android:name="com.example.datesandduties.addEvent" />
-25-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:16:9-55
-25-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:16:19-43
-26        <activity android:name="com.example.datesandduties.eventMain" />
-26-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:17:9-47
-26-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:17:19-44
-27        <activity android:name="com.example.datesandduties.dates" />
-27-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:18:9-43
-27-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:18:19-40
-28        <activity android:name="com.example.datesandduties.homePage" />
-28-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:19:9-46
-28-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:19:19-43
-29        <activity android:name="com.example.datesandduties.sign_in_page" />
-29-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:20:9-50
-29-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:20:19-47
-30        <activity android:name="com.example.datesandduties.createAccount" />
-30-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:21:9-51
-30-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:21:19-48
-31        <activity android:name="com.example.datesandduties.MainActivity" >
-31-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:22:9-28:20
+25        <activity android:name="com.example.datesandduties.addNewTask" />
+25-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:16:9-57
+25-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:16:19-45
+26        <activity android:name="com.example.datesandduties.Duties" />
+26-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:17:9-44
+26-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:17:19-41
+27        <activity android:name="com.example.datesandduties.addEvent" />
+27-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:18:9-46
+27-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:18:19-43
+28        <activity android:name="com.example.datesandduties.eventMain" />
+28-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:19:9-47
+28-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:19:19-44
+29        <activity android:name="com.example.datesandduties.dates" />
+29-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:20:9-43
+29-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:20:19-40
+30        <activity android:name="com.example.datesandduties.homePage" />
+30-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:21:9-46
+30-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:21:19-43
+31        <activity android:name="com.example.datesandduties.sign_in_page" />
+31-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:22:9-50
 31-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:22:19-47
-32            <intent-filter>
-32-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:23:13-27:29
-33                <action android:name="android.intent.action.MAIN" />
-33-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:24:17-69
-33-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:24:25-66
-34
-35                <category android:name="android.intent.category.LAUNCHER" />
-35-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:26:17-77
-35-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:26:27-74
-36            </intent-filter>
-37        </activity>
-38    </application>
-39
-40</manifest>
+32        <activity android:name="com.example.datesandduties.createAccount" />
+32-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:23:9-51
+32-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:23:19-48
+33        <activity android:name="com.example.datesandduties.MainActivity" >
+33-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:24:9-30:20
+33-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:24:19-47
+34            <intent-filter>
+34-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:25:13-29:29
+35                <action android:name="android.intent.action.MAIN" />
+35-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:26:17-69
+35-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:26:25-66
+36
+37                <category android:name="android.intent.category.LAUNCHER" />
+37-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:28:17-77
+37-->C:\Users\brady\Desktop\git\mc_1\Frontend\datesandduties\app\src\main\AndroidManifest.xml:28:27-74
+38            </intent-filter>
+39        </activity>
+40    </application>
+41
+42</manifest>

@@ -43,7 +43,7 @@ public class homePage extends Activity implements View.OnClickListener {
 
                 break;
             case R.id.goToDuties:
-                startActivity(new Intent(homePage.this, taskMain.class));
+                startActivity(new Intent(homePage.this, Duties.class));
                 break;
 
         }

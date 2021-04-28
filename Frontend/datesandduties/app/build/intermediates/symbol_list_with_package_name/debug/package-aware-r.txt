@@ -1754,6 +1754,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addTask
 id age
 id alertTitle
 id aligned
@@ -1776,7 +1777,6 @@ id blocking
 id bottom
 id bounce
 id btnListAll
-id button3
 id buttonPanel
 id cache_measures
 id calendarView
@@ -1851,7 +1851,6 @@ id easeIn
 id easeInOut
 id easeOut
 id editEvents
-id editTasks
 id edit_query
 id elastic
 id email
@@ -1877,6 +1876,7 @@ id gender
 id ghost_view
 id ghost_view_holder
 id goToDates
+id goToDuties
 id gone
 id graph
 id graph_wrap
@@ -1888,6 +1888,7 @@ id header_title
 id hideable
 id home
 id homeAsUp
+id homeButt
 id honorRequest
 id icon
 id icon_group
@@ -1900,7 +1901,6 @@ id inputAge
 id inputCountry
 id inputDate
 id inputDescrTask
-id inputDescription
 id inputDueDate
 id inputEmail
 id inputGender
@@ -1909,7 +1909,6 @@ id inputPassword
 id inputPhone
 id inputPriority
 id inputTime
-id inputTitle
 id inputTitleTask
 id inputUsername
 id invisible
@@ -1923,7 +1922,6 @@ id labeled
 id largeLabel
 id layout
 id left
-id leftT
 id leftToRight
 id line1
 id line3
@@ -2033,9 +2031,9 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id refresh
 id reverseSawtooth
 id right
-id rightT
 id rightToLeft
 id right_icon
 id right_side
@@ -2241,9 +2239,11 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_add_event
+layout activity_add_new_task
 layout activity_add_task
 layout activity_create_account
 layout activity_dates
+layout activity_duties
 layout activity_event_main
 layout activity_home_page
 layout activity_main

@@ -11,7 +11,7 @@ public class Const {
     public static final String LINK_EVENT = "http://coms-309-008.cs.iastate.edu:8080/account/assignEvent"; //accid //eventid
     public static final String GET_EVENTS = "http://coms-309-008.cs.iastate.edu:8080/account/events"; //id
     public static final String REM_TASK = "http://coms-309-008.cs.iastate.edu:8080/account/removeTask";
-
+    public static final String LINK_TASK = "http://coms-309-008.cs.iastate.edu:8080/account/assignTask";
 
     public static final String ADD_EVENT = "http://coms-309-008.cs.iastate.edu:8080/event/add";
     public static final String ALL_EVENT = "http://coms-309-008.cs.iastate.edu:8080/event/all";

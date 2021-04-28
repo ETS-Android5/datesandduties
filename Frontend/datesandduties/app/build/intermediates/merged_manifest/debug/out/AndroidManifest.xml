@@ -22,6 +22,8 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.Datesandduties" >
+        <activity android:name="com.example.datesandduties.addNewTask" />
+        <activity android:name="com.example.datesandduties.Duties" />
         <activity android:name="com.example.datesandduties.addEvent" />
         <activity android:name="com.example.datesandduties.eventMain" />
         <activity android:name="com.example.datesandduties.dates" />

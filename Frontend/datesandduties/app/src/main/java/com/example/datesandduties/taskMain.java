@@ -1,21 +1,16 @@
 package com.example.datesandduties;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.datesandduties.app.AppController;
-import com.example.datesandduties.dates;
 import com.example.datesandduties.net_utils.Const;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +26,7 @@ public class taskMain extends Activity implements View.OnClickListener{
 
     private TextView curDate;
 
-    private Button leftb, rightb, edit, delete, up, down;
+    private Button edit, delete, up, down;
 
     private EditText title, desc, date, priority;
 
@@ -57,7 +52,7 @@ public class taskMain extends Activity implements View.OnClickListener{
 
         up = (Button) findViewById(R.id.upButton);
         down = (Button) findViewById(R.id.downButton);
-        edit = (Button) findViewById(R.id.editTasks);
+        edit = (Button) findViewById(R.id.addTask);
         delete = (Button) findViewById(R.id.delTask);
         changeDate();
         setCurDate();
@@ -109,7 +104,7 @@ public class taskMain extends Activity implements View.OnClickListener{
         switch (v.getId()){
 
 
-            case R.id.editTasks:
+            case R.id.addTask:
 
                 String newTitle, newDesc, newDate, newPriority, owner = null;
                 int id = -1;
