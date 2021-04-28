@@ -1895,14 +1895,18 @@ id info
 id inputAge
 id inputCountry
 id inputDate
+id inputDescrTask
 id inputDescription
+id inputDueDate
 id inputEmail
 id inputGender
 id inputName
 id inputPassword
 id inputPhone
+id inputPriority
 id inputTime
 id inputTitle
+id inputTitleTask
 id inputUsername
 id invisible
 id inward
@@ -1996,6 +2000,7 @@ id outDesc
 id outTest
 id outTime
 id outTitle
+id outerror
 id outline
 id outward
 id packed
@@ -2051,6 +2056,7 @@ id select_dialog_listview
 id selected
 id selection_type
 id sendEvent
+id sendTask
 id settings
 id settingsHead
 id shortcut
@@ -2109,6 +2115,11 @@ id textStart
 id textTop
 id textView
 id textView10
+id textView11
+id textView12
+id textView13
+id textView14
+id textView15
 id textView2
 id textView3
 id textView4
@@ -2217,6 +2228,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_add_event
+layout activity_add_task
 layout activity_create_account
 layout activity_dates
 layout activity_event_main
