@@ -169,7 +169,9 @@ public class Account {
 	}
 
 	public void setUsername(String username) {
-		if (username.chars().allMatch(Character::isLetter)) {
+
+		String regex = "^[a-zA-Z0-9.#!_]+$";
+		if (username.matches(regex)) {
 			this.username = username;
 		} else {
 			this.username = "null";

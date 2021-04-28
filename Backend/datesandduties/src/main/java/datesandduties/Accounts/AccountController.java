@@ -44,7 +44,7 @@ public class AccountController {
 			return "Account Creation Failed";
 		}
 		accountRepository.save(account);
-		return "Entry Saved!";
+		return "Entry Saved!" + " Your Account ID is: " + account.getId();
 	}
 
 	@ApiOperation(value = "Return all the Accouints in Database", response = Iterable.class, tags = "getAllAccounts")
@@ -160,7 +160,13 @@ public class AccountController {
 	}
 
 	@GetMapping(path = "/findUser/{username}")
+	public List<Account> findByUsernameLike(@PathVariable String username) {
+		return accountRepository.findByUsernameLike(username);
+	}
+
+	@GetMapping(path = "/findUserSpecific/{username}")
 	public Account findByUsername(@PathVariable String username) {
 		return accountRepository.findByUsername(username);
 	}
+
 }
