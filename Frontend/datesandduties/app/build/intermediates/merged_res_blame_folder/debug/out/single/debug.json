@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_setting.xml.flat",
-        "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\layout\\activity_setting.xml"
-    },
-    {
         "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_event_main.xml.flat",
         "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\layout\\activity_event_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_setting.xml.flat",
+        "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\layout\\activity_setting.xml"
     },
     {
         "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_launcher_background.png.flat",
@@ -28,17 +28,8 @@
         "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
-<<<<<<< HEAD
         "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher_background.png.flat",
         "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_launcher_background.png"
-=======
-        "merged": "C:\\Users\\User\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_add_task.xml.flat",
-        "source": "C:\\Users\\User\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\layout\\activity_add_task.xml"
-    },
-    {
-        "merged": "C:\\Users\\User\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\User\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
->>>>>>> 33-mockito-test-saffron
     },
     {
         "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_launcher_background.xml.flat",
@@ -95,6 +86,10 @@
     {
         "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_create_account.xml.flat",
         "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\layout\\activity_create_account.xml"
+    },
+    {
+        "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_add_task.xml.flat",
+        "source": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\src\\main\\res\\layout\\activity_add_task.xml"
     },
     {
         "merged": "C:\\Users\\brady\\Desktop\\git\\mc_1\\Frontend\\datesandduties\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
