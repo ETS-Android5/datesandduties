@@ -145,7 +145,7 @@ public class AccountController {
 		return "Event Removed From Account!";
 	}
 
-	@PutMapping(path = "/removeTask/{accountId}/{eventId}")
+	@PutMapping(path = "/removeTask/{accountId}/{taskId}")
 	public String removeTask(@PathVariable int accountId, @PathVariable int taskId) {
 		Account account = accountRepository.findById(accountId).get();
 		Task task = taskRepository.findById(taskId).get();
